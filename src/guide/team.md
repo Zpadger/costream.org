@@ -110,7 +110,6 @@ order: 803
 
 <div id="team-members">
   <div class="team">
-
     <h2 id="the-core-team">
       核心团队
       <button
@@ -129,19 +128,15 @@ order: 803
         </template>
       </button>
     </h2>
-
     <p v-if="errorGettingLocation" class="tip">
       未成功获取您的位置。
     </p>
-
     <p>
       这里会展示其中COStream团队成员的信息。
     </p>
-
     <p v-if="userPosition" class="success">
       核心团队成员已经按照跟你的距离排序。
     </p>
-
     <vuer-profile
       v-for="profile in sortedTeam"
       :key="profile.github"
@@ -191,7 +186,7 @@ order: 803
   </div>
 -->
 </div>
-
+<script src="team-data.js"></script>
 <script>
 (function () {
   var cityCoordsFor = {
@@ -216,50 +211,6 @@ order: 803
     ko: '한국어',
     ro: 'Română'
   }
-
-  var team = [{
-    name: 'Junqing Yu',
-    title: 'Professor of DML',
-    city: 'Wuhan, China',
-    languages: ['zh', 'en'],
-    github: null,
-    img: '/images/YuJunqing.jpg',
-    work: {
-      role: 'Professor',
-      org: 'HUST DML'
-    },
-    reposOfficial: [
-      '多核计算与流编译', '基于内容的视频分析','网络安全与大数据处理'
-    ],
-    links: [
-      'http://faculty.hust.edu.cn/yujunqing/zh_CN/index.htm'
-    ]
-  }]
-
-  team = team.concat(shuffle([
-    {
-      name: 'Xinxing Li',
-      title: 'Member of DML',
-      city: 'Wuhan, China',
-      languages: ['zh', 'en','jp'],
-      github: 'lxx2013',
-      twitter: null,
-      work: {
-        role: 'Master',
-        org:'HUST DML'
-      },
-      reposOfficial: [
-        'COStream Graphic', 'Web View'
-      ],
-//      reposPersonal: [
-//        
-//      ],
-      links: [
-        'https://github.com/lxx2013'
-      ]
-    }
-  ]))
-
   var partners = [
     {
       name: 'Sebastien Chopin',
@@ -277,7 +228,6 @@ order: 803
       ]
     }
   ]
-
   Vue.component('vuer-profile', {
     template: '#vuer-profile-template',
     props: {
