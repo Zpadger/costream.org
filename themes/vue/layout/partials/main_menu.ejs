@@ -4,18 +4,18 @@
   </form>
 </li>
 <li>
-    <a href="<%- url_for("/v2/guide/installation.html") %>" class="nav-link team<%- page.path.match(/guide\/installation.html/) ? ' current' : '' %>">安装</a>
+    <a href="<%- url_for("/guide/installation.html") %>" class="nav-link team<%- page.path.match(/guide\/installation.html/) ? ' current' : '' %>">安装</a>
 </li>
 <%- partial('partials/learn_dropdown') %>
 <%- partial('partials/ecosystem_dropdown') %>
-<!--
 <li>
-  <a href="<%- url_for("/v2/guide/team.html") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">团队</a>
+  <a href="<%- url_for("/guide/team.html") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">团队</a>
 </li>
--->
+<!--
 <li>
     <a href="<%- url_for("#") %>" class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>">团队</a>
 </li>
+-->
 <%- partial('partials/support_costream_dropdown') %>
 <%- partial('partials/language_dropdown') %>
 <!--<li><a href="https://github.com/vuejs/cn.vuejs.org/" target="_blank" class="nav-link contribute">参与翻译</a></li>-->
