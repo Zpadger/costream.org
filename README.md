@@ -12,9 +12,8 @@ $
 ## Deploying
 
 ``` bash
-$ hexo build
-$ git branch gh-pages
-$ cp -R public ./
+$ hexo generate
+$ git status
 $ git add -A
 $ git commit -m "commits"
 $ git push
