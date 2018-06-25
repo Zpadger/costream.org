@@ -18,7 +18,7 @@ function shuffle (a) {
 }
 
 var team = [{
-	name: '于俊清',
+	name: 'Junqing Yu',
 	title: 'Professor of DML',
 	city: 'Wuhan, China',
 	languages: ['zh', 'en'],
@@ -32,13 +32,13 @@ var team = [{
 		'多核计算与流编译', '基于内容的视频分析','网络安全与大数据处理'
 	],
 	links: [
-		'http://faculty.hust.edu.cn/yujunqing/zh_CN/index.htm'
+		'http://faculty.hust.edu.cn/yujunqing/en/index.htm'
 	]
 }]
 
 team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 	{
-		name: '陈名韬',
+		name: 'Mingtao Chen',
 		title: 'Member of DML',
 		city: 'Wuhan, China',
 		languages: ['zh', 'en'],
@@ -59,7 +59,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 		]
 	},
 	{
-		name: '王兆吉',
+		name: 'Zhaoji Wang',
 		title: 'Member of DML',
 		city: 'Wuhan, China',
 		languages: ['zh', 'en'],
@@ -80,7 +80,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 		]
 	},
 	{
-		name: '李平然',
+		name: 'Pingran Li',
 		title: 'Member of DML',
 		city: 'Wuhan, China',
 		languages: ['zh', 'en'],
@@ -101,7 +101,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 		]
 	},
 	{
-		name: '李新星',
+		name: 'Xinxing Li',
 		title: 'Member of DML',
 		city: 'Wuhan, China',
 		languages: ['zh', 'en','jp'],
@@ -112,7 +112,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 			org:'HUST DML'
 		},
 		reposOfficial: [
-			'COStream - Graphic', '前端'
+			'COStream - Graphic', 'Web'
 		],
 		//      reposPersonal: [
 		//        
@@ -122,7 +122,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 		]
 	},
 	{
-		name: '杨飞',
+		name: 'Fei Yang',
 		title: 'Member of DML',
 		city: 'Wuhan, China',
 		languages: ['zh', 'en'],
@@ -143,7 +143,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 		]
 	},
 	{
-		name: '余冰清',
+		name: 'Bingqing Yu',
 		title: 'Member of DML',
 		city: 'Wuhan, China',
 		languages: ['zh', 'en'],
@@ -164,7 +164,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 		]
 	},
 	{
-		name: '彭昊',
+		name: 'Hao Peng',
 		title: 'Member of DML',
 		city: 'Wuhan, China',
 		languages: ['zh', 'en'],
