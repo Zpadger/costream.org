@@ -3,21 +3,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>COStream</title>
+    <title>COStream 0.6.0 Released — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="alternate" hreflang="x-default" href="https://costream.site/menu/index.html">
-    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/menu/index.html">
+    <link rel="alternate" hreflang="x-default" href="https://costream.site/2018/06/29/0.6.0-release/">
+    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/2018/06/29/0.6.0-release/">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="COStream">
+    <meta property="og:title" content="COStream 0.6.0 Released — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="COStream">
+    <meta name="twitter:title" content="COStream 0.6.0 Released — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
@@ -57,7 +57,7 @@
 
     <!-- this needs to be loaded before guide's inline scripts -->
     <script src="/js/vue.js"></script>
-    <script>window.PAGE_TYPE = "menu"</script>
+    <script>window.PAGE_TYPE = ""</script>
 
     <!-- ga -->
     <script>
@@ -164,8 +164,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/menu/index.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/menu/index.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/2018/06/29/0.6.0-release/" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/2018/06/29/0.6.0-release/" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -177,13 +177,12 @@
     
       <div id="main" class="fix-sidebar">
         
-          
-  <div class="sidebar">
+          <div class="sidebar blog">
   <div class="sidebar-inner">
     <ul class="main-menu">
       <li>
   <form id="search-form">
-    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
   </form>
 </li>
 <li>
@@ -264,8 +263,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/menu/index.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/menu/index.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/2018/06/29/0.6.0-release/" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/2018/06/29/0.6.0-release/" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -273,362 +272,26 @@
 
     </ul>
     <div class="list">
-      <!--
-<div class="sidebar-sponsors">
-  <div class="main-sponsor">
-    <span>特别赞助</span><br>
-    <a id="main-sponsor-link" target="_blank" style="display: block; margin: 15px 0;" href="https://www.bmqb.com/jobs">
-      <img id="main-sponsor-image" src="/images/bmqb.png">
-    </a>
-  </div>
-  <a class="become-backer" href="/support-vuejs">
-    成为赞助者
-  </a>
-</div>
--->
-
-<!--
-
-original version from vuejs.org
-
-<div id="sidebar-sponsors-special">
-  <div class="main-sponsor">
-    <span>特别赞助</span>
-    <div>
-    <a href="https://stdlib.com" target="_blank" class="logo">
-      <img src="/images/stdlib.png">
-    </a>
-    <a href="https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue" target="_blank" class="logo">
-      <img src="/images/bit-wide.png">
-    </a>
+      <h2>
+        Recent Posts
+        <a href="/atom.xml" target="_blank" style="vertical-align: middle; margin-left: 5px;">
+          <img src="/images/feed.png" style="width: 15px; height: 15px;">
+        </a>
+      </h2>
+      <ul style="padding: 0;">
+      
+        <li>
+          <a href="/2018/06/29/0.6.0-release/" class="sidebar-link current">COStream 0.6.0 Released</a>
+        </li>
+      
+      </ul>
     </div>
   </div>
 </div>
-
-<div id="sidebar-sponsors-platinum">
-  <div class="main-sponsor">
-    <span>Patreon 赞助</span>
-    <div>
-    <a href="http://tooltwist.com/" target="_blank" class="logo">
-      <img src="/images/tooltwist.png">
-    </a>
-    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
-      <img src="/images/vueschool.png">
-    </a>
-    <a href="https://vehikl.com/" target="_blank" class="logo">
-      <img src="/images/vehikl.png">
-    </a>
-    </div>
-  </div>
-  <a class="become-backer" href="/support-vuejs">
-    成为赞助者
-  </a>
-</div>
-
--->
-
-      
-        <h2>
-          
-          教程
-<!--
-          
-            <select class="version-select">
-              <option value="SELF" selected>2.x</option>
-              <option value="v1">1.0</option>
-              <option value="012">0.12</option>
-              <option value="011">0.11</option>
-            </select>
-          
--->
-        </h2>
-        <ul class="menu-root">
-  
-    
-    
-      
-        <li><h3>基础</h3></li>
-      
-      
-			
-    
-    <li>
-      <a href="/guide/index.html" class="sidebar-link">简介</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/installation.html" class="sidebar-link">安装</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/helloworld.html" class="sidebar-link">运行第一个COStream程序</a>
-    </li>
-  
-    
-    
-      
-      
-      <li><h3>文法手册</h3></li>
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/grammar.html" class="sidebar-link">文法简介</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/2.html" class="sidebar-link">Keyword & Type</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/3.html" class="sidebar-link">流数据处理</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/4.html" class="sidebar-link">层次性流程序构造</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/5.html" class="sidebar-link">Inside Composite</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/6.html" class="sidebar-link">程序结构</a>
-    </li>
-  
-    
-    
-      
-      
-			
-      <li><h3>其它</h3></li>
-      
-    
-    <li>
-      <a href="/guide/team.html" class="sidebar-link">认识团队</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/MD_GIT.html" class="sidebar-link">Git 使用简明教程</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/MD.html" class="sidebar-link">模板.md用法</a>
-    </li>
-  
-</ul>
-
-      
-    </div>
-  </div>
-</div>
-
-
-<div class="content menu with-sidebar ">
-  
-    
-      <form id="search-form">
-        <input type="text" id="search-query-menu" class="search-query st-default-search-input">
-      </form>
-      <ul class="menu-root">
-  
-    
-    
-      
-        <li><h3>基础</h3></li>
-      
-      
-			
-    
-    <li>
-      <a href="/guide/index.html" class="sidebar-link">简介</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/installation.html" class="sidebar-link">安装</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/helloworld.html" class="sidebar-link">运行第一个COStream程序</a>
-    </li>
-  
-    
-    
-      
-      
-      <li><h3>文法手册</h3></li>
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/grammar.html" class="sidebar-link">文法简介</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/2.html" class="sidebar-link">Keyword & Type</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/3.html" class="sidebar-link">流数据处理</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/4.html" class="sidebar-link">层次性流程序构造</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/5.html" class="sidebar-link">Inside Composite</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/grammar-book/6.html" class="sidebar-link">程序结构</a>
-    </li>
-  
-    
-    
-      
-      
-			
-      <li><h3>其它</h3></li>
-      
-    
-    <li>
-      <a href="/guide/team.html" class="sidebar-link">认识团队</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/MD_GIT.html" class="sidebar-link">Git 使用简明教程</a>
-    </li>
-  
-    
-    
-      
-      
-			
-    
-    <li>
-      <a href="/guide/MD.html" class="sidebar-link">模板.md用法</a>
-    </li>
-  
-</ul>
-
-    
-  
-  
-  
-    
-  
-  
-  <div class="footer">
-    发现错误？想参与编辑？
-    	
-	  <a href="https://github.com/DML308/cn.costream.org/tree/master/src/menu/index.md" target="_blank">
-		  在 GitHub 上编辑此页！
-	  </a>
-  	
-  </div>
+<div class="content with-sidebar blog post">
+  <h1>COStream 0.6.0 Released</h1>
+  <h4>Jun 29, 2018</h4>
+  <h3 id="message"><a href="#message" class="headerlink" title="message"></a>message</h3>
 </div>
 
         

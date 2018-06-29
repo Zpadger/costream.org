@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>内置Composite — COStream</title>
+    <title>Inside Composite — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,12 +12,12 @@
     <link rel="alternate" hreflang="zh" href="https://cn.costream.site/guide/grammar-book/5.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="内置Composite — COStream">
+    <meta property="og:title" content="Inside Composite — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="内置Composite — COStream">
+    <meta name="twitter:title" content="Inside Composite — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
@@ -395,7 +395,7 @@ original version from vuejs.org
 			
     
     <li>
-      <a href="/guide/grammar-book/2.html" class="sidebar-link">关键字与类型</a>
+      <a href="/guide/grammar-book/2.html" class="sidebar-link">Keyword & Type</a>
     </li>
   
     
@@ -425,7 +425,7 @@ original version from vuejs.org
 			
     
     <li>
-      <a href="/guide/grammar-book/5.html" class="sidebar-link current">内置Composite</a>
+      <a href="/guide/grammar-book/5.html" class="sidebar-link current">Inside Composite</a>
     </li>
   
     
@@ -483,7 +483,7 @@ original version from vuejs.org
     
   
   
-    <h1>内置Composite</h1>
+    <h1>Inside Composite</h1>
   
   
     <h2 id="文件I-O"><a href="#文件I-O" class="headerlink" title="文件I/O"></a>文件I/O</h2><p>为了便于对文件操作，COStream对文件的I/O提供了内置composite支持，通过调用内置的文件I/O composite编程人员可以很方便的对文件读写操作。FileReader和FileWriter分别是COStream为I/O提供的一个内置的composite接口。FileReader用于将文件中的数据读到流中，而FileWriter则将流中的数据写到文件中。具体用法如下：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">stream&lt;<span class="keyword">double</span> x&gt; A,B;</span><br><span class="line">A = FileReader(“data.bin”);</span><br><span class="line">B = FMRadioCore(A);</span><br><span class="line">FileWriter(B)(“result.txt”);</span><br></pre></td></tr></table></figure></p>
