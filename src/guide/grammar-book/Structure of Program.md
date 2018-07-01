@@ -6,7 +6,7 @@ order: 35
 
 ##   External C++
 
-The figure 6.1 shows the compiled procedure of COStream program. The COStream compiler is a source-to-source compiler, which compiles the COStream program to parallel object code on the target platform(C++ like this) and uses the underlying compiler to generate final object code at last.
+The figure below shows the compiled procedure of COStream program. The COStream compiler is a source-to-source compiler, which compiles the COStream program to parallel object code on the target platform(C++ like this) and uses the underlying compiler to generate final object code at last.
 
 ![6.1](https://i.loli.net/2018/07/01/5b38d266f2005.png)
 
