@@ -1,5 +1,5 @@
 ---
-title: 运行第一个COStream程序
+title: Try to run
 type: guide
 order: 3
 costream_version: 0.6.0
