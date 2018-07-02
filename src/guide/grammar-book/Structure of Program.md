@@ -10,7 +10,7 @@ The figure below shows the compiled procedure of COStream program. The COStream 
 
 ![6.1](https://i.loli.net/2018/07/01/5b38d266f2005.png)
 
-The COStream compiler has two approachs to finish the program compilation: self-supporting pattern and extern-embed pattern. For example, if we need C++ program as the object code, in self-supportint pattern, the COStream source code will be converted into C++ code first, and be compiled to the independent machine-code next without any Intervention else. But in the extern-embed pattern, COStream code will be called by external interface in external C++ program, which likes a normal C++ library compiled and linked with the external C++ code to the machine-code. We just need to choose the compiler option, the compiler will compile source code with different ways: "embed" means extern-embed pattern, and the "normal" means self-supporting pattern. Here we give a brief introdction to the interface in COStream compiler's extern-embed pattern.
+The COStream compiler has two approachs to finish the program compilation: self-supporting pattern and extern-embed pattern. For example, if we need C++ program as the object code, in self-supportint pattern, the COStream source code will be converted into C++ code first, and be compiled to the independent machine-code next without any intervention else. But in the extern-embed pattern, COStream code will be called by external interface in external C++ program, which likes a normal C++ library compiled and linked with the external C++ code to the machine-code. We just need to choose the compiler option, the compiler will compile source code with different ways: "embed" means extern-embed pattern, and the "normal" means self-supporting pattern. Here we give a brief introdction to the interface in COStream compiler's extern-embed pattern.
 
 In the extern-embed pattern of COStream compiler, we define the RunCOStream class in "RunCOStream.h" file, which is a head file generated during the compilation. The RunCOStream class is included in "COStream" namespace, and the interfaces in RunCOStream class are as follows:
 ```c++
@@ -37,7 +37,7 @@ int main()
 }
 ```
 
-##   Shared Variable between C++ and COStream
+##   Shared Variable Between C++ and COStream
 
 For the purpose of modifying the variable conveniently in COStream program, which makes the stream program more flexible used for C++ user. The COStream compiler allow COStream program to access global variable which is defined in external C++ program. The variable that is accessed in COStream program should be appended "extern" identifier and won't be initialized. And in C++ program, the referred variable will be defined in global namespace, which changed resulting in the same variable changed in COStream program.
 The usage of global variable is as follows:
