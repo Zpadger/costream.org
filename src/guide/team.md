@@ -1,5 +1,5 @@
 ---
-title: 认识团队
+title: Team Members
 type: guide
 order: 803
 ---
@@ -111,7 +111,7 @@ order: 803
 <div id="team-members">
   <div class="team">
     <h2 id="the-core-team">
-      核心团队
+      The Core Team
       <button
         v-if="geolocationSupported && !userPosition"
         @click="getUserPosition"
@@ -124,18 +124,18 @@ order: 803
         ></i>
         <template v-else>
           <i class="fa fa-map-marker"></i>
-          <span>谁在我附近</span>
+          <span>FIND NEAR ME</span>
         </template>
       </button>
     </h2>
     <p v-if="errorGettingLocation" class="tip">
-      未成功获取您的位置。
+      Get location failed
     </p>
     <p>
-      这里会展示其中COStream团队成员的信息。
+	The team members of COStream have chosen to be featured below.
     </p>
     <p v-if="userPosition" class="success">
-      核心团队成员已经按照跟你的距离排序。
+	The core team has been sorted by their distance from you.
     </p>
     <vuer-profile
       v-for="profile in sortedTeam"
