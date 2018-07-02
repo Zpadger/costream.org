@@ -37,7 +37,7 @@ int main()
 }
 ```
 
-##   Shared Variable between C++ and COStream
+##   Shared Variable Between C++ and COStream
 
 For the purpose of modifying the variable conveniently in COStream program, which makes the stream program more flexible used for C++ user. The COStream compiler allow COStream program to access global variable which is defined in external C++ program. The variable that is accessed in COStream program should be appended "extern" identifier and won't be initialized. And in C++ program, the referred variable will be defined in global namespace, which changed resulting in the same variable changed in COStream program.
 The usage of global variable is as follows:
