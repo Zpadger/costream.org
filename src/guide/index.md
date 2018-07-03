@@ -1,5 +1,5 @@
 ---
-title: 简介
+title: Introduction
 type: guide
 order: 1
 ---

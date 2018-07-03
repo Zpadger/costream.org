@@ -1,5 +1,5 @@
 ---
-title: 安装
+title: Installation
 type: guide
 order: 2
 costream_version: 0.6.0
@@ -29,7 +29,7 @@ $ yum install compat-gcc-44
 $ yum install compat-gcc-44-c++
 #接下来设置4.4的版本为默认编译器
 $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
-$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100 
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100
 #如果上面这一步报错提示/usr/bin/gcc已经存在且不为symlink,可以通过mv /usr/bin/gcc /usr/gcc来将原gcc移除PATH路径再执行update-alternatives
 $ gcc -v    #查看gcc版本是否成功设置为4.4.7
 $ g++ -v    #查看g++版本是否成功设置为4.4.7
@@ -41,7 +41,7 @@ $ sudo apt-get install flex bison cmake gdb
 $ apt list gcc-4.4      #查找库中gcc版本
 # Listing... Done
 # gcc-4.4/trusty,now 4.4.7-8ubuntu1
-$ sudo apt-get install gcc-4.4 
+$ sudo apt-get install gcc-4.4
 $ apt list g++-4.4      #查找库中g++版本
 # Listing... Done
 # g++-4.4/trusty 4.4.7-8ubuntu1

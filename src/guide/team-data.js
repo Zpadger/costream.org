@@ -29,7 +29,7 @@ var team = [{
 		org: 'HUST DML'
 	},
 	reposOfficial: [
-		'多核计算与流编译', '基于内容的视频分析','网络安全与大数据处理'
+		'Multi-core Computing and Data-flow Compilation', 'Content-based Video Analytics','Network Security and Big Data Processing'
 	],
 	links: [
 		'http://faculty.hust.edu.cn/yujunqing/en/index.htm'
@@ -52,7 +52,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 			'COStream GPU'
 		],
 		//      reposPersonal: [
-		//        
+		//
 		//      ],
 		links: [
 			'https://github.com/lhcmt'
@@ -73,7 +73,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 			'COStream Benchmark'
 		],
 		//      reposPersonal: [
-		//        
+		//
 		//      ],
 		links: [
 			'https://github.com/PixelWang'
@@ -94,7 +94,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 			'COStream Dynamic scheduling'
 		],
 		//      reposPersonal: [
-		//        
+		//
 		//      ],
 		links: [
 			'https://github.com/blendTree'
@@ -115,7 +115,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 			'COStream - Graphic', 'Web'
 		],
 		//      reposPersonal: [
-		//        
+		//
 		//      ],
 		links: [
 			'http://setsuna.wang'
@@ -136,7 +136,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 			'COStream - JPEG'
 		],
 		//      reposPersonal: [
-		//        
+		//
 		//      ],
 		links: [
 			'https://github.com/innocanca'
@@ -157,7 +157,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 			'COStream - Tensorflow'
 		],
 		//      reposPersonal: [
-		//        
+		//
 		//      ],
 		links: [
 			'https://github.com/yu583497794'
@@ -178,11 +178,10 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
 			'COStream','Linux'
 		],
 		//      reposPersonal: [
-		//        
+		//
 		//      ],
 		links: [
 			'https://github.com/PHaoGhost'
 		]
 	}
 ]))
-
