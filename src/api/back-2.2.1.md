@@ -66,11 +66,12 @@ The above code is the implementation of the scheduling , it’s very clear。
 
 ## FAQ
 
-（1）Why is the scheduling order first steady state and initial state?
-Steady-state scheduling processes the amount of data from the top-down node to reach equilibrium;
-The initial state schedules the amount of data from the bottom-up processing node to reach equilibrium;		    The initial scheduling and the steady scheduling are independent of each other;
+### Why is the scheduling order first steady state and initial state?
+- Steady-state scheduling processes the amount of data from the top-down node to reach equilibrium
+- The initial state schedules the amount of data from the bottom-up processing node to reach equilibrium		    
+- The initial scheduling and the steady scheduling are independent of each other;
 Function SteadyScheduling()determines whether the SDF can reach steady state；
 Reduce the memory overhead by avoidable InitScheduling() function calls
-（2）What does the initial state and steady state scheduling do for the SDF diagram?
-Did not change the structural characteristics of the SDF;
-Just calculate how the data filling the SDF graph (sssg);	
+### What does the initial state and steady state scheduling do for the SDF diagram?
+- Did not change the structural characteristics of the SDF
+- Just calculate how the data filling the SDF graph (sssg)

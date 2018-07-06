@@ -25,16 +25,18 @@ Lexical analysis and Gramma analysis are in` parse()`.In order to truly understa
 ## Flex
 
 Flex is a fast lexical analyzer generator：
-1）	Describe the lexical structure with regular expressions
-2）	Regular expressions use meta language to describe matching patterns
-3）	For this project, c4.l is the corresponding lexical analysis file
-4）	steps as shown below：
+-  	Describe the lexical structure with regular expressions
+-  	Regular expressions use meta language to describe matching patterns
+-  	For this project, c4.l is the corresponding lexical analysis file
+-  	steps as shown below：
+
 ![Flexsteps](/img/Flexsteps.jpg)
 
 ## Bison
 Bison is a Parser：
-1）	use —BNF paradigm
-2）	Using the move/protocol analysis to match the matching rules of the current token
-3）	ANSI-C.y is the corresponding parsing file in this project
-4）	steps as shown below：
+- 	use —BNF paradigm
+- 	Using the move/protocol analysis to match the matching rules of the current token
+- 	ANSI-C.y is the corresponding parsing file in this project
+- 	steps as shown below：
+
 ![Bisonsteps](/img/Bisonsteps.jpg)

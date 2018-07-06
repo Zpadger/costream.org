@@ -1,6 +1,6 @@
 <ul class="menu-root">
   <% ['cookbook', 'style-guide'].indexOf(type) === -1 && site.pages.find({type: type}).sort('order').each(function (p) { %>
-    <% var fileName = p.path.replace(/^.+?\/([\w-]+)\.html/, '$1') %>
+    <% var fileName = p.path.replace(/^.+?\/([\w-\.]+)\.html/, '$1') %>
     <% if (type === 'guide') { %>
       <% if (fileName === 'index') { %>
         <li><h3>Essentials</h3></li>
@@ -13,11 +13,11 @@
       <% } %>
     <% } %>
     <% if (type === 'api') { %>
-      <% if (fileName === 'front') { %>
-      <li><h3>前端</h3></li>
+	<% if (fileName === 'front-2.1.0') { %>
+      <li><h3>Front end - Parser </h3></li>
       <% } %>
-			<% if (fileName === 'back') { %>
-      <li><h3>后端</h3></li>
+	<% if (fileName === 'back-2.2.1') { %>
+      <li><h3>Back end - CodeGenerator</h3></li>
       <% } %>
     <% } %>
     <li>
