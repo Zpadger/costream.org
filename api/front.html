@@ -3,21 +3,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>COStream</title>
+    <title>输入文件获取与处理 — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/3.2.html">
-    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/3.2.html">
+    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/front.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/front.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="COStream">
+    <meta property="og:title" content="输入文件获取与处理 — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta property="og:image" content="https://costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="COStream">
+    <meta name="twitter:title" content="输入文件获取与处理 — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="twitter:image" content="https://costream.site/images/logo.png">
 
@@ -57,7 +57,7 @@
 
     <!-- this needs to be loaded before guide's inline scripts -->
     <script src="/js/vue.js"></script>
-    <script>window.PAGE_TYPE = ""</script>
+    <script>window.PAGE_TYPE = "api"</script>
 
     <!-- ga -->
     <script>
@@ -90,12 +90,12 @@
     <a href="/guide/installation.html" class="nav-link team">Install</a>
 </li>
 <li class="nav-dropdown-container learn">
-  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link current">API</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -149,8 +149,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/3.2.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/3.2.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -164,6 +164,7 @@
         
           
   <div class="sidebar">
+  <div class="sidebar-inner">
     <ul class="main-menu">
       <li>
   <form id="search-form">
@@ -174,12 +175,12 @@
     <a href="/guide/installation.html" class="nav-link team">Install</a>
 </li>
 <li class="nav-dropdown-container learn">
-  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link current">API</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -233,27 +234,130 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/3.2.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/3.2.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
 <!--<li><a href="https://github.com/vuejs/cn.vuejs.org/" target="_blank" class="nav-link contribute">参与翻译</a></li>-->
 
     </ul>
-  </div>
+    <div class="list">
+      
+      
+        <h2>
+          
+          API
+<!--
+          
+            <select class="version-select">
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          
+-->
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    
+      
+			
+    
+    <li>
+      <a href="/api/index.html" class="sidebar-link">概览</a>
+    </li>
+  
+    
+    
+    
+      
+      <li><h3>前端</h3></li>
+      
+			
+    
+    <li>
+      <a href="/api/front.html" class="sidebar-link current">输入文件获取与处理</a>
+    </li>
+  
+    
+    
+    
+      
+			
+    
+    <li>
+      <a href="/api/front-1.html" class="sidebar-link">输入预处理及初始化环境</a>
+    </li>
+  
+    
+    
+    
+      
+			
+    
+    <li>
+      <a href="/api/front-3.html" class="sidebar-link">文件C4.l　& ANSI.y解析</a>
+    </li>
+  
+    
+    
+    
+      
+			
+    
+    <li>
+      <a href="/api/front-2.html" class="sidebar-link">文法建立和语法树生成</a>
+    </li>
+  
+    
+    
+    
+      
+			
+      <li><h3>后端</h3></li>
+      
+    
+    <li>
+      <a href="/api/back.html" class="sidebar-link">title1</a>
+    </li>
+  
+    
+    
+    
+      
+			
+    
+    <li>
+      <a href="/api/back-1.html" class="sidebar-link">title2</a>
+    </li>
+  
+</ul>
 
-<div class="content  ">
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="content api with-sidebar ">
+  
+    
   
   
+    <h1>输入文件获取与处理</h1>
   
-    <h1 id="3-2-用XML文本的形式描述SDF图"><a href="#3-2-用XML文本的形式描述SDF图" class="headerlink" title="3.2    用XML文本的形式描述SDF图"></a>3.2    用XML文本的形式描述SDF图</h1>
+  
+    
   
   
   <div class="footer">
 	Caught a mistake or want to contribute to the documentation? 
     	
-	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/3.2.md" target="_blank">
+	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/front.md" target="_blank">
 		  Edit this page on GitHub!
 	  </a>
   	

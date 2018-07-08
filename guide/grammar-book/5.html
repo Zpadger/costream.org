@@ -90,7 +90,7 @@
     <a href="/guide/installation.html" class="nav-link team">Install</a>
 </li>
 <li class="nav-dropdown-container learn">
-  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
@@ -175,7 +175,7 @@
     <a href="/guide/installation.html" class="nav-link team">Install</a>
 </li>
 <li class="nav-dropdown-container learn">
-  <a class="nav-link">Learn</a><span class="arrow"></span>
+  <a class="nav-link current">Learn</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
@@ -243,60 +243,7 @@
 
     </ul>
     <div class="list">
-      <!--
-<div class="sidebar-sponsors">
-  <div class="main-sponsor">
-    <span>特别赞助</span><br>
-    <a id="main-sponsor-link" target="_blank" style="display: block; margin: 15px 0;" href="https://www.bmqb.com/jobs">
-      <img id="main-sponsor-image" src="/images/bmqb.png">
-    </a>
-  </div>
-  <a class="become-backer" href="/support-vuejs">
-    成为赞助者
-  </a>
-</div>
--->
-
-<!--
-
-original version from vuejs.org
-
-<div id="sidebar-sponsors-special">
-  <div class="main-sponsor">
-    <span>特别赞助</span>
-    <div>
-    <a href="https://stdlib.com" target="_blank" class="logo">
-      <img src="/images/stdlib.png">
-    </a>
-    <a href="https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue" target="_blank" class="logo">
-      <img src="/images/bit-wide.png">
-    </a>
-    </div>
-  </div>
-</div>
-
-<div id="sidebar-sponsors-platinum">
-  <div class="main-sponsor">
-    <span>Patreon 赞助</span>
-    <div>
-    <a href="http://tooltwist.com/" target="_blank" class="logo">
-      <img src="/images/tooltwist.png">
-    </a>
-    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" class="logo">
-      <img src="/images/vueschool.png">
-    </a>
-    <a href="https://vehikl.com/" target="_blank" class="logo">
-      <img src="/images/vehikl.png">
-    </a>
-    </div>
-  </div>
-  <a class="become-backer" href="/support-vuejs">
-    成为赞助者
-  </a>
-</div>
-
--->
-
+      
       
         <h2>
           
@@ -322,6 +269,7 @@ original version from vuejs.org
       
 			
     
+    
     <li>
       <a href="/guide/index.html" class="sidebar-link">Introduction</a>
     </li>
@@ -332,6 +280,7 @@ original version from vuejs.org
       
 			
     
+    
     <li>
       <a href="/guide/installation.html" class="sidebar-link">Installation</a>
     </li>
@@ -341,6 +290,7 @@ original version from vuejs.org
       
       
 			
+    
     
     <li>
       <a href="/guide/helloworld.html" class="sidebar-link">Try to run</a>
@@ -354,6 +304,7 @@ original version from vuejs.org
       
 			
     
+    
     <li>
       <a href="/guide/grammar-book/grammar.html" class="sidebar-link">Grammer Introduction</a>
     </li>
@@ -363,6 +314,7 @@ original version from vuejs.org
       
       
 			
+    
     
     <li>
       <a href="/guide/grammar-book/2.html" class="sidebar-link">Keyword & Type</a>
@@ -374,6 +326,7 @@ original version from vuejs.org
       
 			
     
+    
     <li>
       <a href="/guide/grammar-book/3.html" class="sidebar-link">streaming data process</a>
     </li>
@@ -383,6 +336,7 @@ original version from vuejs.org
       
       
 			
+    
     
     <li>
       <a href="/guide/grammar-book/4.html" class="sidebar-link">层次性流程序构造</a>
@@ -394,6 +348,7 @@ original version from vuejs.org
       
 			
     
+    
     <li>
       <a href="/guide/grammar-book/5.html" class="sidebar-link current">Inside Composite</a>
     </li>
@@ -404,8 +359,9 @@ original version from vuejs.org
       
 			
     
+    
     <li>
-      <a href="/guide/grammar-book/6.html" class="sidebar-link">结构</a>
+      <a href="/guide/grammar-book/Structure of Program.html" class="sidebar-link">Structure of Program</a>
     </li>
   
     
@@ -416,8 +372,9 @@ original version from vuejs.org
       <li><h3>Else</h3></li>
       
     
+    
     <li>
-      <a href="/guide/team.html" class="sidebar-link">认识团队</a>
+      <a href="/guide/team.html" class="sidebar-link">Team Members</a>
     </li>
   
 </ul>
@@ -436,8 +393,8 @@ original version from vuejs.org
     <h1>Inside Composite</h1>
   
   
-    <h2 id="文件I-O"><a href="#文件I-O" class="headerlink" title="文件I/O"></a>文件I/O</h2><p>为了便于对文件操作，COStream对文件的I/O提供了内置composite支持，通过调用内置的文件I/O composite编程人员可以很方便的对文件读写操作。FileReader和FileWriter分别是COStream为I/O提供的一个内置的composite接口。FileReader用于将文件中的数据读到流中，而FileWriter则将流中的数据写到文件中。具体用法如下：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">stream&lt;<span class="keyword">double</span> x&gt; A,B;</span><br><span class="line">A = FileReader(“data.bin”);</span><br><span class="line">B = FMRadioCore(A);</span><br><span class="line">FileWriter(B)(“result.txt”);</span><br></pre></td></tr></table></figure></p>
-<p>表示将data.bin文件中的数据读入到数据流A中，FMRadioCore对数据进行处理，最后将处理后输出的数据保存至文件result.txt。这样通过提供对数据源和输出结果的文件存储，C++程序可以为该数据流程序提供数据或者利用数据流程序的输出结果来执行其他程序。</p>
+    <h2 id="File-Input-and-Output"><a href="#File-Input-and-Output" class="headerlink" title="File Input and Output"></a>File Input and Output</h2><p>In order to facilitate the operation of the file,COStream provides built-in composite support for file I/O.Programmers can easily read and write files by using the built-in file I/O composite.FileReader and FileWriter are built-in composite interface provided by COStream for I/O.FileReader can read data from file to data stream.FileWriter can writes data in the stream to the file.The specific usage is as follows:<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">stream&lt;<span class="keyword">double</span> x&gt; A,B;</span><br><span class="line">A = FileReader(“data.bin”);</span><br><span class="line">B = FMRadioCore(A);</span><br><span class="line">FileWriter(B)(“result.txt”);</span><br></pre></td></tr></table></figure></p>
+<p>The example indicates that the data in the data.bin file is read into the data stream A.Then FMRadioCore processes the data.In the end,FileWriter write the data to the file result.txt.By providing file storage for input and output,C++ program can provide data to dataflow program or use the output of dataflow program.</p>
 
   
   
@@ -448,7 +405,7 @@ original version from vuejs.org
       
       
       
-        <span style="float: right;"><a href="/guide/grammar-book/6.html">结构</a> →</span>
+        <span style="float: right;"><a href="/guide/grammar-book/Structure of Program.html">Structure of Program</a> →</span>
       
     </div>
   
