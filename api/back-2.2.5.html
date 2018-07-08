@@ -3,21 +3,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>文法建立和语法树生成 — COStream</title>
+    <title>Stage Assignment — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/front-2.html">
-    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/front-2.html">
+    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/back-2.2.5.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/back-2.2.5.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="文法建立和语法树生成 — COStream">
+    <meta property="og:title" content="Stage Assignment — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta property="og:image" content="https://costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="文法建立和语法树生成 — COStream">
+    <meta name="twitter:title" content="Stage Assignment — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="twitter:image" content="https://costream.site/images/logo.png">
 
@@ -149,8 +149,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/front-2.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/front-2.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/back-2.2.5.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/back-2.2.5.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -234,8 +234,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/front-2.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/front-2.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/back-2.2.5.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/back-2.2.5.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -264,75 +264,185 @@
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/index.html" class="sidebar-link">概览</a>
+      <a href="/api/index.html" class="sidebar-link">Overview</a>
     </li>
   
     
     
     
+	
+      <li><h3>Front end - Parser </h3></li>
       
-      <li><h3>前端</h3></li>
-      
-			
+	
     
     <li>
-      <a href="/api/front.html" class="sidebar-link">输入文件获取与处理</a>
+      <a href="/api/front-2.1.0.html" class="sidebar-link">Get & preprocess Input file</a>
     </li>
   
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/front-1.html" class="sidebar-link">输入预处理及初始化环境</a>
+      <a href="/api/front-2.1.1.html" class="sidebar-link">Preprocessing & Environment initialization</a>
     </li>
   
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/front-3.html" class="sidebar-link">文件C4.l　& ANSI.y解析</a>
+      <a href="/api/front-2.1.2.html" class="sidebar-link">Grammar creation and grammar tree generation</a>
     </li>
   
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/front-2.html" class="sidebar-link current">文法建立和语法树生成</a>
+      <a href="/api/front-2.1.3.html" class="sidebar-link">Print symbol table</a>
     </li>
   
     
     
     
-      
-			
-      <li><h3>后端</h3></li>
-      
+	
+	
     
     <li>
-      <a href="/api/back.html" class="sidebar-link">title1</a>
+      <a href="/api/front-2.1.4.html" class="sidebar-link">Delete file & verifies the Lexical and grammatical analysis results</a>
     </li>
   
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/back-1.html" class="sidebar-link">title2</a>
+      <a href="/api/front-2.1.5.html" class="sidebar-link">Semantic check</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.7.html" class="sidebar-link">Variable rename</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.8.html" class="sidebar-link">Constant propagation</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.9.html" class="sidebar-link">Print AST</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+    </li>
+  
+    
+    
+    
+	
+	
+      <li><h3>Back end - CodeGenerator</h3></li>
+      
+    
+    <li>
+      <a href="/api/back-2.2.1.html" class="sidebar-link">Initial scheduling and steady-state scheduling</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.2.html" class="sidebar-link">Describe the SDF diagram in the form of XML</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.3.html" class="sidebar-link">Parition graph</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.4.html" class="sidebar-link">Print theoretical speedup ratio</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.5.html" class="sidebar-link current">Stage Assignment</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.6.html" class="sidebar-link">Code Generation</a>
     </li>
   
 </ul>
@@ -348,16 +458,91 @@
     
   
   
-    <h1>文法建立和语法树生成</h1>
+    <h1>Stage Assignment</h1>
   
   
-    
+    <p>When the compiler proceeds to the stage assignment phase,it means we are close to the code generation module.<br>After partition the flatgraph, each part of the flatgraph has been assigned to the different processor core for execution, the program specifies the assignment of computing tasks on the spatial dimension.And determining the phase number of each computing unit being scheduled by the pipeline is specifying the scheduling of the computing unit in the time dimension。That is what stage assignment algorithm do.<br>Using stage assignment algorithm to construct software pipeline scheduling for task partitioning results is a prelude to the hierarchical pipeline code generation step.</p>
+<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*（6）Stage Assignment */</span></span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; X86Backend)  </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//Step1: construction stage assignment object PAS</span></span><br><span class="line">		pSA = <span class="keyword">new</span> StageAssignment();</span><br><span class="line">		<span class="comment">// Step2:get the topological sequence of flatgraph</span></span><br><span class="line">		pSA-&gt;actorTopologicalorder(SSSG-&gt;GetFlatNodes());</span><br><span class="line">		<span class="comment">// Step3:do stage assignment on flatgraph</span></span><br><span class="line">		pSA-&gt;actorStageMap(mp-&gt;GetFlatNode2PartitionNum());</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; GPUBackend &amp;&amp; MAFLPFlag)</span><br><span class="line">	&#123;</span><br><span class="line">		pSA = <span class="keyword">new</span> StageAssignment();</span><br><span class="line">		pSA-&gt;actorTopologicalorder(SSSG-&gt;GetFlatNodes());</span><br><span class="line">		pSA-&gt;actorStageMapForGPU(maflp-&gt;GetFlatNode2PartitionNum());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>（1）Construction stage assignment object PAS<br>（2）Get the topological sequence of flatgraph<br>（3）Do stage assignment on flatgraph</p>
+<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>（1）    ActorEdgeAssignment.h<br>This file is the declaration header file of the stage assignment module, defining the stage assignment class StageAssignment, which contains the attributes and functions required for stage assignment.</p>
+<p><em>protected attributes：</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Descritpion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>vector&lt;FlatNode *&gt;antortopo</code></td>
+<td style="text-align:left">The topological sequence of flatgraph</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>map&lt;FlatNode* node,int stagenum&gt;Actor2Stage</code></td>
+<td style="text-align:left">The result of stage assignment of each node</td>
+</tr>
+<tr>
+<td style="text-align:left">`multimap&lt; int stagenum,FlatNode* node &gt; Stage2Actor</td>
+<td style="text-align:left">`The result of stage assignment of each node</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>vector&lt;FlatNode * node &gt; ActorSet</code></td>
+<td style="text-align:left">store actors</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>map&lt;FlatNode* node ,int stagenum &gt; DataOfActor2Stage</code></td>
+<td style="text-align:left">The result of stage assignment of each node for GPU</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>multimap&lt; int stagenum,FlatNode* node &gt; Stage2DataOfActor</code></td>
+<td style="text-align:left">The result of stage assignment of each node for GPU</td>
+</tr>
+</tbody>
+</table>
+<p><em>public functions：</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Descritpion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>void actorStageMap(map&lt;FlatNode*,int&gt; processor2actor)</code></td>
+<td style="text-align:left">stage assignment algorithm function</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>void ActorEdgeAssignment ()</code></td>
+<td style="text-align:left">topological sorting function</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>int FindStage(FlatNode*)</code></td>
+<td style="text-align:left">find stage number of one node</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>vector&lt;FlatNode *&gt; FindActor(int i)</code></td>
+<td style="text-align:left">Find nodes with stage number</td>
+</tr>
+</tbody>
+</table>
+<p>See sourece file  ActorEdgeAssignment.cpp for detials</p>
+<h2 id="Program-process"><a href="#Program-process" class="headerlink" title="Program process"></a>Program process</h2><p>（1）    Topological sorting of SDF graph nodes—<code>ActorEdgeAssignment()</code><br>The SDF graph is a directed acyclic graph. The topological sorting idea is used to arrange all the nodes in the graph into a linear sequence as the execution order of all nodes.<br>Topological sorting algorithm：<br>The topological sorting algorithm for constructing topological sequences from AOV network is as follows:<br>① Select a vertex with a degree of 0 and output it;<br>② Remove this vertex and all outgoing edges from the net.<br>③ Repeat ① ② until all points are deleted</p>
+<p>（2）    Next  program perform an set pipeline stage number for the topologically sorted SDF graph<br>Stage assignment belongs to the data-driven hierarchical pipeline scheduling domain.<br>The implementation ideas are as follows:</p>
+<pre><code>1. Inter-cluster node asynchronous pipeline scheduling (data driven, block communication )
+2. Synchronization pipeline scheduling for nodes on multi-cores
+    2.1 different machines: parent node execution does not affect the execution of child nodes
+    2.2 same machine using stage assignment algorithm
+         ① with the same core: the parent node and the child node are assigned to the same stage to execute
+         ② different cores: the sub-phase number is 1 larger than the parent stage number
+</code></pre>
   
   
   <div class="footer">
 	Caught a mistake or want to contribute to the documentation? 
     	
-	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/front-2.md" target="_blank">
+	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/back-2.2.5.md" target="_blank">
 		  Edit this page on GitHub!
 	  </a>
   	

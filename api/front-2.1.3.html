@@ -3,21 +3,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>文件C4.l　& ANSI.y解析 — COStream</title>
+    <title>Print symbol table — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/front-3.html">
-    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/front-3.html">
+    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/front-2.1.3.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/front-2.1.3.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="文件C4.l　& ANSI.y解析 — COStream">
+    <meta property="og:title" content="Print symbol table — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta property="og:image" content="https://costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="文件C4.l　& ANSI.y解析 — COStream">
+    <meta name="twitter:title" content="Print symbol table — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="twitter:image" content="https://costream.site/images/logo.png">
 
@@ -149,8 +149,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/front-3.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/front-3.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front-2.1.3.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front-2.1.3.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -234,8 +234,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/front-3.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/front-3.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front-2.1.3.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front-2.1.3.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -264,75 +264,185 @@
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/index.html" class="sidebar-link">概览</a>
+      <a href="/api/index.html" class="sidebar-link">Overview</a>
     </li>
   
     
     
     
+	
+      <li><h3>Front end - Parser </h3></li>
       
-      <li><h3>前端</h3></li>
-      
-			
+	
     
     <li>
-      <a href="/api/front.html" class="sidebar-link">输入文件获取与处理</a>
+      <a href="/api/front-2.1.0.html" class="sidebar-link">Get & preprocess Input file</a>
     </li>
   
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/front-1.html" class="sidebar-link">输入预处理及初始化环境</a>
+      <a href="/api/front-2.1.1.html" class="sidebar-link">Preprocessing & Environment initialization</a>
     </li>
   
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/front-3.html" class="sidebar-link current">文件C4.l　& ANSI.y解析</a>
+      <a href="/api/front-2.1.2.html" class="sidebar-link">Grammar creation and grammar tree generation</a>
     </li>
   
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/front-2.html" class="sidebar-link">文法建立和语法树生成</a>
+      <a href="/api/front-2.1.3.html" class="sidebar-link current">Print symbol table</a>
     </li>
   
     
     
     
-      
-			
-      <li><h3>后端</h3></li>
-      
+	
+	
     
     <li>
-      <a href="/api/back.html" class="sidebar-link">title1</a>
+      <a href="/api/front-2.1.4.html" class="sidebar-link">Delete file & verifies the Lexical and grammatical analysis results</a>
     </li>
   
     
     
     
-      
-			
+	
+	
     
     <li>
-      <a href="/api/back-1.html" class="sidebar-link">title2</a>
+      <a href="/api/front-2.1.5.html" class="sidebar-link">Semantic check</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.7.html" class="sidebar-link">Variable rename</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.8.html" class="sidebar-link">Constant propagation</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.9.html" class="sidebar-link">Print AST</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+    </li>
+  
+    
+    
+    
+	
+	
+      <li><h3>Back end - CodeGenerator</h3></li>
+      
+    
+    <li>
+      <a href="/api/back-2.2.1.html" class="sidebar-link">Initial scheduling and steady-state scheduling</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.2.html" class="sidebar-link">Describe the SDF diagram in the form of XML</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.3.html" class="sidebar-link">Parition graph</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.4.html" class="sidebar-link">Print theoretical speedup ratio</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.5.html" class="sidebar-link">Stage Assignment</a>
+    </li>
+  
+    
+    
+    
+	
+	
+    
+    <li>
+      <a href="/api/back-2.2.6.html" class="sidebar-link">Code Generation</a>
     </li>
   
 </ul>
@@ -348,16 +458,22 @@
     
   
   
-    <h1>文件C4.l　& ANSI.y解析</h1>
+    <h1>Print symbol table</h1>
   
   
-    
+    <p>The print symbol table is an enumeration of symbols including identifiers, keywords, etc. in the grammar of the compiler, and an array of stored symbols is written to the file and printed. The function module will execute when the print symbol table switch is set to true.</p>
+<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//（3）print symbol table</span></span><br><span class="line">	<span class="keyword">if</span> (PrintSymTables) &#123;</span><br><span class="line">		PrintSymbolTable(<span class="built_in">stdout</span>, Externals);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>PrintSymTables  switch，defined in the head of main.cpp
+</code></pre><h2 id="Code-explain"><a href="#Code-explain" class="headerlink" title="Code explain"></a>Code explain</h2><p>The module code is implemented in symbol.c, which is introduced in the 2.1.1 initialization environment.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***********************************************************************\</span></span><br><span class="line"><span class="comment">* PrintSymbolTable</span></span><br><span class="line"><span class="comment">\***********************************************************************/</span></span><br><span class="line"><span class="function">GLOBAL <span class="keyword">void</span> <span class="title">PrintSymbolTable</span><span class="params">(FILE *out, SymbolTable *table)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Symbol *chain, *shadow;</span><br><span class="line">    <span class="keyword">int</span> i, entries=<span class="number">0</span>, length, worst = <span class="number">0</span>, depth=<span class="number">0</span>;</span><br><span class="line">    assert(table != <span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\nSymbolTable: %s\n"</span>, table-&gt;table_name);</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;TABLE_SIZE; i++) &#123;</span><br><span class="line">		length = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (chain = table-&gt;table[i]; chain != <span class="literal">NULL</span>; chain = chain-&gt;next) &#123;</span><br><span class="line">			length++;</span><br><span class="line">			<span class="built_in">fprintf</span>(out, <span class="string">"\t%s:"</span>, chain-&gt;name);</span><br><span class="line">			<span class="keyword">for</span> (shadow = chain; shadow != <span class="literal">NULL</span>; shadow = shadow-&gt;shadow) &#123;</span><br><span class="line">				<span class="built_in">fprintf</span>(out, <span class="string">" (%d,%d)"</span>,</span><br><span class="line">					(<span class="keyword">int</span>) shadow-&gt;scope.level,</span><br><span class="line">					(<span class="keyword">int</span>) shadow-&gt;scope.version);</span><br><span class="line">			&#125;</span><br><span class="line">			fputc(<span class="string">'\n'</span>, out);</span><br><span class="line">		&#125;</span><br><span class="line">		entries += length;</span><br><span class="line">		depth += (length + <span class="number">1</span>)*length/<span class="number">2</span>;  <span class="comment">/* sum of 1 to length */</span></span><br><span class="line">		<span class="keyword">if</span> (length &gt; worst) worst = length;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"End of symbol table %s\n"</span>, table-&gt;table_name);</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\t%d entries\n"</span>, entries);</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\tAverage depth for a successful search: %.2g\n"</span>,</span><br><span class="line">	    depth/(entries+<span class="number">1e-6</span>));</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\tAverage depth for a failed search: %.2g\n"</span>,</span><br><span class="line">	    entries/(<span class="keyword">float</span>)TABLE_SIZE);</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\tLongest chain: %d\n"</span>, worst);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
+<p>The red mark is the core code of the symbol table information written to the file.It’s easy to understand</p>
+
   
   
   <div class="footer">
 	Caught a mistake or want to contribute to the documentation? 
     	
-	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/front-3.md" target="_blank">
+	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/front-2.1.3.md" target="_blank">
 		  Edit this page on GitHub!
 	  </a>
   	

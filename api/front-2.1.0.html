@@ -3,21 +3,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>Overview — COStream</title>
+    <title>Get & preprocess Input file — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/index.html">
-    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/index.html">
+    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/front-2.1.0.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/front-2.1.0.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Overview — COStream">
+    <meta property="og:title" content="Get & preprocess Input file — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta property="og:image" content="https://costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Overview — COStream">
+    <meta name="twitter:title" content="Get & preprocess Input file — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="twitter:image" content="https://costream.site/images/logo.png">
 
@@ -149,8 +149,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/index.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/index.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front-2.1.0.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front-2.1.0.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -234,8 +234,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/index.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/index.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front-2.1.0.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front-2.1.0.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -268,7 +268,7 @@
 	
     
     <li>
-      <a href="/api/index.html" class="sidebar-link current">Overview</a>
+      <a href="/api/index.html" class="sidebar-link">Overview</a>
     </li>
   
     
@@ -280,7 +280,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.0.html" class="sidebar-link">Get & preprocess Input file</a>
+      <a href="/api/front-2.1.0.html" class="sidebar-link current">Get & preprocess Input file</a>
     </li>
   
     
@@ -458,62 +458,72 @@
     
   
   
-    <h1>Overview</h1>
+    <h1>Get & preprocess Input file</h1>
   
   
-    <h2 id="Architecture-of-compiler-project"><a href="#Architecture-of-compiler-project" class="headerlink" title="Architecture of compiler project"></a>Architecture of compiler project</h2><p><img src="/img/PART2-1.png" alt="编译器工程架构"></p>
-<h3 id="Front-end-of-compiler"><a href="#Front-end-of-compiler" class="headerlink" title="Front-end of compiler"></a>Front-end of compiler</h3><ol>
-<li><p>Get Input</p>
-<p> <code>Main#Handle_options</code><br> <code>Main#Get_preprocessed_input</code></p>
-<p> Initialization environment<br> <code>GLOBAL#InitTypes</code><br> <code>Main#Init_symbol_tables</code><br> <code>GLOBAL#InitOperatorTable</code></p>
-</li>
-<li><p>Grammar creation &amp; grammar generation<br> <code>GLOBAL#yyparse</code><br> genetate<code>List*program</code>，this <code>program</code> is grammar</p>
-</li>
-<li><p>Print symbol table</p>
-<p> <code>GLOBAL#PrintSymbolTable</code></p>
-</li>
-<li><p>Delete temporary files</p>
-</li>
-<li><p>Print abstract syntax tree</p>
-<p> <code>GLOBAL#PrintList</code></p>
-</li>
-<li><p>Semantic check<br> <code>GLOBAL#SemanticCheckProgram</code></p>
-</li>
-<li><p>Active variable analysis<br> <code>GLOBAL#AnalyzeProgram</code></p>
-</li>
-<li><p>Variable rename<br> <code>GLOBAL#VariableRenameProgram</code><br> <code>GLOBAL#ResetASTSymbolTable</code><br> This part rename the variable name ,according to actor’s name and it’s number<br> Such as sink_30.h</p>
-</li>
-<li><p>Constant propagation<br> <code>GLOBAL#PropagateProgram</code><br> Replace expressions that always get the same constant value each time you run it with a constant value</p>
-</li>
-<li><p>AST to Flatgraph<br> <code>GLOBAL#AST2FlatStaticStreamGraph</code><br> <code>AutoProfiling#AutoProfiling()</code><br> <code>AutoProfiling#GeneratingProfile()</code></p>
-</li>
-<li><p>Estimate workload to nodes in flatgraph<br> static workload estimate：<br> <code>GLOBAL#GenerateWorkEst()</code></p>
-</li>
-</ol>
-<h3 id="Back-end-of-compiler"><a href="#Back-end-of-compiler" class="headerlink" title="Back-end of compiler"></a>Back-end of compiler</h3><ol>
-<li><p>Initial scheduling and steady-state scheduling<br> <code>GLOBAL#SchedulingSSG(),生成SSSG为SchedulerSSG</code></p>
-</li>
-<li><p>Describe the SDF diagram in the form of XML<br> <code>GLOBAL#DumpStreamGraph()</code></p>
-</li>
-<li><p>Parition graph<br> <code>MetisPartition#MetisPartiton()</code><br> <code>Partition#setPlaces()</code><br> <code>Partition#SssgPartition()</code></p>
-</li>
-<li><p>Horizontal split<br> Switch Variable: <code>RHFissionission</code><br> After the horizontal split, you need to divide from the new metis<br> <code>MetisPartiton()</code><br> <code>setPlaces()</code><br> <code>SssgPartition()</code></p>
-</li>
-<li><p>Print theoretical speedup ratio<br> Switch Variable: <code>Speedup</code><br> <code>GLOBAL#ComputeSpeedup()</code></p>
-</li>
-<li><p>Stage Assignment<br> <code>StageAssignment#StageAssignment()</code><br> <code>StageAssignment#actorTopologicalorder(GetFlatNodes())</code><br> <code>StageAssignment#actorStageMap(GetFlatNode2Partition())</code></p>
-</li>
-<li><p>Code Generation<br> <code>库函数#direct.h#getcwd()</code><br> <code>GodeGeneration#CodeGeneration()</code></p>
-</li>
-</ol>
-<p><img src="/img/PART2-2.png" alt="编译器后端"></p>
+    <p>The C2C_Test project is a compiler implementation for the data stream language COStream. The goal is to obtain the target of the input COStream source program through compiler processing (lexical analysis, parsing, semantic analysis, intermediate code generation and optimization, target code generation) C++ parallel code. Different from the common compiler, we not only realize the conversion from COStream to the high-level language C++, but also do partition and scheduling to the program and finally get C + + multi-threaded code , according to the parallelism exposed in the input COStream source program and the node information of the corresponding data flow graph .</p>
+<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">GLOBAL <span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	……</span><br><span class="line"><span class="comment">//Frontend</span></span><br><span class="line">	preproc = default_preproc;</span><br><span class="line"><span class="comment">//Get input, processe command line parameter</span></span><br><span class="line">    handle_options(argc, argv);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> pos1 = InputFileName.find_last_of(<span class="string">'/'</span>);</span><br><span class="line">	<span class="keyword">int</span> pos2 = InputFileName.find(<span class="string">".spl"</span>);</span><br><span class="line">	<span class="built_in">string</span> substring=InputFileName.substr(pos1+<span class="number">1</span>,pos2-pos1<span class="number">-1</span>);	</span><br><span class="line"><span class="built_in">string</span> ccfilename=InputFileName.substr(pos1+<span class="number">1</span>,pos2-pos1<span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
+<p>（1）    default_preproc is a private variable in main.cpp，it store the default compile command”gcc –E –x c” .<br>（2）    The basic variable preproc is used to compile the command processing judgment.<br>（3）    Main function arguments (argc,argv)， argc means number of arguments，argv store all the arguments，in this project argc=1 argv=“project directory”.<br>（4）    The handle_option function assigns Input_file to InputFileName, then intercepts the input source file nameand records. The substring and ccfilename to store the file name. The former has a reference in the post code generation, and the latter in the workload estimation step.</p>
+<h2 id="Associate-file"><a href="#Associate-file" class="headerlink" title="Associate file"></a>Associate file</h2><p><code>main.cpp</code><br>This file is the entry file for the entire project, which defines the program entry function main(argc, argv), as well as the necessary header file references, necessary global variable declarations, necessary basic function definition implementations, etc. See main.cpp for details.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key Variables：</th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>GLOBAL List *Program</code></td>
+<td style="text-align:left">This is a global List<em> variable designed to handle input source programs, program=source program file addresses, and  </em>program=source program, which is the target for front-end parsing.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GLOBAL Node * gMainComposite</code></td>
+<td style="text-align:left">This is the entrance to the analysis program.And also the entrance of main function of stream program.It is also the root node of the syntax tree, and is also the head node of the data flow graph SDF.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GLOBAL extern StaticStreamGraph *SSG</code></td>
+<td style="text-align:left"><code>SSG</code> is the StaticStreamGraph, it stores the flatgraph from the front-end syntax tree. Extern key word means it is just a declaration.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GLOBAL SchedulerSSG *SSSG</code></td>
+<td style="text-align:left"><code>SSSG</code>come from <code>SSG</code>, it is a data flow Graph after initial state scheduling and steady state scheduling</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GLOBAL Bool PrintAST</code></td>
+<td style="text-align:left">Switch variable. If true,print the AST.  If false ,not。</td>
+</tr>
+<tr>
+<td style="text-align:left">.etc……</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Key function：</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>void handle_options(int argc , char *argv[])</code></td>
+<td style="text-align:left">The command line parameter processing function obtains various information included in the compile command of the source program inputed by the user.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>void init_symbol_tables(Bool shadow_warnings)</code></td>
+<td style="text-align:left">Function of initialize the symbol table</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>FILE *get_preprocessed_input()</code></td>
+<td style="text-align:left">Preprocessing the input source program，and get the information of the input source program, and store the file address in Input_File</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Input-file-acquisition-and-processing"><a href="#Input-file-acquisition-and-processing" class="headerlink" title="Input file acquisition and processing"></a>Input file acquisition and processing</h2><p>The initialization of the complier include analyze source file and compile commands arguments.it is implementd by <code>handle_options(int argc , char *argv[])</code> in main.cpp：<br>（1）    function <code>arguments (int argc , char *argv[])</code>, argc means number of arguments，argv store all the arguments，in this project argc=1 argv=“project directory”<br>（2）    <code>char *files[16] = {&quot;./tests/SPLtest/Benchmarks/rvq.spl2.cc&quot;, ….}</code>; is a array store the test file dirctory；<br>（3）    Analyze command arguments：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (X86Backend)</span><br><span class="line">  &#123;</span><br><span class="line">	  argc = <span class="number">5</span>;  </span><br><span class="line">	  argv[<span class="number">1</span>] = <span class="string">"-x86"</span>;         <span class="comment">//chose platform</span></span><br><span class="line">	  argv[<span class="number">2</span>] = <span class="string">"-nCpucore"</span>;    <span class="comment">//set cpu core number</span></span><br><span class="line">	  argv[<span class="number">3</span>] = <span class="string">"8"</span>;           <span class="comment">// set cpu core number</span></span><br><span class="line">	  argv[<span class="number">4</span>] = files[<span class="number">3</span>];        <span class="comment">//sorcefile for test</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (GPUBackend)</span><br><span class="line">  &#123;</span><br><span class="line">	  argc = <span class="number">9</span>;</span><br><span class="line">	  argv[<span class="number">1</span>] = <span class="string">"-gpu"</span>;  </span><br><span class="line">	  argv[<span class="number">2</span>] = <span class="string">"-nGpu"</span>;</span><br><span class="line">	  argv[<span class="number">3</span>] = <span class="string">"3"</span>;</span><br><span class="line">	  argv[<span class="number">4</span>] = files[<span class="number">8</span>];</span><br><span class="line">	  argv[<span class="number">5</span>] = <span class="string">"-o"</span>;</span><br><span class="line">	  argv[<span class="number">6</span>] = <span class="string">"test"</span>;</span><br><span class="line">	  argv[<span class="number">7</span>] = <span class="string">"-multi"</span>;</span><br><span class="line">	  argv[<span class="number">8</span>] = <span class="string">"3"</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>（4）    Handling command line arguments<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;argc; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (argv[i][<span class="number">0</span>] == <span class="string">'-'</span>) &#123;  </span><br><span class="line">      <span class="keyword">switch</span> (argv[i][<span class="number">1</span>]) &#123;</span><br><span class="line">		  <span class="keyword">case</span> <span class="string">'-'</span>:</span><br><span class="line">			QuietlyIgnore = !QuietlyIgnore;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		  <span class="keyword">case</span> <span class="string">'h'</span>:</span><br><span class="line">			usage(FALSE, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		  <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[i], <span class="string">"-ansi"</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">			  ANSIOnly = TRUE;</span><br><span class="line">			  <span class="comment">/* change the preprocessor command, if the user hasn't</span></span><br><span class="line"><span class="comment">				 already changed it with -P */</span></span><br><span class="line">			  <span class="keyword">if</span> (preproc == default_preproc)</span><br><span class="line">				preproc = ansi_preproc;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[i], <span class="string">"-ast"</span>) == <span class="number">0</span>) </span><br><span class="line">			  PrintAST = TRUE;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			  unknown_option(argv[i]);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">             ……</span><br><span class="line">        &#125;<span class="comment">//switch</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (input_file != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Multiple input files defined, using `%s'\n"</span>,argv[i]);</span><br><span class="line">      &#125;<span class="comment">//if</span></span><br><span class="line">	  <span class="keyword">else</span></span><br><span class="line">		input_file = argv[i];</span><br><span class="line">    &#125;<span class="comment">//if</span></span><br><span class="line">  &#125;<span class="comment">//for</span></span><br></pre></td></tr></table></figure></p>
 
   
   
   <div class="footer">
 	Caught a mistake or want to contribute to the documentation? 
     	
-	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/index.md" target="_blank">
+	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/front-2.1.0.md" target="_blank">
 		  Edit this page on GitHub!
 	  </a>
   	

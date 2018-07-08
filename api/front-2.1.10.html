@@ -3,21 +3,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>Overview — COStream</title>
+    <title>AST to Flatgraph — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/index.html">
-    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/index.html">
+    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/front-2.1.10.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/front-2.1.10.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Overview — COStream">
+    <meta property="og:title" content="AST to Flatgraph — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta property="og:image" content="https://costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Overview — COStream">
+    <meta name="twitter:title" content="AST to Flatgraph — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="twitter:image" content="https://costream.site/images/logo.png">
 
@@ -149,8 +149,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/index.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/index.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front-2.1.10.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front-2.1.10.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -234,8 +234,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/index.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/index.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front-2.1.10.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front-2.1.10.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -268,7 +268,7 @@
 	
     
     <li>
-      <a href="/api/index.html" class="sidebar-link current">Overview</a>
+      <a href="/api/index.html" class="sidebar-link">Overview</a>
     </li>
   
     
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link current">AST to Flatgraph</a>
     </li>
   
     
@@ -458,62 +458,205 @@
     
   
   
-    <h1>Overview</h1>
+    <h1>AST to Flatgraph</h1>
   
   
-    <h2 id="Architecture-of-compiler-project"><a href="#Architecture-of-compiler-project" class="headerlink" title="Architecture of compiler project"></a>Architecture of compiler project</h2><p><img src="/img/PART2-1.png" alt="编译器工程架构"></p>
-<h3 id="Front-end-of-compiler"><a href="#Front-end-of-compiler" class="headerlink" title="Front-end of compiler"></a>Front-end of compiler</h3><ol>
-<li><p>Get Input</p>
-<p> <code>Main#Handle_options</code><br> <code>Main#Get_preprocessed_input</code></p>
-<p> Initialization environment<br> <code>GLOBAL#InitTypes</code><br> <code>Main#Init_symbol_tables</code><br> <code>GLOBAL#InitOperatorTable</code></p>
-</li>
-<li><p>Grammar creation &amp; grammar generation<br> <code>GLOBAL#yyparse</code><br> genetate<code>List*program</code>，this <code>program</code> is grammar</p>
-</li>
-<li><p>Print symbol table</p>
-<p> <code>GLOBAL#PrintSymbolTable</code></p>
-</li>
-<li><p>Delete temporary files</p>
-</li>
-<li><p>Print abstract syntax tree</p>
-<p> <code>GLOBAL#PrintList</code></p>
-</li>
-<li><p>Semantic check<br> <code>GLOBAL#SemanticCheckProgram</code></p>
-</li>
-<li><p>Active variable analysis<br> <code>GLOBAL#AnalyzeProgram</code></p>
-</li>
-<li><p>Variable rename<br> <code>GLOBAL#VariableRenameProgram</code><br> <code>GLOBAL#ResetASTSymbolTable</code><br> This part rename the variable name ,according to actor’s name and it’s number<br> Such as sink_30.h</p>
-</li>
-<li><p>Constant propagation<br> <code>GLOBAL#PropagateProgram</code><br> Replace expressions that always get the same constant value each time you run it with a constant value</p>
-</li>
-<li><p>AST to Flatgraph<br> <code>GLOBAL#AST2FlatStaticStreamGraph</code><br> <code>AutoProfiling#AutoProfiling()</code><br> <code>AutoProfiling#GeneratingProfile()</code></p>
-</li>
-<li><p>Estimate workload to nodes in flatgraph<br> static workload estimate：<br> <code>GLOBAL#GenerateWorkEst()</code></p>
-</li>
-</ol>
-<h3 id="Back-end-of-compiler"><a href="#Back-end-of-compiler" class="headerlink" title="Back-end of compiler"></a>Back-end of compiler</h3><ol>
-<li><p>Initial scheduling and steady-state scheduling<br> <code>GLOBAL#SchedulingSSG(),生成SSSG为SchedulerSSG</code></p>
-</li>
-<li><p>Describe the SDF diagram in the form of XML<br> <code>GLOBAL#DumpStreamGraph()</code></p>
-</li>
-<li><p>Parition graph<br> <code>MetisPartition#MetisPartiton()</code><br> <code>Partition#setPlaces()</code><br> <code>Partition#SssgPartition()</code></p>
-</li>
-<li><p>Horizontal split<br> Switch Variable: <code>RHFissionission</code><br> After the horizontal split, you need to divide from the new metis<br> <code>MetisPartiton()</code><br> <code>setPlaces()</code><br> <code>SssgPartition()</code></p>
-</li>
-<li><p>Print theoretical speedup ratio<br> Switch Variable: <code>Speedup</code><br> <code>GLOBAL#ComputeSpeedup()</code></p>
-</li>
-<li><p>Stage Assignment<br> <code>StageAssignment#StageAssignment()</code><br> <code>StageAssignment#actorTopologicalorder(GetFlatNodes())</code><br> <code>StageAssignment#actorStageMap(GetFlatNode2Partition())</code></p>
-</li>
-<li><p>Code Generation<br> <code>库函数#direct.h#getcwd()</code><br> <code>GodeGeneration#CodeGeneration()</code></p>
-</li>
-</ol>
-<p><img src="/img/PART2-2.png" alt="编译器后端"></p>
-
+    <p>Flatgraph is a SDF (static synchronous data flow) graph corresponding to the COStream data stream source program.It is the research object of the compiler backend discussion scheduling division. The compiler front end generates an abstract syntax tree AST,and this module Convert this AST to SDF graph. </p>
+<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （10）AST to Flatgraph</span></span><br><span class="line"><span class="comment">// SSG ( object of StaticStreamGraph )</span></span><br><span class="line">	PhaseName = <span class="string">"AST2FlatSSG"</span>;</span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; AST2FlatSSG)</span><br><span class="line">		SSG = AST2FlatStaticStreamGraph(gMainComposite);</span><br></pre></td></tr></table></figure>
+<p>（1）    AST2FlatSSG is the switch variable ,defined in the head of main.cpp.<br>（2）    Function AST2FlatStaticStreamGraph(…), input is the root node “gMainComposite” of AST，output is the  object  “SSG” of StaticStreamGraph.</p>
+<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>（1）    flatNode.h &amp; flatNode.cpp<br>This file is the node structure description file of the static data flow graph.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">string name</th>
+<th style="text-align:left">operator name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">int visitTimes</td>
+<td style="text-align:left">Indicates whether the node has been visited</td>
+</tr>
+<tr>
+<td style="text-align:left">operatorNode *contents</td>
+<td style="text-align:left">Point to operator（After constant propagation）</td>
+</tr>
+<tr>
+<td style="text-align:left">compositeNode *composite</td>
+<td style="text-align:left">Point to composite of operator</td>
+</tr>
+<tr>
+<td style="text-align:left">operatorNode *oldContents</td>
+<td style="text-align:left">Pointer to original operator</td>
+</tr>
+<tr>
+<td style="text-align:left">compositeNode *oldComposite</td>
+<td style="text-align:left">Point to original composite of operator</td>
+</tr>
+<tr>
+<td style="text-align:left">int nOut</td>
+<td style="text-align:left">Number of output edges</td>
+</tr>
+<tr>
+<td style="text-align:left">int nIn</td>
+<td style="text-align:left">Number of input edges</td>
+</tr>
+<tr>
+<td style="text-align:left">int place_id, thread_id, post_thread_id, serial_id</td>
+<td style="text-align:left">var of actor in partitioning algorithm</td>
+</tr>
+<tr>
+<td style="text-align:left">vector<flatnode *=""> outFlatNodes</flatnode></td>
+<td style="text-align:left">Collection of outFlatNodes of current operater</td>
+</tr>
+<tr>
+<td style="text-align:left">vector<flatnode *=""> inFlatNodes</flatnode></td>
+<td style="text-align:left">Collection of inFlatNodes of current operater</td>
+</tr>
+<tr>
+<td style="text-align:left">Store information of operater<br>Type :vector <string></string></td>
+<td style="text-align:left">outPushString<br>inPopString<br>inPeekString<br>pushString<br>peekString</td>
+</tr>
+<tr>
+<td style="text-align:left">long work_estimate</td>
+<td style="text-align:left">Work estimate of operater</td>
+</tr>
+<tr>
+<td style="text-align:left">int num</td>
+<td style="text-align:left">Sequence number of operator in ssg</td>
+</tr>
+<tr>
+<td style="text-align:left">GPUpartition algorithm Variable</td>
+<td style="text-align:left">int GPUPart <br> bool BorderFlag</td>
+</tr>
+<tr>
+<td style="text-align:left">Extended variable Type:int</td>
+<td style="text-align:left">currentIn ,currentOut ,schedMult ,schedDivider ,uin ,label</td>
+</tr>
+<tr>
+<td style="text-align:left">SDF nodes functions：</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">void AddOutEdges(FlatNode *dest)</td>
+<td style="text-align:left">Add out edges</td>
+</tr>
+<tr>
+<td style="text-align:left">void AddInEdges(FlatNode *src)</td>
+<td style="text-align:left">Add in edges</td>
+</tr>
+<tr>
+<td style="text-align:left">string GetOperatorName()</td>
+<td style="text-align:left">Get name of Operator</td>
+</tr>
+<tr>
+<td style="text-align:left">void visitNode()</td>
+<td style="text-align:left">Visit and mark this node</td>
+</tr>
+<tr>
+<td style="text-align:left">void ResetVisitTimes()</td>
+<td style="text-align:left">Reset visitTimes</td>
+</tr>
+<tr>
+<td style="text-align:left">int GetVisitTimes()</td>
+<td style="text-align:left">Get visitTimes</td>
+</tr>
+<tr>
+<td style="text-align:left">void SetIOStreams()</td>
+<td style="text-align:left">.</td>
+</tr>
+</tbody>
+</table>
+<p>See flatNode.cpp for more details </p>
+<p>（2）    staticStreamGraph.h &amp; staticStreamGraph.cpp<br>The header file describes the attributes and behavior of the static data flow graph and include flatNode.h, which is the basic struct of flatNode.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Variable name</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>FlatNode *topLevel</code></td>
+<td style="text-align:left">The begin node of SDF, we suppose there is only one node with input 0</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>vector&lt;FlatNode *&gt; tmpFlatNodes</code></td>
+<td style="text-align:left">A collection of flatnodes on one place of SDF</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>vector&lt;FlatNode *&gt; flatNodes</code></td>
+<td style="text-align:left">All flatnodes on the SDF</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>map&lt;Node *, FlatNode *&gt; mapEdge2UpFlatNode</code></td>
+<td style="text-align:left">A collection of UpFlatNode of each flatnodes</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>map&lt;Node *, FlatNode *&gt; mapEdge2DownFlatNode</code></td>
+<td style="text-align:left">A collection of DownFlatNode of each flatnodes</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>map&lt;FlatNode *, int&gt; mapSteadyWork2FaltNode</code></td>
+<td style="text-align:left">Store steady workload of each flatnodes</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>map&lt;FlatNode *, int&gt; mapInitWork2FaltNode</code></td>
+<td style="text-align:left">Store Init workload of each flatnodes</td>
+</tr>
+<tr>
+<td style="text-align:left">Funcitions name:</td>
+<td style="text-align:left">Description</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>StaticStreamGraph()</code></td>
+<td style="text-align:left">constructor</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SetName()</code></td>
+<td style="text-align:left">Set name</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SetTopLevel()</code></td>
+<td style="text-align:left">Set the begin node of SDF</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>AddFlatNode(FlatNode *flatNode)</code></td>
+<td style="text-align:left">Add flatnode to SDF</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>PrintFlatNodes()</code></td>
+<td style="text-align:left">This function only has declarations, no implementation</td>
+</tr>
+</tbody>
+</table>
+<p>（3）    ast2ssg.cpp<br>This file implements the conversion of syntax tree to flatgraph based on the introduction of static data flow graph related header files.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Funcitions name:</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>AST2FlatStaticStreamGraph(Node *mainComposite)</code></td>
+<td style="text-align:left">Conversion function of syntax tree to flatgraph</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>GraphToOperators(Node *composite, Node *oldComposite)</code></td>
+<td style="text-align:left">Generatre flatnode from operator</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Code-explanation"><a href="#Code-explanation" class="headerlink" title="Code explanation"></a>Code explanation</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Return SDF graph as input to backend </span></span><br><span class="line"><span class="function">GLOBAL StaticStreamGraph *<span class="title">AST2FlatStaticStreamGraph</span><span class="params">(Node *mainComposite)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Node *compositeCall = <span class="literal">NULL</span>, *operNode = <span class="literal">NULL</span>;</span><br><span class="line">	List *operators = <span class="literal">NULL</span>;	</span><br><span class="line">	<span class="comment">//use assert judge the validity of the front-end parse tree</span></span><br><span class="line">	assert(mainComposite &amp;&amp; mainComposite-&gt;typ == Composite &amp;&amp; </span><br><span class="line">mainComposite-&gt;u.composite.decl-&gt;u.decl.type-&gt;u.comdcl.inout == <span class="literal">NULL</span>);</span><br><span class="line">	assert(<span class="built_in">strcmp</span>(mainComposite-&gt;u.composite.decl-&gt;u.decl.name, <span class="string">"Main"</span>) == <span class="number">0</span>);</span><br><span class="line">	<span class="comment">//（1）create a SDF graph,Call the default constructor, the parameter is initialized to null	ssg = new StaticStreamGraph();</span></span><br><span class="line">	<span class="comment">//the second parameter oldComposite</span></span><br><span class="line">	GraphToOperators(mainComposite, mainComposite);</span><br><span class="line">	<span class="comment">//set head of list</span></span><br><span class="line">	ssg-&gt;SetTopLevel();</span><br><span class="line">	<span class="comment">//set weight of flatnodes</span></span><br><span class="line">	ssg-&gt;SetFlatNodesWeights();</span><br><span class="line">	<span class="comment">/* rest name of  flatNodes in ssg, for printing .dot file*/</span></span><br><span class="line">	ssg-&gt;ResetFlatNodeNames(); </span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line">	ssg-&gt;PrintFlatNodes();</span><br><span class="line">	PrintNode(<span class="built_in">stdout</span>, gMainComposite, <span class="number">0</span>);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="keyword">return</span> ssg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   
   
   <div class="footer">
 	Caught a mistake or want to contribute to the documentation? 
     	
-	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/index.md" target="_blank">
+	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/front-2.1.10.md" target="_blank">
 		  Edit this page on GitHub!
 	  </a>
   	

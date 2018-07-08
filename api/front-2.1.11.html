@@ -3,21 +3,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>Overview — COStream</title>
+    <title>Estimate workload of  nodes in flatgraph — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/index.html">
-    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/index.html">
+    <link rel="alternate" hreflang="x-default" href="https://costream.site/api/front-2.1.11.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/front-2.1.11.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Overview — COStream">
+    <meta property="og:title" content="Estimate workload of  nodes in flatgraph — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta property="og:image" content="https://costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Overview — COStream">
+    <meta name="twitter:title" content="Estimate workload of  nodes in flatgraph — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="twitter:image" content="https://costream.site/images/logo.png">
 
@@ -149,8 +149,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/index.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/index.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front-2.1.11.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front-2.1.11.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -234,8 +234,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/index.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/index.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/api/front-2.1.11.html" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/api/front-2.1.11.html" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -268,7 +268,7 @@
 	
     
     <li>
-      <a href="/api/index.html" class="sidebar-link current">Overview</a>
+      <a href="/api/index.html" class="sidebar-link">Overview</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link current">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -458,62 +458,25 @@
     
   
   
-    <h1>Overview</h1>
+    <h1>Estimate workload of  nodes in flatgraph</h1>
   
   
-    <h2 id="Architecture-of-compiler-project"><a href="#Architecture-of-compiler-project" class="headerlink" title="Architecture of compiler project"></a>Architecture of compiler project</h2><p><img src="/img/PART2-1.png" alt="编译器工程架构"></p>
-<h3 id="Front-end-of-compiler"><a href="#Front-end-of-compiler" class="headerlink" title="Front-end of compiler"></a>Front-end of compiler</h3><ol>
-<li><p>Get Input</p>
-<p> <code>Main#Handle_options</code><br> <code>Main#Get_preprocessed_input</code></p>
-<p> Initialization environment<br> <code>GLOBAL#InitTypes</code><br> <code>Main#Init_symbol_tables</code><br> <code>GLOBAL#InitOperatorTable</code></p>
-</li>
-<li><p>Grammar creation &amp; grammar generation<br> <code>GLOBAL#yyparse</code><br> genetate<code>List*program</code>，this <code>program</code> is grammar</p>
-</li>
-<li><p>Print symbol table</p>
-<p> <code>GLOBAL#PrintSymbolTable</code></p>
-</li>
-<li><p>Delete temporary files</p>
-</li>
-<li><p>Print abstract syntax tree</p>
-<p> <code>GLOBAL#PrintList</code></p>
-</li>
-<li><p>Semantic check<br> <code>GLOBAL#SemanticCheckProgram</code></p>
-</li>
-<li><p>Active variable analysis<br> <code>GLOBAL#AnalyzeProgram</code></p>
-</li>
-<li><p>Variable rename<br> <code>GLOBAL#VariableRenameProgram</code><br> <code>GLOBAL#ResetASTSymbolTable</code><br> This part rename the variable name ,according to actor’s name and it’s number<br> Such as sink_30.h</p>
-</li>
-<li><p>Constant propagation<br> <code>GLOBAL#PropagateProgram</code><br> Replace expressions that always get the same constant value each time you run it with a constant value</p>
-</li>
-<li><p>AST to Flatgraph<br> <code>GLOBAL#AST2FlatStaticStreamGraph</code><br> <code>AutoProfiling#AutoProfiling()</code><br> <code>AutoProfiling#GeneratingProfile()</code></p>
-</li>
-<li><p>Estimate workload to nodes in flatgraph<br> static workload estimate：<br> <code>GLOBAL#GenerateWorkEst()</code></p>
-</li>
-</ol>
-<h3 id="Back-end-of-compiler"><a href="#Back-end-of-compiler" class="headerlink" title="Back-end of compiler"></a>Back-end of compiler</h3><ol>
-<li><p>Initial scheduling and steady-state scheduling<br> <code>GLOBAL#SchedulingSSG(),生成SSSG为SchedulerSSG</code></p>
-</li>
-<li><p>Describe the SDF diagram in the form of XML<br> <code>GLOBAL#DumpStreamGraph()</code></p>
-</li>
-<li><p>Parition graph<br> <code>MetisPartition#MetisPartiton()</code><br> <code>Partition#setPlaces()</code><br> <code>Partition#SssgPartition()</code></p>
-</li>
-<li><p>Horizontal split<br> Switch Variable: <code>RHFissionission</code><br> After the horizontal split, you need to divide from the new metis<br> <code>MetisPartiton()</code><br> <code>setPlaces()</code><br> <code>SssgPartition()</code></p>
-</li>
-<li><p>Print theoretical speedup ratio<br> Switch Variable: <code>Speedup</code><br> <code>GLOBAL#ComputeSpeedup()</code></p>
-</li>
-<li><p>Stage Assignment<br> <code>StageAssignment#StageAssignment()</code><br> <code>StageAssignment#actorTopologicalorder(GetFlatNodes())</code><br> <code>StageAssignment#actorStageMap(GetFlatNode2Partition())</code></p>
-</li>
-<li><p>Code Generation<br> <code>库函数#direct.h#getcwd()</code><br> <code>GodeGeneration#CodeGeneration()</code></p>
-</li>
-</ol>
-<p><img src="/img/PART2-2.png" alt="编译器后端"></p>
+    <p>Estimate workload to nodes in flatgraph: Workload estimation for all nodes in the static data flow graph SDF converted from the syntax tree, laying the foundation for back-end scheduling and partitioning</p>
+<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （11）Workload estimate to nodes in flatgraph</span></span><br><span class="line">PhaseName = <span class="string">"WorkEstimate"</span>;</span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; WorkEstimate)</span><br><span class="line">	GenerateWorkEst(SSG,WorkEstimateByDataFlow);</span><br></pre></td></tr></table></figure>
+<h2 id="Associate-file"><a href="#Associate-file" class="headerlink" title="Associate file"></a>Associate file</h2><p>（1）    GenerateWorkEst.cpp<br>This file defines and implements the flatgraph node workload estimation function.<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">GLOBAL <span class="keyword">void</span> <span class="title">GenerateWorkEst</span><span class="params">(StaticStreamGraph *ssg,<span class="keyword">bool</span> WorkEstimateByDataFlow)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = ssg-&gt;GetFlatNodes().size();<span class="comment">//get the length of operator</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> w = <span class="number">0</span>,w_init = <span class="number">0</span>;</span><br><span class="line">		FlatNode *tmpFn = (ssg-&gt;GetFlatNodes())[i];</span><br><span class="line">         <span class="comment">//get the operator body </span></span><br><span class="line">		ChildNode *body =  tmpFn-&gt;contents-&gt;body;</span><br><span class="line">		<span class="keyword">if</span> ( body != <span class="literal">NULL</span>)     <span class="comment">//calculate workload in operator body</span></span><br><span class="line">		&#123;</span><br><span class="line">			w_init = workEstimate_init(body, w);</span><br><span class="line">             <span class="comment">//choose way of workestimate</span></span><br><span class="line">			<span class="keyword">if</span>(WorkEstimateByDataFlow)</span><br><span class="line">				w = workEstimateUseDataFlow(body,w);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				w = workEstimate(body, w);</span><br><span class="line">		&#125;</span><br><span class="line">         <span class="comment">//rest head and tail of buffer in multicore</span></span><br><span class="line">		w += (tmpFn-&gt;outFlatNodes.size()+tmpFn-&gt;inFlatNodes.size())*UPDATEEDGETAG;		    ssg-&gt;AddInitWork(tmpFn, w_init);</span><br><span class="line">		ssg-&gt;AddSteadyWork(tmpFn, w);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>（2）    workEstimate.h &amp; workEstimate.c<br>The general way of calculate  the node workload defined and implemented in this file。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Workload for different node types are defined in the header file;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINT  3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PEEK  3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> POP  3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PUSH  3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INT_ARITH_OP  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FLOAT_ARITH_OP  2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LOOP_COUNT  5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SWITCH  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IF  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CONTINUE  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BREAK  1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MEMORY_OP  2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> METHOD_CALL_OVERHEAD  10</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UNKNOWN_METHOD_CALL  60</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INIT 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STEADY 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STREAM_OP 20</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PRINTLN_OP -60 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FRTA_OP -60 </span></span><br><span class="line"><span class="keyword">int</span> totalWork = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Logic of workload estimate:</span></span><br><span class="line"><span class="function">GLOBAL <span class="keyword">int</span> <span class="title">workEstimate</span><span class="params">(Node *from,<span class="keyword">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	state =STEADY;</span><br><span class="line">	totalWork = w;</span><br><span class="line">	<span class="keyword">if</span>(from-&gt;coord.line == <span class="number">0</span>)</span><br><span class="line">		isSTREAM = <span class="number">1</span>;</span><br><span class="line">	rWorkCompute(from);  <span class="comment">// Set different workload weights for different node types</span></span><br><span class="line">	isSTREAM = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> totalWork;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>See project files for more details</p>
+<p>（3）    workEstimate2.h &amp; workEstimate2.c<br>This file is responsible for estimating the steady-state workload of the data stream.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//First，define different workload for different type of node </span></span><br><span class="line"><span class="keyword">int</span> totalWork = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">……</span><br><span class="line"><span class="comment">//Then, implement workestimate function</span></span><br><span class="line"><span class="function">GLOBAL <span class="keyword">int</span> <span class="title">workEstimateUseDataFlow</span><span class="params">(Node* from,<span class="keyword">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	totalWork = w;</span><br><span class="line">	<span class="keyword">return</span> totalWork;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">……</span><br><span class="line"><span class="comment">//Since the data flow estimation steady-state workload calculation method is not implemented, the code here is not complete.</span></span><br></pre></td></tr></table></figure>
 
   
   
   <div class="footer">
 	Caught a mistake or want to contribute to the documentation? 
     	
-	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/index.md" target="_blank">
+	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/front-2.1.11.md" target="_blank">
 		  Edit this page on GitHub!
 	  </a>
   	
