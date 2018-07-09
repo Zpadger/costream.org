@@ -4,15 +4,13 @@
       <%- partial('partials/main_menu', { context: 'sidebar' }) %>
     </ul>
     <div class="list">
-      <%- partial('partials/sponsors_sidebar') %>
+      <%- /*partial('partials/sponsors_sidebar')*/ %>
       <% if (type !== 'search') { %>
         <h2>
           <% titles = {
             api: 'API',
-            examples: '示例',
-            guide: '教程',
-            cookbook: 'Cookbook<sup class="beta">beta</sup>',
-            'style-guide': '风格指南'
+            examples: 'Examples',
+            guide: 'Guide'
           } %>
           <%- titles[type] %>
 <!--

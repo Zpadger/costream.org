@@ -1,79 +1,90 @@
 ---
-title: 概览
+title: Overview
 type: api
 order: 1
 ---
-## 编译器工程架构
+## Architecture of compiler project
 ![编译器工程架构](/img/PART2-1.png)
-### 编译器前端
-1. 获取输入
+### Front-end of compiler
+1. Get Input
 
     `Main#Handle_options`
     `Main#Get_preprocessed_input`
 
-    初始化环境
+    Initialization environment
     `GLOBAL#InitTypes`
     `Main#Init_symbol_tables`
     `GLOBAL#InitOperatorTable`
 
-1. 文法建立与语法树生成
-
+1. Grammar creation & grammar generation
     `GLOBAL#yyparse`
-    生成List*program，这个program即语法树非常重要
+    genetate`List*program`，this `program` is grammar
 
-1. 打印符号表
+1. Print symbol table
 
     `GLOBAL#PrintSymbolTable`
 
-1. 删除临时文件
+1. Delete temporary files
 
-1. 打印抽象语法树
+1. Print abstract syntax tree
 
     `GLOBAL#PrintList`
 
-1. 语义检查
+1. Semantic check
     `GLOBAL#SemanticCheckProgram`
-1. 活跃变量分析
+    
+1. Active variable analysis
     `GLOBAL#AnalyzeProgram`
-1. 添加变量重命名
+    
+1. Variable rename
     `GLOBAL#VariableRenameProgram`
     `GLOBAL#ResetASTSymbolTable`
-    这部分对生成文件的名字进行修改，根据actor结点的名字或者duplicate以及从上到下从左到右的编号确定生成文件的名字。如sink_30.h
-1. 常量传播
+    This part rename the variable name ,according to actor's name and it's number
+    Such as sink_30.h
+    
+1. Constant propagation
     `GLOBAL#PropagateProgram`
-这部分将composite中的param（全部常量）进行替代
-1. 语法树到平面图
-    `GLOBAL#AST2FlatStaticStreamGraph`,生成StaticStreamGraph类对象SSG
+    Replace expressions that always get the same constant value each time you run it with a constant value
+
+1. AST to Flatgraph	
+    `GLOBAL#AST2FlatStaticStreamGraph`
     `AutoProfiling#AutoProfiling()`
     `AutoProfiling#GeneratingProfile()`
-1. 对平面图各节点进行工作估计
-    静态工作量估计：
+    
+1. Estimate workload to nodes in flatgraph
+    static workload estimate：
     `GLOBAL#GenerateWorkEst()`
 
-### 编译后端
-1. 对平面图进行初始化调度和稳态调度
+### Back-end of compiler
+
+1. Initial scheduling and steady-state scheduling
     `GLOBAL#SchedulingSSG(),生成SSSG为SchedulerSSG`
-1. 用XML文件的形式描述SDF图
+    
+1. Describe the SDF diagram in the form of XML
     `GLOBAL#DumpStreamGraph()`
-1. 对节点进行调度划分
+    
+1. Parition graph
     `MetisPartition#MetisPartiton()`
     `Partition#setPlaces()`
     `Partition#SssgPartition()`
-1. 水平分裂
-    RHFissionission开关控制
-    水平分裂完之后需要从新metis划分
+    
+1. Horizontal split
+    Switch Variable: `RHFissionission`
+    After the horizontal split, you need to divide from the new metis
     `MetisPartiton()`
     `setPlaces()`
     `SssgPartition()`
  
-1. 打印理论加速比
-    开关Speedup打开
+1. Print theoretical speedup ratio
+    Switch Variable: `Speedup`
     `GLOBAL#ComputeSpeedup()`
-1. 阶段赋值
+    
+1. Stage Assignment
     `StageAssignment#StageAssignment()`
     `StageAssignment#actorTopologicalorder(GetFlatNodes())`
     `StageAssignment#actorStageMap(GetFlatNode2Partition())`
-1. 输入为SDF图输出为目标代码
+    
+1. Code Generation
     `库函数#direct.h#getcwd()`
     `GodeGeneration#CodeGeneration()`
     
