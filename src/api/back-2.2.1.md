@@ -60,8 +60,8 @@ GLOBAL SchedulerSSG *SchedulingSSG(StaticStreamGraph *ssg)
 
 ```
 The above code is the implementation of the scheduling , it’s very clear。
-(1)	The input is the SSG.
-(2)	The output is the SSSG which finish the scheduling.
+- The input is the SSG.
+- The output is the SSSG which finish the scheduling.
 
 
 ## FAQ

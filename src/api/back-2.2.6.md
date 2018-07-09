@@ -48,7 +48,7 @@ MAFLPartition *maflp)                   //maflp：result of GPU partition
 |X86LibCopy.h & X86LibCopy.cpp|Lib copy module for the X86 platform|
 
 
-## Key codes:
+## Key codes
 Part 1: Set the COStream source filename and directory of Source file
 ```c++
 if (Win)
@@ -65,13 +65,13 @@ strcpy(objName,substring.c_str());
 Part 2: Genrate each part of codes
 ```c++
 X86CodeGenerate *X86Code = new X86CodeGenerate(sssg, nCpucore, dir.c_str(),psa,Mp);
-X86Code->CGGlobalvar();	 //Global variable definition cppfile	GlobalVar.cpp
+X86Code->CGGlobalvar();	     //Global variable definition cppfile	GlobalVar.cpp
 X86Code->CGGlobalvarextern();//Global variable definition hppfile GlobalVar.h
-X86Code->CGglobalHeader();	// declaration of Stream stream type and global stream buffer
-X86Code->CGglobalCpp();	// global.cpp definition of Stream stream type and global stream buffer
-X86Code->CGThreads();		//all threads
-X86Code->CGactors();		//all actors
-X86Code->CGMain();		// main.cpp
+X86Code->CGglobalHeader();	 // declaration of Stream stream type and global stream buffer
+X86Code->CGglobalCpp();	     // global.cpp definition of Stream stream type and global stream buffer
+X86Code->CGThreads();	     //all threads
+X86Code->CGactors();		 //all actors
+X86Code->CGMain();		     // main.cpp
 ```
 Part 3: Copy Lib file
 ```c++
