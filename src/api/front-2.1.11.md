@@ -9,7 +9,7 @@ Estimate workload to nodes in flatgraph: Workload estimation for all nodes in th
 ## Program entrance
 
 ```c++
-// （11）Workload estimate to nodes in flatgraph
+//（11）Workload estimate to nodes in flatgraph
 PhaseName = "WorkEstimate";
 if (Errors == 0 && WorkEstimate)
 	GenerateWorkEst(SSG,WorkEstimateByDataFlow);
@@ -17,36 +17,37 @@ if (Errors == 0 && WorkEstimate)
 
 ## Associate file
 
-（1）	GenerateWorkEst.cpp
+(1)	GenerateWorkEst.cpp
 This file defines and implements the flatgraph node workload estimation function.
 ```c++
 GLOBAL void GenerateWorkEst(StaticStreamGraph *ssg,bool WorkEstimateByDataFlow)
 {
-	int len = ssg->GetFlatNodes().size();//get the length of operator
-	for (int i=0;i<len;i++)
-	{
-		int w = 0,w_init = 0;
-		FlatNode *tmpFn = (ssg->GetFlatNodes())[i];
-         //get the operator body 
-		ChildNode *body =  tmpFn->contents->body;
-		if ( body != NULL)     //calculate workload in operator body
-		{
-			w_init = workEstimate_init(body, w);
-             //choose way of workestimate
-			if(WorkEstimateByDataFlow)
-				w = workEstimateUseDataFlow(body,w);
-			else
-				w = workEstimate(body, w);
-		}
-         //rest head and tail of buffer in multicore
-		w += (tmpFn->outFlatNodes.size()+tmpFn->inFlatNodes.size())*UPDATEEDGETAG;		    ssg->AddInitWork(tmpFn, w_init);
-		ssg->AddSteadyWork(tmpFn, w);
-	}
+    int len = ssg->GetFlatNodes().size();//get the length of operator
+    for (int i=0;i<len;i++)
+    {
+        int w = 0,w_init = 0;
+        FlatNode *tmpFn = (ssg->GetFlatNodes())[i];
+        //get the operator body 
+        ChildNode *body =  tmpFn->contents->body;
+        if ( body != NULL)     //calculate workload in operator body
+        {
+            w_init = workEstimate_init(body, w);
+            //choose way of workestimate
+            if(WorkEstimateByDataFlow)
+                w = workEstimateUseDataFlow(body,w);
+            else
+                w = workEstimate(body, w);
+        }
+        //rest head and tail of buffer in multicore
+        w += (tmpFn->outFlatNodes.size()+tmpFn->inFlatNodes.size())*UPDATEEDGETAG;		    
+        ssg->AddInitWork(tmpFn, w_init);
+        ssg->AddSteadyWork(tmpFn, w);
+    }
 }
 
 ```
 
-（2）	workEstimate.h & workEstimate.c
+(2)workEstimate.h & workEstimate.c
 The general way of calculate  the node workload defined and implemented in this file。
 
 ```c++
@@ -77,18 +78,18 @@ int totalWork = 0;
 //Logic of workload estimate:
 GLOBAL int workEstimate(Node *from,int w)
 {
-	state =STEADY;
-	totalWork = w;
-	if(from->coord.line == 0)
-		isSTREAM = 1;
-	rWorkCompute(from);  // Set different workload weights for different node types
-	isSTREAM = 0;
-	return totalWork;
+    state =STEADY;
+    totalWork = w;
+    if(from->coord.line == 0)
+        isSTREAM = 1;
+    rWorkCompute(from);  // Set different workload weights for different node types
+    isSTREAM = 0;
+    return totalWork;
 }
 ```
 See project files for more details
 
-（3）	workEstimate2.h & workEstimate2.c
+(3)	workEstimate2.h & workEstimate2.c
 This file is responsible for estimating the steady-state workload of the data stream.
 
 ```c++
@@ -99,8 +100,8 @@ int totalWork = 0;
 //Then, implement workestimate function
 GLOBAL int workEstimateUseDataFlow(Node* from,int w)
 {
-	totalWork = w;
-	return totalWork;
+    totalWork = w;
+    return totalWork;
 }
 
 ……

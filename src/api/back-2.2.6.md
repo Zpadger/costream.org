@@ -14,21 +14,21 @@ PhaseName = "CodeGeneration";
 if (Errors == 0 && GenerateDestCode && (X86Backend || X10Backend ||
 GPUBackend) )
 {
-	char *tmp = new char[1000];
-	getcwd(tmp, 1000);
-	//printf("%s\n", tmp);
-	ActorEdgeInfo actorEdgeInfo(SSSG);
-	CodeGeneration(tmp, SSSG,substring,pSA,mp,maflp);
-	delete tmp;
-	delete pSA;
-	tmp = NULL;
+    char *tmp = new char[1000];
+    getcwd(tmp, 1000);
+    //printf("%s\n", tmp);
+    ActorEdgeInfo actorEdgeInfo(SSSG);
+    CodeGeneration(tmp, SSSG,substring,pSA,mp,maflp);
+    delete tmp;
+    delete pSA;
+    tmp = NULL;
      ……
- }
+}
 
 ```
-（1）First，create a object of class ActorEdgeInfo, to store information about all edges in the current SDF graph;
-	（2）Entry function is CodeGeneration(…)
-	（3）Function parameter setting：
+- First，create a object of class ActorEdgeInfo, to store information about all edges in the current SDF graph;
+- Entry function is CodeGeneration(…)
+- Function parameter setting：
 ```c++
 void CodeGeneration(char *currentDir,   //currentDir：directory of Source file 
 SchedulerSSG *sssg,                     //sssg：SDF graph finish the scheduling and division
@@ -55,7 +55,8 @@ if (Win)
 {
 	dir += "\\X86StaticDistCode_Win\\";
 }
-else dir +="\\X86StaticDistCode_Linux\\";
+else 
+    dir +="\\X86StaticDistCode_Linux\\";
 dir += substring;
 dir += "\\";
 objName = new char[substring.size()+1];
