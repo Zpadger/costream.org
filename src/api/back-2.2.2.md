@@ -17,7 +17,7 @@ if (Errors == 0 && SSG2Graph)
 ```
 -	Variable PhaseName is the Stage name，the value is `SSG2Graph (SSG to graph)`
 -	`SSG2Graph` is the switch of this phase，which type is `Global Bool`，,and it is defined in the main.cpp source file
--	The program entry is the function DumpStreamGraph(SSSG, NULL, "flatgraph.dot",NULL)，the input is the SSSG，and the output is a dot file “flatgraph.dot”
+-	The program entry is the function `DumpStreamGraph(SSSG, NULL, "flatgraph.dot",NULL)`，the input is the SSSG，and the output is a dot file “flatgraph.dot”
 
 ## Associated file
 
@@ -84,7 +84,7 @@ void toBuildOutPutString(FlatNode *node)
 {
     //visit and print the info of node
     MyVisitNode(node);
-    for (int i = 0; i < node->nOut; i++) {/*DSP*/
+    for (int i = 0; i < node->nOut; i++) {/*DFS*/
         //if the child node of this node isn’t visited
         if (node->outFlatNodes[i] == NULL || node->outFlatNodes[i]->GetVisitTimes() != 0)
         continue;

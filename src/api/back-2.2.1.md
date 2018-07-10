@@ -15,8 +15,8 @@ if (Errors == 0 && SchedulingFlatSSG)
     SSSG = SchedulingSSG(SSG);
 
 ```
--	Variable PhaseName is the Stage name，the value is `schedulerSSG (scheduler static stream graph)`
--	schedulingFlatSSG is the switch of scheduling flatgraph，which type is Global Bool,and it is defined in the main.cpp source file
+-	Variable `PhaseName` is the Stage name，the value is `schedulerSSG (scheduler static stream graph)`
+-	`schedulingFlatSSG` is the switch of scheduling flatgraph，which type is Global Bool,and it is defined in the main.cpp source file
 -	The program entry is the function` SchedulingSSG(SSG)`，the input is the SSG ,and the output is the SSSG which finish the scheduling.
 
 ## Associated file
@@ -26,14 +26,14 @@ if (Errors == 0 && SchedulingFlatSSG)
 
 |Name| Descritpion|
 |:-|:-|
-|`mapInitCount2FlatNode`	|`map<FlatNode * node, int initcount>`store the initial scheduling result of all nodes in SDF graph |
-|`mapSteadyCount2FlatNode	`|`map<FlatNode* node,int steadycount>` store the steady scheduling result of all nodes in SDF graph|
+|`map<FlatNode * node, int initcount>`<br>`mapInitCount2FlatNode`	|store the initial scheduling result of all nodes in SDF graph |
+|`map<FlatNode* node,int steadycount>`<br>`mapSteadyCount2FlatNode`|store the steady scheduling result of all nodes in SDF graph|
 |`SchedulerSSG(StaticStreamGraph *ssg)	`|Constructor|
-|`InitScheduling()	`|return：`bool `<br>initial schedule the SSG|
-|`SteadyScheduling()`	|return：`bool` <br>steady-state schedule the SSG|
-|`GetInitCount(FlatNode *node)	`|return：`int `<br>get Initcount of a node|
-|`GetSteadyCount(FlatNode *node)	`|return：`bool`<br>get steadycount of a node|
-|`SteadySchedulingGroup(Vector <FlatNode *>)`	|return：`map<FlatNode *,int>`<br>do steady scheduling to a group of nodes|
+|`bool InitScheduling()	`|initial schedule the SSG|
+|`boolSteadyScheduling()`|steady-state schedule the SSG|
+|`int GetInitCount(FlatNode *node)`|get Initcount of a node|
+|`bool GetSteadyCount(FlatNode *node)`|get steadycount of a node|
+|`map<FlatNode *,int> `<br>`SteadySchedulingGroup(Vector <FlatNode *>)`	|do steady scheduling to a group of nodes|
 
 The implememtation code is in source file schedulerSSG.cpp
 
@@ -69,9 +69,10 @@ The above code is the implementation of the scheduling , it’s very clear。
 ### Why is the scheduling order first steady state and initial state?
 - Steady-state scheduling processes the amount of data from the top-down node to reach equilibrium
 - The initial state schedules the amount of data from the bottom-up processing node to reach equilibrium		    
-- The initial scheduling and the steady scheduling are independent of each other;
-Function SteadyScheduling()determines whether the SDF can reach steady state；
-Reduce the memory overhead by avoidable InitScheduling() function calls
+- The initial scheduling and the steady scheduling are independent of each other
+- Usually the steady state must exist.If the steady state does not exist, the program cannot run, and the initial state may not exist.
+- Function SteadyScheduling()determines whether the SDF can reach steady state；
+- Reduce the memory overhead by avoidable InitScheduling() function calls
 ### What does the initial state and steady state scheduling do for the SDF diagram?
 - Did not change the structural characteristics of the SDF
 - Just calculate how the data filling the SDF graph (sssg)

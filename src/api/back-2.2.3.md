@@ -44,11 +44,11 @@ if (Errors == 0 && GPUBackend)
         DumpStreamGraph(SSSG, mp, "PartitionGraph.dot",NULL);
     }
 ```
--	For example: if we use a serve with a 8 core cpu of Inter X86, according to the condition judgment, it will enter the red mark branch.
--	Variable mp is MetisPartiton *mp = NULL, it is defined in mainfunction. It is a object of MetisPartition.
--	First，according to the number of SDF graph nodes converted from the syntax tree and the physical core number of the current CPU，the program decide the partition number of SDF graph. It is implemented by setCpuCoreNum(CpuCoreNum , SSSG). Variable CpuCoreNum=8 is defined in main function , SSSG is the output of the initial stage and steady state scheduling of the previous stage.
--	After the number of divisions is determined, the partition function mp->SssgPartition(SSSG,1) will be called, This function is implemented in MetisPartition.cpp, which is an associated file of this partitioning scheduling module.
--	After complete the partition scheduling, print out the divided SDF map and output with function DumpStreamGraph (SSSG, mp, "PartitionGraph.dot", NULL).
+-	For example: if we use a serve with a 8 core cpu of Inter X86, according to the condition judgment, it will enter the X86Backend branch.
+-	Variable `mp` is `MetisPartiton *mp = NULL`, it is defined in mainfunction. It is a object of MetisPartition.
+-	First，according to the number of SDF graph nodes converted from the syntax tree and the physical core number of the current CPU，the program decide the partition number of SDF graph. It is implemented by `setCpuCoreNum(CpuCoreNum , SSSG)`. Variable CpuCoreNum=8 is defined in main function , SSSG is the output of the initial stage and steady state scheduling of the previous stage.
+-	After the number of divisions is determined, the partition function `mp->SssgPartition(SSSG,1)` will be called, This function is implemented in MetisPartition.cpp, which is an associated file of this partitioning scheduling module.
+-	After complete the partition scheduling, print out the divided SDF map and output with function `DumpStreamGraph (SSSG, mp, "PartitionGraph.dot", NULL)`.
 
 ## Associated file
 (1)	 partition.h & partition.cpp

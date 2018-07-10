@@ -72,7 +72,7 @@ else if (GPUBackend)
 }
 
 ```
-（4）	Handling command line arguments
+- Handling command line arguments
 ```c++
 for (i=1; i<argc; i++) {
     if (argv[i][0] == '-') {  

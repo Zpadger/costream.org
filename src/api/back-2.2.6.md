@@ -27,7 +27,7 @@ GPUBackend) )
 
 ```
 - First，create a object of class ActorEdgeInfo, to store information about all edges in the current SDF graph;
-- Entry function is CodeGeneration(…)
+- Entry function is `CodeGeneration(…)`
 - Function parameter setting：
 ```c++
 void CodeGeneration(char *currentDir,   //currentDir：directory of Source file 
@@ -42,10 +42,10 @@ MAFLPartition *maflp)                   //maflp：result of GPU partition
 
 |File name |Function|
 |:-|:-|
-|ActorEdgeInfo.h& ActorEdgeInfo.cpp|store information about all edges in the current SDF graph|
-|CodeGeneration.h& CodeGeneration.cpp|A collection of all platform code generation calls|
-|X86CodeGenatate.h&X86CodeGenerate.cpp|Code generation module for the X86 platform|
-|X86LibCopy.h & X86LibCopy.cpp|Lib copy module for the X86 platform|
+|`ActorEdgeInfo.h& ActorEdgeInfo.cpp`|store information about all edges in the current SDF graph|
+|`CodeGeneration.h& CodeGeneration.cpp`|A collection of all platform code generation calls|
+|`X86CodeGenatate.h&X86CodeGenerate.cpp`|Code generation module for the X86 platform|
+|`X86LibCopy.h & X86LibCopy.cpp`|Lib copy module for the X86 platform|
 
 
 ## Key codes

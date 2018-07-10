@@ -9,12 +9,12 @@ Preprocessing the input and nitialization environment is the first step of compi
 ## Program entrance
 This part includes three function:
 
-|Key Variables：||
+|Key Functions||
 |:-|:-|
 |`yyin = get_preprocessed_input()`	|Extract and process user compilation command，get the source file which need to complie,get file name and store corresponding content|
-|`InitTypes()`	|Initialization type table.It is in type.h and type.c ,you should learn flex and bison. This makes the word and grammar analysis steps clear and concise.|
-|`init_sysbol_tables(TRUE)`	|Initialization symbol table. Defined in main.cpp，function implemented  in symbol.h and symbol.c。|
-|`InitOperatorTable()	`|Initialization Operator table. Implemented  inoperators.h and operator.c.|
+|`InitTypes()`	|Initialization type table.It is in `type.h `and `type.c` ,you should learn flex and bison. This makes the word and grammar analysis steps clear and concise.|
+|`init_sysbol_tables(TRUE)`	|Initialization symbol table. Defined in main.cpp，function implemented  in `symbol.h `and `symbol.c`.|
+|`InitOperatorTable()	`|Initialization Operator table. Implemented  in`operators.h `and `operator.c`.|
 
 ## Associated file
 

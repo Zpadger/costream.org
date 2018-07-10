@@ -14,6 +14,11 @@ PhaseName = "WorkEstimate";
 if (Errors == 0 && WorkEstimate)
 	GenerateWorkEst(SSG,WorkEstimateByDataFlow);
 ```
+- `WorkEstimate` is the switch variable of Workload estimate，defined in the head of `main.cpp`
+- `WorkEstimateByDataFlow `is the switch variable of another way to do workload estimation
+- `GenerateWorkEst(…)` is the implementation of workload estimation  
+
+
 
 ## Associate file
 

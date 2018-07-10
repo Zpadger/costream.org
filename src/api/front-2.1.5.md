@@ -27,4 +27,4 @@ Semantic check is the step of the compiler front-end word and parsing. The modul
 |Other Syntaxtree nodes checking function<br>Function type : `inline Node *`|`SemCheckDecl()`<br>`SemCheckAttrib()`<br>`SemCheckProc()`|
 |SPL syntax extended semantic checking function<br>Function type : `GLOBAL Node *`|`AddDeclNodeConstTq()`<br>`StreamCheckFields()`<br>`SemCheckComposite()`<br>`SemCheckParam()`<br>`SemCheckWindow()`<br>……|   
 
-caption：The semantic analysis phase is in the` SemCheckComposite()` function, it assigns the program entry node gMainComposite，and let the node point to the headnode of entire Syntaxtree.It is the basis for the transformation of the grammar tree into a flatgraph。
+caption：The semantic analysis phase is in the` SemCheckComposite()` function, it assigns the program entry node `gMainComposite`，and let the node point to the headnode of entire Syntaxtree.It is the basis for the transformation of the grammar tree into a flatgraph.

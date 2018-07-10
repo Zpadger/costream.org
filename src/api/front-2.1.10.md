@@ -16,7 +16,7 @@ if (Errors == 0 && AST2FlatSSG)
     SSG = AST2FlatStaticStreamGraph(gMainComposite);
 
 ```
--	AST2FlatSSG is the switch variable ,defined in the head of main.cpp.
+-	`AST2FlatSSG` is the switch variable ,defined in the head of main.cpp.
 -	Function `AST2FlatStaticStreamGraph(…)`, input is the root node “gMainComposite” of AST，output is the  object  “SSG” of StaticStreamGraph.
 
 ## Associated file
@@ -24,7 +24,7 @@ if (Errors == 0 && AST2FlatSSG)
 (1)	flatNode.h & flatNode.cpp
 This file is the node structure description file of the static data flow graph.
 
-|string name|operator name|
+|Variable name|Variable description|
 |:-|:-|
 |`int visitTimes`|	Indicates whether the node has been visited|
 |`operatorNode *contents`	|Point to operator（After constant propagation）|
@@ -36,11 +36,11 @@ This file is the node structure description file of the static data flow graph.
 |`int place_id, thread_id, post_thread_id, serial_id`| var of actor in partitioning algorithm|
 |`vector<FlatNode *> outFlatNodes`	|Collection of outFlatNodes of current operater|
 |`vector<FlatNode *> inFlatNodes	 `   |Collection of inFlatNodes of current operater|
-|Store information of operater<br>Type :`vector<string>`| `outPushString`<br>`inPopString`<br>`inPeekString`<br>`pushString`<br>`peekString`|
+|`outPushString`<br>`inPopString`<br>`inPeekString`<br>`pushString`<br>`peekString`|Store information of operater<br>Type :`vector<string>`| 
 |`long work_estimate`	|Work estimate of operater|
 |`int num	`|Sequence number of operator in ssg|
-|GPUpartition algorithm Variable 	|`int GPUPart` <br> `bool BorderFlag`|
-|Extended variable Type:`int `	|`currentIn ,currentOut ,schedMult ,schedDivider ,uin ,label`|
+|`int GPUPart` <br> `bool BorderFlag`|GPUpartition algorithm Variable 	|
+|`currentIn ,currentOut ,schedMult ,schedDivider ,uin ,label`|Extended variable Type:`int `	|
 |SDF nodes functions：||
 |`void AddOutEdges(FlatNode *dest)	`|Add out edges|
 |`void AddInEdges(FlatNode *src)`	|Add in edges|
@@ -48,7 +48,7 @@ This file is the node structure description file of the static data flow graph.
 |`void visitNode()	`|Visit and mark this node |
 |`void ResetVisitTimes()`	|Reset visitTimes |
 |`int GetVisitTimes()	`|Get visitTimes|
-|`void SetIOStreams()	`|.|
+|`void SetIOStreams()	`|......|
 
 See flatNode.cpp for more details 
 
@@ -95,7 +95,8 @@ GLOBAL StaticStreamGraph *AST2FlatStaticStreamGraph(Node *mainComposite)
     assert(mainComposite && mainComposite->typ == Composite && 
         mainComposite->u.composite.decl->u.decl.type->u.comdcl.inout == NULL);
     assert(strcmp(mainComposite->u.composite.decl->u.decl.name, "Main") == 0);
-    //（1）create a SDF graph,Call the default constructor, the parameter is initialized to null	ssg = new StaticStreamGraph();
+    //create a SDF graph,Call the default constructor, the parameter is initialized to null	ssg = new StaticStreamGraph();
+    ssg = new StaticStreamGraph();
     //the second parameter oldComposite
     GraphToOperators(mainComposite, mainComposite);
     //set head of list

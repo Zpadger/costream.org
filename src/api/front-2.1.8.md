@@ -21,6 +21,6 @@ if (Errors == 0 && Propagate)
 }
 
 ```
--	Variable “Propagate”  is the switch of Constant propagation，defined in the head of main.cpp
+-	Variable `Propagate`  is the switch of Constant propagation，defined in the head of main.cpp
 -	Function` PrapagateProgram(…) `implement the constant propagation. The input of the function is the program AST after active variable analysis，and the output is the program ASTafter the constant propagation
 -	Associate file : `propagator.h & propagator.cpp` which is the declaration header file of the constant propagation and the code implementation file.
