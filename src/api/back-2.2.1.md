@@ -63,6 +63,13 @@ The above code is the implementation of the scheduling , it’s very clear。
 - The input is the SSG.
 - The output is the SSSG which finish the scheduling.
 
+### Initial-state scheduling flow chart
+
+![Initial-state scheduling flow chart](/img/initScheduling.png)
+
+### Steady-state scheduling flow chart
+
+![Steady-state scheduling flow chart](/img/steadyScheduling.png)
 
 ## FAQ
 

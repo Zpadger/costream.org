@@ -82,7 +82,7 @@ partition.h is the base class of all kinds of parition
 1)	Set partition numbers
 This function is used to set partition numbers.
 The number of physical cores of the server determines the number of shares.
-![partitionflowchat](/img/partitionflowchat.jpg)
+![partitionflowchat](/img/partitionflowchat.png)
 
 2)	SDFPartion—SSSGPartition
 Use Metis toolkit to divided the graph,which combined communication and load balancing.

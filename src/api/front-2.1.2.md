@@ -30,7 +30,7 @@ Flex is a fast lexical analyzer generator：
 -  	For this project, c4.l is the corresponding lexical analysis file
 -  	steps as shown below：
 
-![Flexsteps](/img/Flexsteps.jpg)
+![Flexsteps](/img/Flexsteps.png)
 
 ## Bison
 Bison is a Parser：
