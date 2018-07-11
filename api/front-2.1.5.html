@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Semantic check — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Semantic check — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -463,7 +463,10 @@
   
     <p>Semantic check is the step of the compiler front-end word and parsing. The module checks all nodes of the abstract syntax tree generated after parsing one by one.</p>
 <h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （5）sem-check.c is a semantic check file</span></span><br><span class="line">	PhaseName = <span class="string">"Semantic Check"</span>; </span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; SemanticCheck)</span><br><span class="line">		Program = SemanticCheckProgram(Program);</span><br></pre></td></tr></table></figure>
-<p>（1）    This input of function is COStream program<br>（2）    SemanticCheck is the switch of semantic check，defined in the head of main.cpp</p>
+<ul>
+<li>This input of function is COStream program</li>
+<li>SemanticCheck is the switch of semantic check，defined in the head of main.cpp</li>
+</ul>
 <h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p><code>sem-check.c</code> This is a semantic check file for the front-end syntax tree:</p>
 <table>
 <thead>
@@ -474,28 +477,28 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">GLOBAL List * SemanticCheckProgram()</td>
+<td style="text-align:left"><code>GLOBAL List * SemanticCheckProgram()</code></td>
 <td style="text-align:left">Program is a syntax tree generated after words and grammar analysis.<br>This function performs a semantic check on it,,and return the checked program.</td>
 </tr>
 <tr>
-<td style="text-align:left">Expression node semantic checking function<br> Function type : inline Node *</td>
-<td style="text-align:left">SemCheckConst() <br>SemCheckId()<br>SemCheckBinop()<br>SemCheckUnary()<br>……</td>
+<td style="text-align:left">Expression node semantic checking function<br> Function type : <code>inline Node *</code></td>
+<td style="text-align:left"><code>SemCheckConst()</code> <br><code>SemCheckId()</code><br><code>SemCheckBinop()</code><br><code>SemCheckUnary()</code><br>……</td>
 </tr>
 <tr>
-<td style="text-align:left">Type node semantic checking function<br>Function type : inline Node *</td>
-<td style="text-align:left">SemCheckPrim()<br>SemCheckTdef()<br>……</td>
+<td style="text-align:left">Type node semantic checking function<br>Function type : <code>inline Node *</code></td>
+<td style="text-align:left"><code>SemCheckPrim()</code><br><code>SemCheckTdef()</code><br>……</td>
 </tr>
 <tr>
-<td style="text-align:left">Other Syntaxtree nodes checking function<br>Function type : inline Node *</td>
-<td style="text-align:left">SemCheckDecl()<br>SemCheckAttrib()<br>SemCheckProc()</td>
+<td style="text-align:left">Other Syntaxtree nodes checking function<br>Function type : <code>inline Node *</code></td>
+<td style="text-align:left"><code>SemCheckDecl()</code><br><code>SemCheckAttrib()</code><br><code>SemCheckProc()</code></td>
 </tr>
 <tr>
-<td style="text-align:left">SPL syntax extended semantic checking function<br>Function type : GLOBAL Node *</td>
-<td style="text-align:left">AddDeclNodeConstTq()<br>StreamCheckFields()<br>SemCheckComposite()<br>SemCheckParam()<br>SemCheckWindow()<br>……</td>
+<td style="text-align:left">SPL syntax extended semantic checking function<br>Function type : <code>GLOBAL Node *</code></td>
+<td style="text-align:left"><code>AddDeclNodeConstTq()</code><br><code>StreamCheckFields()</code><br><code>SemCheckComposite()</code><br><code>SemCheckParam()</code><br><code>SemCheckWindow()</code><br>……</td>
 </tr>
 </tbody>
 </table>
-<p>caption：The semantic analysis phase is in the SemCheckComposite() function, it assigns the program entry node gMainComposite，and let the node point to the headnode of entire Syntaxtree.It is the basis for the transformation of the grammar tree into a flatgraph。</p>
+<p>caption：The semantic analysis phase is in the<code>SemCheckComposite()</code> function, it assigns the program entry node <code>gMainComposite</code>，and let the node point to the headnode of entire Syntaxtree.It is the basis for the transformation of the grammar tree into a flatgraph.</p>
 
   
   

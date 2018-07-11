@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Delete file & verifies the Lexical and grammatical analysis results — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Delete file & verifies the Lexical and grammatical analysis results — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -462,8 +462,12 @@
   
   
     <p>After the front-end word and syntax analysis of the compiled project, the module deletes the temporary file under the directory where the source program file is located.<br>In addition, the module verifies the correctness of the previous Lexical and grammatical analysis results.</p>
-<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （4）Delete file &amp; verifies the Lexical and grammatical analysis results</span></span><br><span class="line">	<span class="keyword">if</span> (tmpname[<span class="number">0</span>] != <span class="number">0</span>) </span><br><span class="line">	&#123;</span><br><span class="line">		assert(<span class="number">0</span> == fclose(yyin));</span><br><span class="line">		assert(<span class="number">0</span> == remove(tmpname));</span><br><span class="line">	&#125;	</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NDEBUG</span></span><br><span class="line">    <span class="keyword">if</span> (Errors == <span class="number">0</span>) &#123;</span><br><span class="line">		PhaseName = <span class="string">"Verification"</span>;</span><br><span class="line">		VerifyParse(Program);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>（1）    Variable “Program” store the source program.<br>（2）    VerifyParse(Program) function will check the correctness of the node ,data type ,declare lists expressions, expression lists,   statements, statement lists and extension grammar of COStream language after Lexical and grammatical analysis.<br>（3）    Associate file : verify-parse.c</p>
+<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （4）Delete file &amp; verifies the Lexical and grammatical analysis results</span></span><br><span class="line"><span class="keyword">if</span> (tmpname[<span class="number">0</span>] != <span class="number">0</span>) </span><br><span class="line">&#123;</span><br><span class="line">    assert(<span class="number">0</span> == fclose(yyin));</span><br><span class="line">    assert(<span class="number">0</span> == remove(tmpname));</span><br><span class="line">&#125;	</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NDEBUG</span></span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span>) &#123;</span><br><span class="line">    PhaseName = <span class="string">"Verification"</span>;</span><br><span class="line">    VerifyParse(Program);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Variable “Program” store the source program.</li>
+<li>VerifyParse(Program) function will check the correctness of the node ,data type ,declare lists expressions, expression lists,   statements, statement lists and extension grammar of COStream language after Lexical and grammatical analysis.</li>
+<li>Associate file : verify-parse.c</li>
+</ul>
 
   
   

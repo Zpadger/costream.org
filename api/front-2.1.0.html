@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Get & preprocess Input file — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Get & preprocess Input file — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -461,10 +461,15 @@
     <h1>Get & preprocess Input file</h1>
   
   
-    <p>The C2C_Test project is a compiler implementation for the data stream language COStream. The goal is to obtain the target of the input COStream source program through compiler processing (lexical analysis, parsing, semantic analysis, intermediate code generation and optimization, target code generation) C++ parallel code. Different from the common compiler, we not only realize the conversion from COStream to the high-level language C++, but also do partition and scheduling to the program and finally get C + + multi-threaded code , according to the parallelism exposed in the input COStream source program and the node information of the corresponding data flow graph .</p>
-<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">GLOBAL <span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	……</span><br><span class="line"><span class="comment">//Frontend</span></span><br><span class="line">	preproc = default_preproc;</span><br><span class="line"><span class="comment">//Get input, processe command line parameter</span></span><br><span class="line">    handle_options(argc, argv);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> pos1 = InputFileName.find_last_of(<span class="string">'/'</span>);</span><br><span class="line">	<span class="keyword">int</span> pos2 = InputFileName.find(<span class="string">".spl"</span>);</span><br><span class="line">	<span class="built_in">string</span> substring=InputFileName.substr(pos1+<span class="number">1</span>,pos2-pos1<span class="number">-1</span>);	</span><br><span class="line"><span class="built_in">string</span> ccfilename=InputFileName.substr(pos1+<span class="number">1</span>,pos2-pos1<span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
-<p>（1）    default_preproc is a private variable in main.cpp，it store the default compile command”gcc –E –x c” .<br>（2）    The basic variable preproc is used to compile the command processing judgment.<br>（3）    Main function arguments (argc,argv)， argc means number of arguments，argv store all the arguments，in this project argc=1 argv=“project directory”.<br>（4）    The handle_option function assigns Input_file to InputFileName, then intercepts the input source file nameand records. The substring and ccfilename to store the file name. The former has a reference in the post code generation, and the latter in the workload estimation step.</p>
-<h2 id="Associate-file"><a href="#Associate-file" class="headerlink" title="Associate file"></a>Associate file</h2><p><code>main.cpp</code><br>This file is the entry file for the entire project, which defines the program entry function main(argc, argv), as well as the necessary header file references, necessary global variable declarations, necessary basic function definition implementations, etc. See main.cpp for details.</p>
+    <p>The C2C_Test project is a compiler implementation for the data stream language COStream. The goal is to convert COStream source program through compiler processing (lexical analysis, parsing, semantic analysis, intermediate code generation and optimization, target code generation) C++ parallel code. Different from the common compiler, we not only realize the conversion from COStream to the C++, but also do partition and scheduling to the program and finally get C + + multi-threaded code , according to the parallelism exposed in the input COStream source program and the node information of the corresponding data flow graph .</p>
+<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">GLOBAL <span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ……</span><br><span class="line">    <span class="comment">//Frontend</span></span><br><span class="line">    preproc = default_preproc;</span><br><span class="line">    <span class="comment">//Get input, processe command line parameter</span></span><br><span class="line">    handle_options(argc, argv);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> pos1 = InputFileName.find_last_of(<span class="string">'/'</span>);</span><br><span class="line">    <span class="keyword">int</span> pos2 = InputFileName.find(<span class="string">".spl"</span>);</span><br><span class="line">    <span class="built_in">string</span> substring=InputFileName.substr(pos1+<span class="number">1</span>,pos2-pos1<span class="number">-1</span>);	</span><br><span class="line">    <span class="built_in">string</span> ccfilename=InputFileName.substr(pos1+<span class="number">1</span>,pos2-pos1<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>default_preproc is a private variable in main.cpp，it store the default compile command”<code>gcc –E –x c</code>” .</li>
+<li>The basic variable preproc is used to compile the command processing judgment.</li>
+<li>Main function arguments <code>(argc,argv)</code>， <code>argc</code> means number of arguments，<code>argv</code>store all the arguments，in this project <code>argc=1 argv=“project directory”</code>.</li>
+<li>The <code>handle_option</code> function assigns <code>Input_file</code> to <code>InputFileName</code>, then intercepts the input source file nameand records. The substring and ccfilename to store the file name. The former has a reference in the post code generation, and the latter in the workload estimation step.</li>
+</ul>
+<h2 id="Associate-file"><a href="#Associate-file" class="headerlink" title="Associate file"></a>Associate file</h2><p><code>main.cpp</code><br>This file is the entry file for the entire project, which defines the program entry function <code>main(argc, argv)</code>, as well as the necessary header file references, necessary global variable declarations, necessary basic function definition implementations, etc. See main.cpp for details.</p>
 <table>
 <thead>
 <tr>
@@ -475,7 +480,7 @@
 <tbody>
 <tr>
 <td style="text-align:left"><code>GLOBAL List *Program</code></td>
-<td style="text-align:left">This is a global List<em> variable designed to handle input source programs, program=source program file addresses, and  </em>program=source program, which is the target for front-end parsing.</td>
+<td style="text-align:left">This is a global List  variable designed to handle input source programs, program=source program file addresses, and  *program=source program, which is the target for front-end parsing.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>GLOBAL Node * gMainComposite</code></td>
@@ -515,8 +520,16 @@
 </tr>
 </tbody>
 </table>
-<h2 id="Input-file-acquisition-and-processing"><a href="#Input-file-acquisition-and-processing" class="headerlink" title="Input file acquisition and processing"></a>Input file acquisition and processing</h2><p>The initialization of the complier include analyze source file and compile commands arguments.it is implementd by <code>handle_options(int argc , char *argv[])</code> in main.cpp：<br>（1）    function <code>arguments (int argc , char *argv[])</code>, argc means number of arguments，argv store all the arguments，in this project argc=1 argv=“project directory”<br>（2）    <code>char *files[16] = {&quot;./tests/SPLtest/Benchmarks/rvq.spl2.cc&quot;, ….}</code>; is a array store the test file dirctory；<br>（3）    Analyze command arguments：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (X86Backend)</span><br><span class="line">  &#123;</span><br><span class="line">	  argc = <span class="number">5</span>;  </span><br><span class="line">	  argv[<span class="number">1</span>] = <span class="string">"-x86"</span>;         <span class="comment">//chose platform</span></span><br><span class="line">	  argv[<span class="number">2</span>] = <span class="string">"-nCpucore"</span>;    <span class="comment">//set cpu core number</span></span><br><span class="line">	  argv[<span class="number">3</span>] = <span class="string">"8"</span>;           <span class="comment">// set cpu core number</span></span><br><span class="line">	  argv[<span class="number">4</span>] = files[<span class="number">3</span>];        <span class="comment">//sorcefile for test</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (GPUBackend)</span><br><span class="line">  &#123;</span><br><span class="line">	  argc = <span class="number">9</span>;</span><br><span class="line">	  argv[<span class="number">1</span>] = <span class="string">"-gpu"</span>;  </span><br><span class="line">	  argv[<span class="number">2</span>] = <span class="string">"-nGpu"</span>;</span><br><span class="line">	  argv[<span class="number">3</span>] = <span class="string">"3"</span>;</span><br><span class="line">	  argv[<span class="number">4</span>] = files[<span class="number">8</span>];</span><br><span class="line">	  argv[<span class="number">5</span>] = <span class="string">"-o"</span>;</span><br><span class="line">	  argv[<span class="number">6</span>] = <span class="string">"test"</span>;</span><br><span class="line">	  argv[<span class="number">7</span>] = <span class="string">"-multi"</span>;</span><br><span class="line">	  argv[<span class="number">8</span>] = <span class="string">"3"</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>（4）    Handling command line arguments<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;argc; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (argv[i][<span class="number">0</span>] == <span class="string">'-'</span>) &#123;  </span><br><span class="line">      <span class="keyword">switch</span> (argv[i][<span class="number">1</span>]) &#123;</span><br><span class="line">		  <span class="keyword">case</span> <span class="string">'-'</span>:</span><br><span class="line">			QuietlyIgnore = !QuietlyIgnore;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		  <span class="keyword">case</span> <span class="string">'h'</span>:</span><br><span class="line">			usage(FALSE, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		  <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">			<span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[i], <span class="string">"-ansi"</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">			  ANSIOnly = TRUE;</span><br><span class="line">			  <span class="comment">/* change the preprocessor command, if the user hasn't</span></span><br><span class="line"><span class="comment">				 already changed it with -P */</span></span><br><span class="line">			  <span class="keyword">if</span> (preproc == default_preproc)</span><br><span class="line">				preproc = ansi_preproc;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[i], <span class="string">"-ast"</span>) == <span class="number">0</span>) </span><br><span class="line">			  PrintAST = TRUE;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			  unknown_option(argv[i]);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">             ……</span><br><span class="line">        &#125;<span class="comment">//switch</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (input_file != <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Multiple input files defined, using `%s'\n"</span>,argv[i]);</span><br><span class="line">      &#125;<span class="comment">//if</span></span><br><span class="line">	  <span class="keyword">else</span></span><br><span class="line">		input_file = argv[i];</span><br><span class="line">    &#125;<span class="comment">//if</span></span><br><span class="line">  &#125;<span class="comment">//for</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Input-file-acquisition-and-processing"><a href="#Input-file-acquisition-and-processing" class="headerlink" title="Input file acquisition and processing"></a>Input file acquisition and processing</h2><p>The initialization of the complier include analyze source file and compile commands arguments.it is implementd by <code>handle_options(int argc , char *argv[])</code> in main.cpp：</p>
+<ul>
+<li>function <code>arguments (int argc , char *argv[])</code>, argc means number of arguments，argv store all the arguments，in this project argc=1 argv=“project directory”</li>
+<li><code>char *files[16] = {&quot;./tests/SPLtest/Benchmarks/rvq.spl2.cc&quot;, ….}</code>; is a array store the test file dirctory；</li>
+<li><p>Analyze command arguments：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (X86Backend)</span><br><span class="line">&#123;</span><br><span class="line">    argc = <span class="number">5</span>;  </span><br><span class="line">    argv[<span class="number">1</span>] = <span class="string">"-x86"</span>;         <span class="comment">//chose platform</span></span><br><span class="line">    argv[<span class="number">2</span>] = <span class="string">"-nCpucore"</span>;    <span class="comment">//set cpu core number</span></span><br><span class="line">    argv[<span class="number">3</span>] = <span class="string">"8"</span>;            <span class="comment">// set cpu core number</span></span><br><span class="line">    argv[<span class="number">4</span>] = files[<span class="number">3</span>];       <span class="comment">//sorcefile for test</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (GPUBackend)</span><br><span class="line">&#123;</span><br><span class="line">    argc = <span class="number">9</span>;</span><br><span class="line">    argv[<span class="number">1</span>] = <span class="string">"-gpu"</span>;  </span><br><span class="line">    argv[<span class="number">2</span>] = <span class="string">"-nGpu"</span>;</span><br><span class="line">    argv[<span class="number">3</span>] = <span class="string">"3"</span>;</span><br><span class="line">    argv[<span class="number">4</span>] = files[<span class="number">8</span>];</span><br><span class="line">    argv[<span class="number">5</span>] = <span class="string">"-o"</span>;</span><br><span class="line">    argv[<span class="number">6</span>] = <span class="string">"test"</span>;</span><br><span class="line">    argv[<span class="number">7</span>] = <span class="string">"-multi"</span>;</span><br><span class="line">    argv[<span class="number">8</span>] = <span class="string">"3"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Handling command line arguments</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;argc; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (argv[i][<span class="number">0</span>] == <span class="string">'-'</span>) &#123;  </span><br><span class="line">        <span class="keyword">switch</span> (argv[i][<span class="number">1</span>]) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'-'</span>:</span><br><span class="line">                QuietlyIgnore = !QuietlyIgnore;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'h'</span>:</span><br><span class="line">                usage(FALSE, <span class="number">0</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'a'</span>:</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[i], <span class="string">"-ansi"</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">                    ANSIOnly = TRUE;</span><br><span class="line">                <span class="comment">/* change the preprocessor command, if the user hasn't</span></span><br><span class="line"><span class="comment">                already changed it with -P */</span></span><br><span class="line">                <span class="keyword">if</span> (preproc == default_preproc)</span><br><span class="line">                    preproc = ansi_preproc;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strcmp</span>(argv[i], <span class="string">"-ast"</span>) == <span class="number">0</span>) </span><br><span class="line">                    PrintAST = TRUE;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    unknown_option(argv[i]);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                    ……</span><br><span class="line">        &#125;<span class="comment">//switch</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (input_file != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Multiple input files defined, using `%s'\n"</span>,argv[i]);</span><br><span class="line">        &#125;<span class="comment">//if</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            input_file = argv[i];</span><br><span class="line">    &#125;<span class="comment">//if</span></span><br><span class="line">&#125;<span class="comment">//for</span></span><br></pre></td></tr></table></figure></li>
+</ul>
 
   
   

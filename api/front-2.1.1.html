@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Preprocessing & Environment initialization — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Preprocessing & Environment initialization — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -466,7 +466,7 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Key Variables：</th>
+<th style="text-align:left">Key Functions</th>
 <th style="text-align:left"></th>
 </tr>
 </thead>
@@ -477,19 +477,19 @@
 </tr>
 <tr>
 <td style="text-align:left"><code>InitTypes()</code></td>
-<td style="text-align:left">Initialization type table.It is in type.h and type.c ,you should learn flex and bison. This makes the word and grammar analysis steps clear and concise.</td>
+<td style="text-align:left">Initialization type table.It is in <code>type.h</code>and <code>type.c</code> ,you should learn flex and bison. This makes the word and grammar analysis steps clear and concise.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>init_sysbol_tables(TRUE)</code></td>
-<td style="text-align:left">Initialization symbol table. Defined in main.cpp，function implemented  in symbol.h and symbol.c。</td>
+<td style="text-align:left">Initialization symbol table. Defined in main.cpp，function implemented  in <code>symbol.h</code>and <code>symbol.c</code>.</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>InitOperatorTable()</code></td>
-<td style="text-align:left">Initialization Operator table. Implemented  inoperators.h and operator.c.</td>
+<td style="text-align:left">Initialization Operator table. Implemented  in<code>operators.h</code>and <code>operator.c</code>.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>1）    ast.h<br>This file is the top-level node type description file of the whole compilation project. It defines various node types through the front-end word, syntax analysis, syntax tree to floor plan conversion to back-end partition scheduling, and contains the node type of the entire project.</p>
+<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>(1) ast.h<br>This file is the top-level node type description file of the whole compilation project. It defines various node types through the front-end word, syntax analysis, syntax tree to floor plan conversion to back-end partition scheduling, and contains the node type of the entire project.</p>
 <table>
 <thead>
 <tr>
@@ -500,23 +500,23 @@
 <tbody>
 <tr>
 <td style="text-align:left">expression nodes</td>
-<td style="text-align:left">Const , Id , Binop , Unary , Cast , Comma , Ternary , Array , Call , Initializer , ImplicitCast</td>
+<td style="text-align:left"><code>Const , Id , Binop , Unary , Cast , Comma , Ternary , Array , Call , Initializer , ImplicitCast</code></td>
 </tr>
 <tr>
 <td style="text-align:left">statement nodes</td>
-<td style="text-align:left">Label , Switch , Case , Default , If , IfElse , While , Do , For , Goto , Continue , Break , Return , Block</td>
+<td style="text-align:left"><code>Label , Switch , Case , Default , If , IfElse , While , Do , For , Goto , Continue , Break , Return , Block</code></td>
 </tr>
 <tr>
 <td style="text-align:left">type nodes</td>
-<td style="text-align:left">Prim , Tdef , Ptr , Adcl , Fdcl , Sdcl , Udcl , Edcl</td>
+<td style="text-align:left"><code>Prim , Tdef , Ptr , Adcl , Fdcl , Sdcl , Udcl , Edcl</code></td>
 </tr>
 <tr>
 <td style="text-align:left">declaration nodes</td>
-<td style="text-align:left">Decl</td>
+<td style="text-align:left"><code>Decl</code></td>
 </tr>
 <tr>
 <td style="text-align:left">GCC_attribute extension</td>
-<td style="text-align:left">Attrib</td>
+<td style="text-align:left"><code>Attrib</code></td>
 </tr>
 <tr>
 <td style="text-align:left">procedure def node</td>
@@ -528,11 +528,11 @@
 </tr>
 <tr>
 <td style="text-align:left">SPL nodes</td>
-<td style="text-align:left">STRdcl , Comdcl , Composite , ComInOut , ComBody , Param , OperBody , Operdcl , Operator_  , Window , Sliding , Tumbling , CompositeCall , Pipeline , SplitJoin , Split , Join , RoundRobin , Duplicate , Add</td>
+<td style="text-align:left"><code>STRdcl , Comdcl , Composite , ComInOut , ComBody , Param , OperBody , Operdcl , Operator_  , Window , Sliding , Tumbling , CompositeCall , Pipeline , SplitJoin , Split , Join , RoundRobin , Duplicate , Add</code></td>
 </tr>
 <tr>
 <td style="text-align:left">BasicType</td>
-<td style="text-align:left">Uchar , Schar , Char , Ushort , Sshort , Uint , Sint , Int_ParseOnly , Ulong , Slong , Ulonglong , Slonglong , Float , Double , Longdouble , Void , Ellipsis , MaxBasicType</td>
+<td style="text-align:left"><code>Uchar , Schar , Char , Ushort , Sshort , Uint , Sint , Int_ParseOnly , Ulong , Slong , Ulonglong , Slonglong , Float , Double , Longdouble , Void , Ellipsis , MaxBasicType</code></td>
 </tr>
 <tr>
 <td style="text-align:left">Typedef  ypeSpecifier</td>
@@ -552,18 +552,18 @@
 </tr>
 <tr>
 <td style="text-align:left">Expression nodes</td>
-<td style="text-align:left">Such as  ConstNode</td>
+<td style="text-align:left">Such as  <code>ConstNode</code></td>
 </tr>
 <tr>
 <td style="text-align:left">Statement nodes</td>
-<td style="text-align:left">Such as SwitchNode</td>
+<td style="text-align:left">Such as <code>SwitchNode</code></td>
 </tr>
 <tr>
 <td style="text-align:left">……</td>
 </tr>
 </tbody>
 </table>
-<p>2）    basics.h<br>This is a basic type description file:</p>
+<p>(2) basics.h<br>This is a basic type description file:</p>
 <table>
 <thead>
 <tr>
@@ -573,39 +573,39 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">typedef void</td>
-<td style="text-align:left">Generic</td>
+<td style="text-align:left"><code>typedef void Generic</code></td>
+<td style="text-align:left">void</td>
 </tr>
 <tr>
-<td style="text-align:left">typedef void **</td>
-<td style="text-align:left">GenericREF ：Store Generic’s address, passed by reference</td>
+<td style="text-align:left"><code>typedef void ** GenericREF</code></td>
+<td style="text-align:left">Store Generic’s address, passed by reference</td>
 </tr>
 <tr>
-<td style="text-align:left">typedef int Bool</td>
+<td style="text-align:left"><code>typedef int Bool</code></td>
 <td style="text-align:left">Boolean type Bool that defines a value as an integer</td>
 </tr>
 <tr>
-<td style="text-align:left">#define assert(X)</td>
+<td style="text-align:left"><code>#define assert(X)</code></td>
 <td style="text-align:left">check function</td>
 </tr>
 <tr>
-<td style="text-align:left">typedef struct Basic node type</td>
+<td style="text-align:left"><code>typedef struct Basic node type</code></td>
 <td style="text-align:left">nodeStruct Node,tableStruct SymbolTable,int OpType</td>
 </tr>
 <tr>
-<td style="text-align:left">typedef enum Operand type</td>
-<td style="text-align:left">opDataType:op_int = 1 , op_float . op_unknow</td>
+<td style="text-align:left"><code>typedef enum Operand type opDataType</code></td>
+<td style="text-align:left">op_int = 1 , op_float . op_unknow</td>
 </tr>
 <tr>
-<td style="text-align:left">typedef struct tablestruct</td>
-<td style="text-align:left">SymbolTable ：Symbol table</td>
+<td style="text-align:left"><code>typedef struct tablestruct SymbolTable</code></td>
+<td style="text-align:left">Symbol table</td>
 </tr>
 <tr>
-<td style="text-align:left">typedef structAST tablestruct</td>
-<td style="text-align:left">ASTSymbolTable ：AST Symbol table</td>
+<td style="text-align:left"><code>typedef structAST tablestruct ASTSymbolTable</code></td>
+<td style="text-align:left">AST Symbol table</td>
 </tr>
 <tr>
-<td style="text-align:left">typedef struct coord</td>
+<td style="text-align:left"><code>typedef struct coord</code></td>
 <td style="text-align:left">Coord ：Program code coordinate structure, return line, offset, file, includedp</td>
 </tr>
 <tr>
@@ -613,12 +613,12 @@
 <td style="text-align:left"></td>
 </tr>
 <tr>
-<td style="text-align:left">SPL Constructor，GLOBAL Node *</td>
-<td style="text-align:left">MakeSplitOperator(); MakeJoinOperator(); ……</td>
+<td style="text-align:left"><code>SPL Constructor，GLOBAL Node *</code></td>
+<td style="text-align:left"><code>MakeSplitOperator(); MakeJoinOperator();</code> ……</td>
 </tr>
 </tbody>
 </table>
-<p>3）    type.h &amp; type.c<br>This file is the front end of the compilation project,Initialize the declaration header file of the type table for the preparation of the word and parsing,There are many node types defined in this file.It extended the COStream language grammar, to analysis for COStream data stream programs.</p>
+<p>(3)  type.h &amp; type.c<br>This file is the front end of the compilation project,Initialize the declaration header file of the type table for the preparation of the word and parsing,There are many node types defined in this file.It extended the COStream language grammar, to analysis for COStream data stream programs.</p>
 <table>
 <thead>
 <tr>
@@ -629,31 +629,31 @@
 <tbody>
 <tr>
 <td style="text-align:left">Enumeration type ScopeState：</td>
-<td style="text-align:left">This is a type structure that uses constants to represent different types：<br>1Redecl ：0 may redeclare a typedef name<br>2NoRedecl : 1 may not redeclare a typedef name <br>3SU : 2 a structure or a union field <br>4Stream : 3 a stream SPL5Formal : <br>4 a formal parameter<br>6Commal : 5 a SPL composite stream</td>
+<td style="text-align:left">This is a type structure that uses constants to represent different types：<br><code>Redecl</code>： may redeclare a typedef name<br><code>NoRedecl</code> :  may not redeclare a typedef name <br><code>SU</code> : a structure or a union field <br><code>Stream</code>: a stream SPL<br> <code>Formal</code> : a formal parameter<br><code>Commal</code> : a SPL composite stream</td>
 </tr>
 <tr>
 <td style="text-align:left">Global type constant Node</td>
-<td style="text-align:left"><em>PrimVoid </em>PrimChar <em>PrimSchar </em>PrimUchar <em>PrimSshort </em>PrimUshort <em>PrimSint </em>PrimUint <em>PrimSlong </em>PrimUlong <em>PrimSlonglong </em>PrimUlonglong <em>primFloat </em>PrimDouble *PrimLongdouble</td>
+<td style="text-align:left"><code>*PrimVoid *PrimChar *PrimSchar *PrimUchar *PrimSshort</code><br><code>*PrimUshort *PrimSint *PrimUint *PrimSlong *PrimUlong</code><br><code>*PrimSlonglong *PrimUlonglong *primFloat *PrimDouble *PrimLongdouble</code></td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left">*StaticString</td>
+<td style="text-align:left"><code>*StaticString</code></td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left"><em>SintZero </em>UintZero <em>SlongZero </em>UlongZero <em>FloatZero </em>DoubleZero</td>
+<td style="text-align:left"><code>*SintZero *UintZero *SlongZero *UlongZero *FloatZero *DoubleZero</code></td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left"><em>PtrVoid </em>PtrNull</td>
+<td style="text-align:left"><code>*PtrVoid *PtrNull</code></td>
 </tr>
 <tr>
 <td style="text-align:left"></td>
-<td style="text-align:left"><em>SintOne </em>UintOne <em>SlongOne </em>UlongOne <em>FloatOne </em>DoubleOne</td>
+<td style="text-align:left"><code>*SintOne *UintOne *SlongOne *UlongOne *FloatOne *DoubleOn</code>e</td>
 </tr>
 <tr>
 <td style="text-align:left">Initialization type table</td>
-<td style="text-align:left">void InitTypes(void)</td>
+<td style="text-align:left"><code>void InitTypes(void)</code></td>
 </tr>
 <tr>
 <td style="text-align:left">other related functions of Type table:</td>
@@ -661,11 +661,11 @@
 </tr>
 <tr>
 <td style="text-align:left">SPL Related function：COStream datastream Related function:</td>
-<td style="text-align:left">Void CompositeConflict()<br>Void OperatorConflict()<br>Void Patameter_conflict()<br>Void Stream_conflict()<br>Void Var_conflict()<br>Void ModifyOperatorDeclArguments()<br>Void PrintStream()<br>Bool IsStream()<br>Int Stream_Sizeof()</td>
+<td style="text-align:left"><code>Void CompositeConflict()</code><br><code>Void OperatorConflict()</code><br><code>Void Patameter_conflict()</code><br><code>Void Stream_conflict()</code><br><code>Void Var_conflict()</code><br><code>Void ModifyOperatorDeclArguments()</code><br><code>Void PrintStream()</code><br><code>Bool IsStream()</code><br><code>Int Stream_Sizeof()</code></td>
 </tr>
 </tbody>
 </table>
-<p>4）    symbol.h &amp; symbol.c<br>This file is the front end of the compilation project. It initializes the declaration header file and implementation file of the symbol table for the preparation of words and parsing. The internal definition of the program code uses symbol mark information to simplify the symbol marks in lexical analysis.</p>
+<p>(4)symbol.h &amp; symbol.c<br>This file is the front end of the compilation project. It initializes the declaration header file and implementation file of the symbol table for the preparation of words and parsing. The internal definition of the program code uses symbol mark information to simplify the symbol marks in lexical analysis.</p>
 <table>
 <thead>
 <tr>
@@ -676,7 +676,7 @@
 <tbody>
 <tr>
 <td style="text-align:left">Structure type symbolstruct：</td>
-<td style="text-align:left">This is a type structure that defines the information in the symbol table, including：<br>○1const char <em>name<br>○2Generic </em>var<br>○3Scope scope<br>○4Symbol <em>next<br>○5Symbol </em>shadow<br>○6Symbol *scope_next</td>
+<td style="text-align:left">This is a type structure that defines the information in the symbol table, including：<br><code>const char *name</code><br><code>Generic *var</code><br><code>Scope scope</code><br><code>Symbol *next</code><br><code>Symbol *shadow</code><br><code>Symbol *scope_next</code></td>
 </tr>
 <tr>
 <td style="text-align:left">Structure type Scope</td>
@@ -684,11 +684,11 @@
 </tr>
 <tr>
 <td style="text-align:left">Structure type ASTsymbolstruct</td>
-<td style="text-align:left">Extend the symbol table for the COStream program:<br>○1const char <em>name<br>○2const char </em>newName<br>○3Generic <em>oldId<br>○4Generic </em>newId<br>○5ASTSymbol <em>next<br>○6ASTSynbol </em>shadow</td>
+<td style="text-align:left">Extend the symbol table for the COStream program:<br><code>const char *name</code><br><code>const char *newName</code><br><code>Generic *oldId</code><br><code>Generic *newId</code><br><code>ASTSymbol *next</code><br><code>ASTSynbol *shadow</code></td>
 </tr>
 <tr>
 <td style="text-align:left">New symboltable</td>
-<td style="text-align:left">SymbolTable *NewSymbolTable(…)</td>
+<td style="text-align:left"><code>SymbolTable *NewSymbolTable(…)</code></td>
 </tr>
 <tr>
 <td style="text-align:left">Other related function</td>
@@ -696,11 +696,11 @@
 </tr>
 <tr>
 <td style="text-align:left">COStream  symbol table function</td>
-<td style="text-align:left">ASTSymbolTable *NewASTSymbolTable (…)<br>Void ResetASTSymbolTable (…)<br>……</td>
+<td style="text-align:left"><code>ASTSymbolTable *NewASTSymbolTable (…)</code><br><code>Void ResetASTSymbolTable (…)</code><br>……</td>
 </tr>
 </tbody>
 </table>
-<p>5）    operators.h &amp; operators.c<br>The project front end is compiled, and the declaration header file and the implementation file of the operator table are initialized for the follow-up words and the preparation work before the parsing, and the unary, binary to multi-operator in the program code is internally defined.</p>
+<p>(5)operators.h &amp; operators.c<br>The project front end is compiled, and the declaration header file and the implementation file of the operator table are initialized for the follow-up words and the preparation work before the parsing, and the unary, binary to multi-operator in the program code is internally defined.</p>
 <table>
 <thead>
 <tr>
@@ -711,11 +711,11 @@
 <tbody>
 <tr>
 <td style="text-align:left">Structure type OpEntry</td>
-<td style="text-align:left">This is a type structure that defines the information in the operator：<br>○1const char <em>text  // Corresponding operator content<br>○2const char </em>name // Corresponding operator name<br>○3short unary_prec<br>○4short binary_prec    <br>○5Bool left_assoc<br>○6Bool (<em>unary_eval)(Node </em>)</td>
+<td style="text-align:left">This is a type structure that defines the information in the operator：<br><code>const char *text  // Corresponding operator content</code><br><code>const char *name // Corresponding operator name</code><br><code>short unary_prec</code><br><code>short binary_prec</code><br><code>Bool left_assoc&lt;br&gt;Bool (*unary_eval)(Node *)</code></td>
 </tr>
 <tr>
 <td style="text-align:left">Initialize function</td>
-<td style="text-align:left">void InitOperatorTable(void)</td>
+<td style="text-align:left"><code>void InitOperatorTable(void)</code></td>
 </tr>
 <tr>
 <td style="text-align:left">Other related function</td>
@@ -724,11 +724,11 @@
 </tbody>
 </table>
 <h2 id="Preprocessing-input"><a href="#Preprocessing-input" class="headerlink" title="Preprocessing input"></a>Preprocessing input</h2><p>The input preprocessing module is implemented by the <code>get_preprocessed_input()</code> function in main.cpp, which mainly completes the processing of the compiler input program source file, extracts the source program name and code in the file, and assigns a value to <code>input_file</code>.<br>Read the contents of the input file for subsequent processing</p>
-<h2 id="Inilitize-type-tables"><a href="#Inilitize-type-tables" class="headerlink" title="Inilitize type tables"></a>Inilitize type tables</h2><p>The initialization type table module is implemented by the <code>InitTypes()</code> function in type.c.<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Create a storage type array TypeNames in the grammar, save the names of all basic data types</span></span><br><span class="line">PRIVATE <span class="keyword">const</span> <span class="keyword">char</span> *TypeNames[MaxBasicType];</span><br><span class="line"><span class="function">GLOBAL <span class="keyword">void</span> <span class="title">InitTypes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">  TypeNames[Uchar] = <span class="string">"unsigned char"</span>;</span><br><span class="line">  TypeNames[Schar] = <span class="string">"signed char"</span>;</span><br><span class="line">  TypeNames[Char] = <span class="string">"char"</span>;</span><br><span class="line">  TypeNames[Ushort] = <span class="string">"unsigned short"</span>;</span><br><span class="line">  TypeNames[Sshort] = <span class="string">"short"</span>;</span><br><span class="line">  TypeNames[Uint] = <span class="string">"unsigned"</span>;</span><br><span class="line">  TypeNames[Sint] = <span class="string">"int"</span>;</span><br><span class="line">  TypeNames[Int_ParseOnly] = <span class="string">"int"</span>;</span><br><span class="line">  TypeNames[Ulong] = <span class="string">"unsigned long"</span>;</span><br><span class="line">  TypeNames[Slong] = <span class="string">"long"</span>;</span><br><span class="line">  TypeNames[Ulonglong] = <span class="string">"unsigned long long"</span>;</span><br><span class="line">  TypeNames[Slonglong] = <span class="string">"long long"</span>;</span><br><span class="line">  TypeNames[Float] = <span class="string">"float"</span>;</span><br><span class="line">  TypeNames[Double] = <span class="string">"double"</span>;</span><br><span class="line">  TypeNames[Longdouble] = <span class="string">"long double"</span>;</span><br><span class="line">  TypeNames[Void] = <span class="string">"void"</span>;</span><br><span class="line">  TypeNames[Ellipsis] = <span class="string">"..."</span>;</span><br><span class="line">  <span class="comment">// Create a basic type node, implemented by the MakePrim() function in the ast.c file</span></span><br><span class="line">  EllipsisNode  = MakePrim(EMPTY_TQ, Ellipsis);</span><br><span class="line">  Undeclared   = MakeDecl(<span class="string">"undeclared!"</span>, EMPTY_TQ, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">  PrimVoid     = MakePrim(EMPTY_TQ, Void);</span><br><span class="line">  PrimChar     = MakePrim(EMPTY_TQ, Char);</span><br><span class="line">  PrimSchar    = MakePrim(EMPTY_TQ, Schar);</span><br><span class="line">  PrimUchar    = MakePrim(EMPTY_TQ, Uchar);</span><br><span class="line">  PrimSshort   = MakePrim(EMPTY_TQ, Sshort);</span><br><span class="line">  PrimUshort   = MakePrim(EMPTY_TQ, Ushort);</span><br><span class="line">  PrimSint     = MakePrim(EMPTY_TQ, Sint);</span><br><span class="line"></span><br><span class="line">  PrimUint     = MakePrim(EMPTY_TQ, Uint);</span><br><span class="line">  PrimSlong    = MakePrim(EMPTY_TQ, Slong);</span><br><span class="line">  PrimUlong    = MakePrim(EMPTY_TQ, Ulong);</span><br><span class="line">  PrimSlonglong= MakePrim(EMPTY_TQ, Slonglong);</span><br><span class="line">  PrimUlonglong= MakePrim(EMPTY_TQ, Ulonglong);</span><br><span class="line">  PrimFloat    = MakePrim(EMPTY_TQ, Float);</span><br><span class="line">  PrimDouble   = MakePrim(EMPTY_TQ, Double);</span><br><span class="line">  PrimLongdouble = MakePrim(EMPTY_TQ, Longdouble);</span><br><span class="line">  StaticString = MakePtr(EMPTY_TQ, MakePrim(T_STATIC, Char));</span><br><span class="line">  <span class="comment">/* Make some standard zeros */</span></span><br><span class="line">  SintZero   = MakeConstSint(<span class="number">0</span>);</span><br><span class="line">  UintZero   = MakeConstUint(<span class="number">0</span>);</span><br><span class="line">  SlongZero  = MakeConstSlong(<span class="number">0</span>);</span><br><span class="line">  UlongZero  = MakeConstUlong(<span class="number">0</span>);</span><br><span class="line">  FloatZero  = MakeConstFloat(<span class="number">0.0</span>);</span><br><span class="line">  DoubleZero = MakeConstDouble(<span class="number">0.0</span>);</span><br><span class="line">  <span class="comment">/* Make some standard ones */</span></span><br><span class="line">  SintOne    = MakeConstSint(<span class="number">1</span>);</span><br><span class="line">  UintOne    = MakeConstUint(<span class="number">1</span>);</span><br><span class="line">  SlongOne   = MakeConstSlong(<span class="number">1</span>);</span><br><span class="line">  UlongOne   = MakeConstUlong(<span class="number">1</span>);</span><br><span class="line">  FloatOne   = MakeConstFloat(<span class="number">1.0</span>);</span><br><span class="line">  DoubleOne  = MakeConstDouble(<span class="number">1.0</span>);</span><br><span class="line"></span><br><span class="line">  PtrVoid = MakePtr(EMPTY_TQ, PrimVoid);</span><br><span class="line">  PtrNull = MakeConstPtr(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Inilitize-type-tables"><a href="#Inilitize-type-tables" class="headerlink" title="Inilitize type tables"></a>Inilitize type tables</h2><p>The initialization type table module is implemented by the <code>InitTypes()</code> function in type.c.<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Create a storage type array TypeNames in the grammar, save the names of all basic data types</span></span><br><span class="line">PRIVATE <span class="keyword">const</span> <span class="keyword">char</span> *TypeNames[MaxBasicType];</span><br><span class="line"><span class="function">GLOBAL <span class="keyword">void</span> <span class="title">InitTypes</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    TypeNames[Uchar] = <span class="string">"unsigned char"</span>;</span><br><span class="line">    TypeNames[Schar] = <span class="string">"signed char"</span>;</span><br><span class="line">    TypeNames[Char] = <span class="string">"char"</span>;</span><br><span class="line">    TypeNames[Ushort] = <span class="string">"unsigned short"</span>;</span><br><span class="line">    TypeNames[Sshort] = <span class="string">"short"</span>;</span><br><span class="line">    TypeNames[Uint] = <span class="string">"unsigned"</span>;</span><br><span class="line">    TypeNames[Sint] = <span class="string">"int"</span>;</span><br><span class="line">    TypeNames[Int_ParseOnly] = <span class="string">"int"</span>;</span><br><span class="line">    TypeNames[Ulong] = <span class="string">"unsigned long"</span>;</span><br><span class="line">    TypeNames[Slong] = <span class="string">"long"</span>;</span><br><span class="line">    TypeNames[Ulonglong] = <span class="string">"unsigned long long"</span>;</span><br><span class="line">    TypeNames[Slonglong] = <span class="string">"long long"</span>;</span><br><span class="line">    TypeNames[Float] = <span class="string">"float"</span>;</span><br><span class="line">    TypeNames[Double] = <span class="string">"double"</span>;</span><br><span class="line">    TypeNames[Longdouble] = <span class="string">"long double"</span>;</span><br><span class="line">    TypeNames[Void] = <span class="string">"void"</span>;</span><br><span class="line">    TypeNames[Ellipsis] = <span class="string">"..."</span>;</span><br><span class="line">    <span class="comment">// Create a basic type node, implemented by the MakePrim() function in the ast.c file</span></span><br><span class="line">    EllipsisNode  = MakePrim(EMPTY_TQ, Ellipsis);</span><br><span class="line">    Undeclared   = MakeDecl(<span class="string">"undeclared!"</span>, EMPTY_TQ, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    PrimVoid     = MakePrim(EMPTY_TQ, Void);</span><br><span class="line">    PrimChar     = MakePrim(EMPTY_TQ, Char);</span><br><span class="line">    PrimSchar    = MakePrim(EMPTY_TQ, Schar);</span><br><span class="line">    PrimUchar    = MakePrim(EMPTY_TQ, Uchar);</span><br><span class="line">    PrimSshort   = MakePrim(EMPTY_TQ, Sshort);</span><br><span class="line">    PrimUshort   = MakePrim(EMPTY_TQ, Ushort);</span><br><span class="line">    PrimSint     = MakePrim(EMPTY_TQ, Sint);</span><br><span class="line"></span><br><span class="line">    PrimUint     = MakePrim(EMPTY_TQ, Uint);</span><br><span class="line">    PrimSlong    = MakePrim(EMPTY_TQ, Slong);</span><br><span class="line">    PrimUlong    = MakePrim(EMPTY_TQ, Ulong);</span><br><span class="line">    PrimSlonglong= MakePrim(EMPTY_TQ, Slonglong);</span><br><span class="line">    PrimUlonglong= MakePrim(EMPTY_TQ, Ulonglong);</span><br><span class="line">    PrimFloat    = MakePrim(EMPTY_TQ, Float);</span><br><span class="line">    PrimDouble   = MakePrim(EMPTY_TQ, Double);</span><br><span class="line">    PrimLongdouble = MakePrim(EMPTY_TQ, Longdouble);</span><br><span class="line">    StaticString = MakePtr(EMPTY_TQ, MakePrim(T_STATIC, Char));</span><br><span class="line">    <span class="comment">/* Make some standard zeros */</span></span><br><span class="line">    SintZero   = MakeConstSint(<span class="number">0</span>);</span><br><span class="line">    UintZero   = MakeConstUint(<span class="number">0</span>);</span><br><span class="line">    SlongZero  = MakeConstSlong(<span class="number">0</span>);</span><br><span class="line">    UlongZero  = MakeConstUlong(<span class="number">0</span>);</span><br><span class="line">    FloatZero  = MakeConstFloat(<span class="number">0.0</span>);</span><br><span class="line">    DoubleZero = MakeConstDouble(<span class="number">0.0</span>);</span><br><span class="line">    <span class="comment">/* Make some standard ones */</span></span><br><span class="line">    SintOne    = MakeConstSint(<span class="number">1</span>);</span><br><span class="line">    UintOne    = MakeConstUint(<span class="number">1</span>);</span><br><span class="line">    SlongOne   = MakeConstSlong(<span class="number">1</span>);</span><br><span class="line">    UlongOne   = MakeConstUlong(<span class="number">1</span>);</span><br><span class="line">    FloatOne   = MakeConstFloat(<span class="number">1.0</span>);</span><br><span class="line">    DoubleOne  = MakeConstDouble(<span class="number">1.0</span>);</span><br><span class="line"></span><br><span class="line">    PtrVoid = MakePtr(EMPTY_TQ, PrimVoid);</span><br><span class="line">    PtrNull = MakeConstPtr(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="Inilitize-Symbol-tables"><a href="#Inilitize-Symbol-tables" class="headerlink" title="Inilitize Symbol tables"></a>Inilitize Symbol tables</h2><p>The initialization symbol table module defines the identifiers, keywords, expressions and other symbols in the grammar, which is implemented by the <code>init_sysbol_tables(...)</code>function in main.cpp.</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Initialization symbol table</span></span><br><span class="line"><span class="function">PRIVATE <span class="keyword">void</span> <span class="title">init_symbol_tables</span><span class="params">(Bool shadow_warnings)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ShadowProc shadow_proc;</span><br><span class="line">    <span class="keyword">if</span> (shadow_warnings)</span><br><span class="line">      shadow_proc = (ShadowProc) shadow_var;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      shadow_proc = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="comment">// Defining grammar identifier</span></span><br><span class="line">    Identifiers = NewSymbolTable(<span class="string">"Identifiers"</span>, Nested,</span><br><span class="line">				 shadow_proc, (ExitscopeProc) OutOfScope);</span><br><span class="line">    Labels = NewSymbolTable(<span class="string">"Labels"</span>, Flat,</span><br><span class="line">			    <span class="literal">NULL</span>, (ExitscopeProc) EndOfLabelScope);</span><br><span class="line">    Tags = NewSymbolTable(<span class="string">"Tags"</span>, Nested,</span><br><span class="line">		shadow_warnings ? (ShadowProc)ShadowTag : (ShadowProc)<span class="literal">NULL</span>,</span><br><span class="line">		<span class="literal">NULL</span>);</span><br><span class="line">    Externals = NewSymbolTable(<span class="string">"Externals"</span>, Flat,</span><br><span class="line">			       <span class="literal">NULL</span>, (ExitscopeProc) OutOfScope);</span><br><span class="line"><span class="comment">/*****************--------------Define For COStream----------********************/</span></span><br><span class="line">	CompositeIds = NewSymbolTable(<span class="string">"CompositeIds"</span>, Flat,</span><br><span class="line">		<span class="literal">NULL</span>, (ExitscopeProc) OutOfScope);</span><br><span class="line">	ToTransformDecl = NewASTSymbolTable(<span class="string">"ToTransformDecl"</span>,Flat);<span class="comment">//zww</span></span><br><span class="line">	ParameterPassTable = NewASTSymbolTable(<span class="string">"ParameterPassTable"</span>,Flat);<span class="comment">//zww</span></span><br><span class="line">	VariableRenameTable = NewASTSymbolTable(<span class="string">"VariableRenameTable"</span>,Flat);<span class="comment">//ly</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Initialization-operator-table"><a href="#Initialization-operator-table" class="headerlink" title="Initialization operator table"></a>Initialization operator table</h2><p>The initialization operator module completes the definition of various mathematical operators and language processing operators in the grammar, implemented by the <code>InitOperatorTable()</code> function in operator.c:</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">GLOBAL <span class="keyword">void</span> <span class="title">InitOperatorTable</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  SET_OP(ARROW,       <span class="string">"-&gt;"</span>,      <span class="string">"ARROW"</span>,       <span class="number">0</span>, <span class="number">15</span>);</span><br><span class="line">  SET_OP(<span class="string">'.'</span>,         <span class="string">"."</span>,       <span class="string">"DOT"</span>,         <span class="number">0</span>, <span class="number">15</span>);</span><br><span class="line">  SET_OP(<span class="string">'!'</span>,         <span class="string">"!"</span>,       <span class="string">"not"</span>,        <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(<span class="string">'~'</span>,         <span class="string">"~"</span>,       <span class="string">"bitnot"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(ICR,         <span class="string">"++"</span>,      <span class="string">"ICR"</span>,        <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(POSTINC,     <span class="string">"++"</span>,      <span class="string">"postinc"</span>,    <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(PREINC,      <span class="string">"++"</span>,      <span class="string">"preinc"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(DECR,        <span class="string">"--"</span>,      <span class="string">"DECR"</span>,       <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(POSTDEC,     <span class="string">"--"</span>,      <span class="string">"postdec"</span>,    <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(PREDEC,      <span class="string">"--"</span>,      <span class="string">"predec"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(SIZEOF,      <span class="string">"sizeof"</span>,  <span class="string">"sizeof"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  <span class="comment">// Defining logical operators</span></span><br><span class="line">  SET_OP(ADDRESS,     <span class="string">"&amp;"</span>,       <span class="string">"addrof"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(INDIR,       <span class="string">"*"</span>,       <span class="string">"indir"</span>,      <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(UPLUS,       <span class="string">"+"</span>,       <span class="string">"UPLUS"</span>,      <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(UMINUS,      <span class="string">"-"</span>,       <span class="string">"neg"</span>,        <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">  SET_OP(<span class="string">'*'</span>,         <span class="string">"*"</span>,       <span class="string">"mul"</span>,         <span class="number">0</span>, <span class="number">13</span>);</span><br><span class="line">  SET_OP(<span class="string">'/'</span>,         <span class="string">"/"</span>,       <span class="string">"div"</span>,         <span class="number">0</span>, <span class="number">13</span>);</span><br><span class="line">  SET_OP(<span class="string">'%'</span>,         <span class="string">"%"</span>,       <span class="string">"mod"</span>,         <span class="number">0</span>, <span class="number">13</span>);</span><br><span class="line">  SET_OP(<span class="string">'+'</span>,         <span class="string">"+"</span>,       <span class="string">"add"</span>,         <span class="number">0</span>, <span class="number">12</span>);</span><br><span class="line">  SET_OP(<span class="string">'-'</span>,         <span class="string">"-"</span>,       <span class="string">"sub"</span>,         <span class="number">0</span>, <span class="number">12</span>);</span><br><span class="line">  SET_OP(LS,          <span class="string">"&lt;&lt;"</span>,      <span class="string">"lsh"</span>,         <span class="number">0</span>, <span class="number">11</span>);</span><br><span class="line">  SET_OP(RS,          <span class="string">"&gt;&gt;"</span>,      <span class="string">"rsh"</span>,         <span class="number">0</span>, <span class="number">11</span>);</span><br><span class="line">  SET_OP(<span class="string">'&lt;'</span>,         <span class="string">"&lt;"</span>,       <span class="string">"lt"</span>,          <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">  SET_OP(<span class="string">'&gt;'</span>,         <span class="string">"&gt;"</span>,       <span class="string">"gt"</span>,          <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">  SET_OP(LE,          <span class="string">"&lt;="</span>,      <span class="string">"le"</span>,          <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">  SET_OP(GE,          <span class="string">"&gt;="</span>,      <span class="string">"ge"</span>,          <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">  SET_OP(EQ,          <span class="string">"=="</span>,      <span class="string">"eq"</span>,          <span class="number">0</span>,  <span class="number">9</span>);</span><br><span class="line">  SET_OP(NE,          <span class="string">"!="</span>,      <span class="string">"ne"</span>,          <span class="number">0</span>,  <span class="number">9</span>);</span><br><span class="line">  SET_OP(<span class="string">'&amp;'</span>,         <span class="string">"&amp;"</span>,       <span class="string">"band"</span>,        <span class="number">0</span>,  <span class="number">8</span>);</span><br><span class="line">  SET_OP(<span class="string">'^'</span>,         <span class="string">"^"</span>,       <span class="string">"bxor"</span>,        <span class="number">0</span>,  <span class="number">7</span>);</span><br><span class="line">  SET_OP(<span class="string">'|'</span>,         <span class="string">"|"</span>,       <span class="string">"bor"</span>,         <span class="number">0</span>,  <span class="number">6</span>);</span><br><span class="line">  SET_OP(ANDAND,      <span class="string">"&amp;&amp;"</span>,      <span class="string">"and"</span>,         <span class="number">0</span>,  <span class="number">5</span>);</span><br><span class="line">  SET_OP(OROR,        <span class="string">"||"</span>,      <span class="string">"or"</span>,          <span class="number">0</span>,  <span class="number">4</span>);</span><br><span class="line">  <span class="comment">/* ternary operator has precedence three, but is handled separately */</span></span><br><span class="line">  SET_OP(<span class="string">'='</span>,         <span class="string">"="</span>,       <span class="string">"asgn"</span> ,       <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(<span class="string">'='</span>);</span><br><span class="line">  SET_OP(MULTassign,  <span class="string">"*="</span>,      <span class="string">"*="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(MULTassign);</span><br><span class="line">  SET_OP(DIVassign,   <span class="string">"/="</span>,      <span class="string">"/="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(DIVassign);</span><br><span class="line">  SET_OP(MODassign,   <span class="string">"%="</span>,      <span class="string">"%="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(MODassign);</span><br><span class="line">  SET_OP(PLUSassign,  <span class="string">"+="</span>,      <span class="string">"+="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(PLUSassign);</span><br><span class="line">  SET_OP(MINUSassign, <span class="string">"-="</span>,      <span class="string">"-="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(MINUSassign);</span><br><span class="line">  SET_OP(LSassign,    <span class="string">"&lt;&lt;="</span>,     <span class="string">"&lt;&lt;="</span>,         <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(LSassign);</span><br><span class="line">  SET_OP(RSassign,    <span class="string">"&gt;&gt;="</span>,     <span class="string">"&gt;&gt;="</span>,         <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(RSassign);</span><br><span class="line">  SET_OP(ANDassign,   <span class="string">"&amp;="</span>,      <span class="string">"&amp;="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(ANDassign);</span><br><span class="line">  SET_OP(ERassign,    <span class="string">"^="</span>,      <span class="string">"^="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(ERassign);</span><br><span class="line">  SET_OP(ORassign,    <span class="string">"|="</span>,      <span class="string">"|="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(ORassign);</span><br><span class="line">  <span class="comment">/* comma operator has precedence one, but is handled separately */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">GLOBAL <span class="keyword">void</span> <span class="title">InitOperatorTable</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SET_OP(ARROW,       <span class="string">"-&gt;"</span>,      <span class="string">"ARROW"</span>,       <span class="number">0</span>, <span class="number">15</span>);</span><br><span class="line">    SET_OP(<span class="string">'.'</span>,         <span class="string">"."</span>,       <span class="string">"DOT"</span>,         <span class="number">0</span>, <span class="number">15</span>);</span><br><span class="line">    SET_OP(<span class="string">'!'</span>,         <span class="string">"!"</span>,       <span class="string">"not"</span>,        <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(<span class="string">'~'</span>,         <span class="string">"~"</span>,       <span class="string">"bitnot"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(ICR,         <span class="string">"++"</span>,      <span class="string">"ICR"</span>,        <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(POSTINC,     <span class="string">"++"</span>,      <span class="string">"postinc"</span>,    <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(PREINC,      <span class="string">"++"</span>,      <span class="string">"preinc"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(DECR,        <span class="string">"--"</span>,      <span class="string">"DECR"</span>,       <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(POSTDEC,     <span class="string">"--"</span>,      <span class="string">"postdec"</span>,    <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(PREDEC,      <span class="string">"--"</span>,      <span class="string">"predec"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(SIZEOF,      <span class="string">"sizeof"</span>,  <span class="string">"sizeof"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// Defining logical operators</span></span><br><span class="line">    SET_OP(ADDRESS,     <span class="string">"&amp;"</span>,       <span class="string">"addrof"</span>,     <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(INDIR,       <span class="string">"*"</span>,       <span class="string">"indir"</span>,      <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(UPLUS,       <span class="string">"+"</span>,       <span class="string">"UPLUS"</span>,      <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(UMINUS,      <span class="string">"-"</span>,       <span class="string">"neg"</span>,        <span class="number">14</span>,  <span class="number">0</span>);</span><br><span class="line">    SET_OP(<span class="string">'*'</span>,         <span class="string">"*"</span>,       <span class="string">"mul"</span>,         <span class="number">0</span>, <span class="number">13</span>);</span><br><span class="line">    SET_OP(<span class="string">'/'</span>,         <span class="string">"/"</span>,       <span class="string">"div"</span>,         <span class="number">0</span>, <span class="number">13</span>);</span><br><span class="line">    SET_OP(<span class="string">'%'</span>,         <span class="string">"%"</span>,       <span class="string">"mod"</span>,         <span class="number">0</span>, <span class="number">13</span>);</span><br><span class="line">    SET_OP(<span class="string">'+'</span>,         <span class="string">"+"</span>,       <span class="string">"add"</span>,         <span class="number">0</span>, <span class="number">12</span>);</span><br><span class="line">    SET_OP(<span class="string">'-'</span>,         <span class="string">"-"</span>,       <span class="string">"sub"</span>,         <span class="number">0</span>, <span class="number">12</span>);</span><br><span class="line">    SET_OP(LS,          <span class="string">"&lt;&lt;"</span>,      <span class="string">"lsh"</span>,         <span class="number">0</span>, <span class="number">11</span>);</span><br><span class="line">    SET_OP(RS,          <span class="string">"&gt;&gt;"</span>,      <span class="string">"rsh"</span>,         <span class="number">0</span>, <span class="number">11</span>);</span><br><span class="line">    SET_OP(<span class="string">'&lt;'</span>,         <span class="string">"&lt;"</span>,       <span class="string">"lt"</span>,          <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    SET_OP(<span class="string">'&gt;'</span>,         <span class="string">"&gt;"</span>,       <span class="string">"gt"</span>,          <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    SET_OP(LE,          <span class="string">"&lt;="</span>,      <span class="string">"le"</span>,          <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    SET_OP(GE,          <span class="string">"&gt;="</span>,      <span class="string">"ge"</span>,          <span class="number">0</span>, <span class="number">10</span>);</span><br><span class="line">    SET_OP(EQ,          <span class="string">"=="</span>,      <span class="string">"eq"</span>,          <span class="number">0</span>,  <span class="number">9</span>);</span><br><span class="line">    SET_OP(NE,          <span class="string">"!="</span>,      <span class="string">"ne"</span>,          <span class="number">0</span>,  <span class="number">9</span>);</span><br><span class="line">    SET_OP(<span class="string">'&amp;'</span>,         <span class="string">"&amp;"</span>,       <span class="string">"band"</span>,        <span class="number">0</span>,  <span class="number">8</span>);</span><br><span class="line">    SET_OP(<span class="string">'^'</span>,         <span class="string">"^"</span>,       <span class="string">"bxor"</span>,        <span class="number">0</span>,  <span class="number">7</span>);</span><br><span class="line">    SET_OP(<span class="string">'|'</span>,         <span class="string">"|"</span>,       <span class="string">"bor"</span>,         <span class="number">0</span>,  <span class="number">6</span>);</span><br><span class="line">    SET_OP(ANDAND,      <span class="string">"&amp;&amp;"</span>,      <span class="string">"and"</span>,         <span class="number">0</span>,  <span class="number">5</span>);</span><br><span class="line">    SET_OP(OROR,        <span class="string">"||"</span>,      <span class="string">"or"</span>,          <span class="number">0</span>,  <span class="number">4</span>);</span><br><span class="line">    <span class="comment">/* ternary operator has precedence three, but is handled separately */</span></span><br><span class="line">    SET_OP(<span class="string">'='</span>,         <span class="string">"="</span>,       <span class="string">"asgn"</span> ,       <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(<span class="string">'='</span>);</span><br><span class="line">    SET_OP(MULTassign,  <span class="string">"*="</span>,      <span class="string">"*="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(MULTassign);</span><br><span class="line">    SET_OP(DIVassign,   <span class="string">"/="</span>,      <span class="string">"/="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(DIVassign);</span><br><span class="line">    SET_OP(MODassign,   <span class="string">"%="</span>,      <span class="string">"%="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(MODassign);</span><br><span class="line">    SET_OP(PLUSassign,  <span class="string">"+="</span>,      <span class="string">"+="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(PLUSassign);</span><br><span class="line">    SET_OP(MINUSassign, <span class="string">"-="</span>,      <span class="string">"-="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(MINUSassign);</span><br><span class="line">    SET_OP(LSassign,    <span class="string">"&lt;&lt;="</span>,     <span class="string">"&lt;&lt;="</span>,         <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(LSassign);</span><br><span class="line">    SET_OP(RSassign,    <span class="string">"&gt;&gt;="</span>,     <span class="string">"&gt;&gt;="</span>,         <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(RSassign);</span><br><span class="line">    SET_OP(ANDassign,   <span class="string">"&amp;="</span>,      <span class="string">"&amp;="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(ANDassign);</span><br><span class="line">    SET_OP(ERassign,    <span class="string">"^="</span>,      <span class="string">"^="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(ERassign);</span><br><span class="line">    SET_OP(ORassign,    <span class="string">"|="</span>,      <span class="string">"|="</span>,          <span class="number">0</span>,  <span class="number">2</span>); RIGHT_ASSOC(ORassign);</span><br><span class="line">    <span class="comment">/* comma operator has precedence one, but is handled separately */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>The<code>SET_OP(int i, const char *text, const char *name, int unary, int binary)</code> function adds the corresponding operator to the defined operator table, and populates the operator information with the data in the operator. Implemented in .c.</p>
 
   

@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Code Generation — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Code Generation — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -462,8 +462,13 @@
   
   
     <p>This project is a compiler for converting between high-level languages. The main purpose is to implement parallel programming under multi-core platform. The data flow program written for the data stream language COStream is converted into a multi-threaded C++ program through a series of steps of the compilation principle.<br>This phase implements the last module of the compiler and generates code for different platform.</p>
-<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （7）Input is SDF graph，output is platform code</span></span><br><span class="line">PhaseName = <span class="string">"CodeGeneration"</span>;</span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; GenerateDestCode &amp;&amp; (X86Backend || X10Backend ||</span><br><span class="line">GPUBackend) )</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">char</span> *tmp = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1000</span>];</span><br><span class="line">	getcwd(tmp, <span class="number">1000</span>);</span><br><span class="line">	<span class="comment">//printf("%s\n", tmp);</span></span><br><span class="line">	<span class="function">ActorEdgeInfo <span class="title">actorEdgeInfo</span><span class="params">(SSSG)</span></span>;</span><br><span class="line">	CodeGeneration(tmp, SSSG,substring,pSA,mp,maflp);</span><br><span class="line">	<span class="keyword">delete</span> tmp;</span><br><span class="line">	<span class="keyword">delete</span> pSA;</span><br><span class="line">	tmp = <span class="literal">NULL</span>;</span><br><span class="line">     ……</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>（1）First，create a object of class ActorEdgeInfo, to store information about all edges in the current SDF graph;<br>    （2）Entry function is CodeGeneration(…)<br>    （3）Function parameter setting：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CodeGeneration</span><span class="params">(<span class="keyword">char</span> *currentDir,   <span class="comment">//currentDir：directory of Source file </span></span></span></span><br><span class="line"><span class="function"><span class="params">SchedulerSSG *sssg,                     <span class="comment">//sssg：SDF graph finish the scheduling and division</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="built_in">string</span> substring,                       <span class="comment">//substring： COStream source filename</span></span></span></span><br><span class="line"><span class="function"><span class="params">StageAssignment *psa,                   <span class="comment">//psa：result of Stageassignment</span></span></span></span><br><span class="line"><span class="function"><span class="params">MetisPartiton *Mp,                      <span class="comment">//Mp：result of Metis partition </span></span></span></span><br><span class="line"><span class="function"><span class="params">MAFLPartition *maflp)</span>                   <span class="comment">//maflp：result of GPU partition</span></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （7）Input is SDF graph，output is platform code</span></span><br><span class="line">PhaseName = <span class="string">"CodeGeneration"</span>;</span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; GenerateDestCode &amp;&amp; (X86Backend || X10Backend ||</span><br><span class="line">GPUBackend) )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> *tmp = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1000</span>];</span><br><span class="line">    getcwd(tmp, <span class="number">1000</span>);</span><br><span class="line">    <span class="comment">//printf("%s\n", tmp);</span></span><br><span class="line">    <span class="function">ActorEdgeInfo <span class="title">actorEdgeInfo</span><span class="params">(SSSG)</span></span>;</span><br><span class="line">    CodeGeneration(tmp, SSSG,substring,pSA,mp,maflp);</span><br><span class="line">    <span class="keyword">delete</span> tmp;</span><br><span class="line">    <span class="keyword">delete</span> pSA;</span><br><span class="line">    tmp = <span class="literal">NULL</span>;</span><br><span class="line">     ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>First，create a object of class ActorEdgeInfo, to store information about all edges in the current SDF graph;</li>
+<li>Entry function is <code>CodeGeneration(…)</code></li>
+<li>Function parameter setting：<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CodeGeneration</span><span class="params">(<span class="keyword">char</span> *currentDir,   <span class="comment">//currentDir：directory of Source file </span></span></span></span><br><span class="line"><span class="function"><span class="params">SchedulerSSG *sssg,                     <span class="comment">//sssg：SDF graph finish the scheduling and division</span></span></span></span><br><span class="line"><span class="function"><span class="params"><span class="built_in">string</span> substring,                       <span class="comment">//substring： COStream source filename</span></span></span></span><br><span class="line"><span class="function"><span class="params">StageAssignment *psa,                   <span class="comment">//psa：result of Stageassignment</span></span></span></span><br><span class="line"><span class="function"><span class="params">MetisPartiton *Mp,                      <span class="comment">//Mp：result of Metis partition </span></span></span></span><br><span class="line"><span class="function"><span class="params">MAFLPartition *maflp)</span>                   <span class="comment">//maflp：result of GPU partition</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><table>
 <thead>
 <tr>
@@ -473,25 +478,25 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">ActorEdgeInfo.h&amp; ActorEdgeInfo.cpp</td>
+<td style="text-align:left"><code>ActorEdgeInfo.h&amp; ActorEdgeInfo.cpp</code></td>
 <td style="text-align:left">store information about all edges in the current SDF graph</td>
 </tr>
 <tr>
-<td style="text-align:left">CodeGeneration.h&amp; CodeGeneration.cpp</td>
+<td style="text-align:left"><code>CodeGeneration.h&amp; CodeGeneration.cpp</code></td>
 <td style="text-align:left">A collection of all platform code generation calls</td>
 </tr>
 <tr>
-<td style="text-align:left">X86CodeGenatate.h&amp;X86CodeGenerate.cpp</td>
+<td style="text-align:left"><code>X86CodeGenatate.h&amp;X86CodeGenerate.cpp</code></td>
 <td style="text-align:left">Code generation module for the X86 platform</td>
 </tr>
 <tr>
-<td style="text-align:left">X86LibCopy.h &amp; X86LibCopy.cpp</td>
+<td style="text-align:left"><code>X86LibCopy.h &amp; X86LibCopy.cpp</code></td>
 <td style="text-align:left">Lib copy module for the X86 platform</td>
 </tr>
 </tbody>
 </table>
-<h2 id="Key-codes"><a href="#Key-codes" class="headerlink" title="Key codes:"></a>Key codes:</h2><p>Part 1: Set the COStream source filename and directory of Source file<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (Win)</span><br><span class="line">&#123;</span><br><span class="line">	dir += <span class="string">"\\X86StaticDistCode_Win\\"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> dir +=<span class="string">"\\X86StaticDistCode_Linux\\"</span>;</span><br><span class="line">dir += substring;</span><br><span class="line">dir += <span class="string">"\\"</span>;</span><br><span class="line">objName = <span class="keyword">new</span> <span class="keyword">char</span>[substring.size()+<span class="number">1</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(objName,substring.c_str());</span><br></pre></td></tr></table></figure></p>
-<p>Part 2: Genrate each part of codes<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">X86CodeGenerate *X86Code = <span class="keyword">new</span> X86CodeGenerate(sssg, nCpucore, dir.c_str(),psa,Mp);</span><br><span class="line">X86Code-&gt;CGGlobalvar();	 <span class="comment">//Global variable definition cppfile	GlobalVar.cpp</span></span><br><span class="line">X86Code-&gt;CGGlobalvarextern();<span class="comment">//Global variable definition hppfile GlobalVar.h</span></span><br><span class="line">X86Code-&gt;CGglobalHeader();	<span class="comment">// declaration of Stream stream type and global stream buffer</span></span><br><span class="line">X86Code-&gt;CGglobalCpp();	<span class="comment">// global.cpp definition of Stream stream type and global stream buffer</span></span><br><span class="line">X86Code-&gt;CGThreads();		<span class="comment">//all threads</span></span><br><span class="line">X86Code-&gt;CGactors();		<span class="comment">//all actors</span></span><br><span class="line">X86Code-&gt;CGMain();		<span class="comment">// main.cpp</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Key-codes"><a href="#Key-codes" class="headerlink" title="Key codes"></a>Key codes</h2><p>Part 1: Set the COStream source filename and directory of Source file<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (Win)</span><br><span class="line">&#123;</span><br><span class="line">	dir += <span class="string">"\\X86StaticDistCode_Win\\"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">    dir +=<span class="string">"\\X86StaticDistCode_Linux\\"</span>;</span><br><span class="line">dir += substring;</span><br><span class="line">dir += <span class="string">"\\"</span>;</span><br><span class="line">objName = <span class="keyword">new</span> <span class="keyword">char</span>[substring.size()+<span class="number">1</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(objName,substring.c_str());</span><br></pre></td></tr></table></figure></p>
+<p>Part 2: Genrate each part of codes<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">X86CodeGenerate *X86Code = <span class="keyword">new</span> X86CodeGenerate(sssg, nCpucore, dir.c_str(),psa,Mp);</span><br><span class="line">X86Code-&gt;CGGlobalvar();	     <span class="comment">//Global variable definition cppfile	GlobalVar.cpp</span></span><br><span class="line">X86Code-&gt;CGGlobalvarextern();<span class="comment">//Global variable definition hppfile GlobalVar.h</span></span><br><span class="line">X86Code-&gt;CGglobalHeader();	 <span class="comment">// declaration of Stream stream type and global stream buffer</span></span><br><span class="line">X86Code-&gt;CGglobalCpp();	     <span class="comment">// global.cpp definition of Stream stream type and global stream buffer</span></span><br><span class="line">X86Code-&gt;CGThreads();	     <span class="comment">//all threads</span></span><br><span class="line">X86Code-&gt;CGactors();		 <span class="comment">//all actors</span></span><br><span class="line">X86Code-&gt;CGMain();		     <span class="comment">// main.cpp</span></span><br></pre></td></tr></table></figure></p>
 <p>Part 3: Copy Lib file<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">X86LibCopy tmp;</span><br><span class="line">tmp.Run(dir.c_str());</span><br></pre></td></tr></table></figure></p>
 
   

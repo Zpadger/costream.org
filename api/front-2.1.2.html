@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Grammar creation and grammar tree generation — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Grammar creation and grammar tree generation — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -462,7 +462,7 @@
   
   
     <p>After the input preprocessing and initialization types, symbol tables, and operator classes are completed, the program enters the front-end core processing module lexical analysis and parsing. This step is processed for the input source program file to get an abstract syntax tree describing the program file.</p>
-<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">  <span class="comment">/*（2）Grammar creation and grammar tree generation，yyparse()function is an internal call parser</span></span><br><span class="line"><span class="comment">* 于parser.c 3371行 &#123;Program = GrabPragmas((yyvsp[(1)-(1)].L))&#125;;</span></span><br><span class="line"><span class="comment">* Get the analysis result of the input source program - syntax tree，store in list *program</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">   PhaseName = <span class="string">"Parsing"</span>;</span><br><span class="line">   parsed_ok = yyparse(); </span><br><span class="line">   <span class="keyword">if</span> (Level != <span class="number">0</span>) &#123;</span><br><span class="line">	SyntaxError(<span class="string">"unexpected end of file"</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*（2）Grammar creation and grammar tree generation，yyparse()function is an internal call parser</span></span><br><span class="line"><span class="comment">* 于parser.c 3371行 &#123;Program = GrabPragmas((yyvsp[(1)-(1)].L))&#125;;</span></span><br><span class="line"><span class="comment">* Get the analysis result of the input source program - syntax tree，store in list *program</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">PhaseName = <span class="string">"Parsing"</span>;</span><br><span class="line">parsed_ok = yyparse(); </span><br><span class="line"><span class="keyword">if</span> (Level != <span class="number">0</span>) </span><br><span class="line">&#123;</span><br><span class="line">    SyntaxError(<span class="string">"unexpected end of file"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Lexical analysis and Gramma analysis are in<code>parse()</code>.In order to truly understand the steps and connotations, you must have a good grasp of lexical analysis and grammar analysis and carefully read the words and grammar analysis files in the project.</p>
 <h2 id="Flex"><a href="#Flex" class="headerlink" title="Flex"></a>Flex</h2><p>Flex is a fast lexical analyzer generator：</p>
 <ul>
@@ -471,7 +471,7 @@
 <li>For this project, c4.l is the corresponding lexical analysis file</li>
 <li>steps as shown below：</li>
 </ul>
-<p><img src="/img/Flexsteps.jpg" alt="Flexsteps"></p>
+<p><img src="/img/Flexsteps.png" alt="Flexsteps"></p>
 <h2 id="Bison"><a href="#Bison" class="headerlink" title="Bison"></a>Bison</h2><p>Bison is a Parser：</p>
 <ul>
 <li>use —BNF paradigm</li>

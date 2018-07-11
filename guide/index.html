@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Introduction — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Introduction — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link current">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link current">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -328,7 +328,7 @@
     
     
     <li>
-      <a href="/guide/grammar-book/3.html" class="sidebar-link">streaming data process</a>
+      <a href="/guide/grammar-book/3.html" class="sidebar-link">Streaming Data Process</a>
     </li>
   
     
@@ -423,7 +423,7 @@
 <h4 id="Calculated-by-sliding-window"><a href="#Calculated-by-sliding-window" class="headerlink" title="    Calculated by sliding window"></a><a href="#header-4"></a>    Calculated by sliding window</h4><p>Each value in the data stream is usually detected by the same actor in a continuous execution, also known as a sliding window. Examples of sliding windows include <em>biological sequence analysis, natural language processing, image processing (sharpening, blurring, etc.), detection of network packets, and so on</em>.</p>
 <h4 id="Occasional-out-of-stream-communication"><a href="#Occasional-out-of-stream-communication" class="headerlink" title="    Occasional out-of-stream communication"></a><a href="#header-4"></a>    Occasional out-of-stream communication</h4><p>In addition to large amounts of data flowing from one <code>actor</code> to another, there can also be a small amount of control information that can be passed before the actor.</p>
 <h4 id="High-performance-requirements"><a href="#High-performance-requirements" class="headerlink" title="    High performance requirements"></a><a href="#header-4"></a>    High performance requirements</h4><p>Usually some data flow programs need to meet real-time constraints, so efficiency (delay and throughput) is the main consideration. In addition, some embedded streaming programs will be used in mobile environments, so <em>power consumption, storage limitations, code size limitations, etc.</em> are also important.。</p>
-<h2 id="Programs-Not-Suitable-for-COStream"><a href="#Programs-Not-Suitable-for-COStream" class="headerlink" title="Programs Not Suitable for COStream"></a>Programs Not Suitable for COStream</h2><h4 id="Dynamic-modification-of-the-stream-structure"><a href="#Dynamic-modification-of-the-stream-structure" class="headerlink" title="Dynamic modification of the stream structure "></a><strong>Dynamic modification of the stream structure </strong></h4><p>COStream uses <em>a static data flow graph</em> and <em>cannot dynamically</em> change the flow graph at runtime. Some streaming programs occasionally need to dynamically modify the flow graph even after the actors at various levels have been executed for a long time. </p>
+<h2 id="Programs-Not-Suitable-for-COStream"><a href="#Programs-Not-Suitable-for-COStream" class="headerlink" title="Programs Not Suitable for COStream"></a>Programs Not Suitable for COStream</h2><h4 id="Dynamic-modification-of-the-stream-structure"><a href="#Dynamic-modification-of-the-stream-structure" class="headerlink" title="Dynamic modification of the stream structure "></a><strong>Dynamic modification of the stream structure </strong></h4><p>COStream uses <strong>a static data flow graph</strong> and <strong>cannot dynamically</strong> change the flow graph at runtime. Some streaming programs occasionally need to dynamically modify the flow graph even after the actors at various levels have been executed for a long time. </p>
 <blockquote>
 <p>For example, if the interface of a wireless network experiences high noise in its input channel, this will require it to generate some actors to eliminate these signals.</p>
 </blockquote>

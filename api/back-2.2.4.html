@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Print theoretical speedup ratio — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Print theoretical speedup ratio — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -462,13 +462,18 @@
   
   
     <p>The theoretical speedup ratio is used to compare the operating efficiency of programs on single-core and multi-core platforms.<br>Calculation method:<br>theoretical acceleration ratio = total workload on single core / maximum workload on multicores.</p>
-<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （5）Print theoretical speedup ratio</span></span><br><span class="line">	PhaseName = <span class="string">"Speedup"</span>;</span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; Speedup &amp;&amp; (X86Backend||X10Backend) )</span><br><span class="line">		ComputeSpeedup(SSSG,pp,ccfilename,<span class="string">"workEstimate.txt"</span>,<span class="string">"RRS"</span>);</span><br></pre></td></tr></table></figure>
-<p>The input argument of the function:<br>1）    SSSG：Actual parameters, results of initial state, steady state scheduling<br>2）    pp：Actual parameters, divided result<br>3）    The result of the program workload is written to the file workEstimate.txt</p>
-<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>（1）    Speedup.h<br>This is a simple header declaration file that does not contain substantive content and only contains declarations for precompiled headers.</p>
+<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （5）Print theoretical speedup ratio</span></span><br><span class="line">PhaseName = <span class="string">"Speedup"</span>;</span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; Speedup &amp;&amp; (X86Backend||X10Backend) )</span><br><span class="line">    ComputeSpeedup(SSSG,pp,ccfilename,<span class="string">"workEstimate.txt"</span>,<span class="string">"RRS"</span>);</span><br></pre></td></tr></table></figure>
+<p>The input argument of the function:</p>
+<ul>
+<li>SSSG：Actual parameters, results of initial state, steady state scheduling </li>
+<li>pp：Actual parameters, divided result</li>
+<li>The result of the program workload is written to the file workEstimate.txt</li>
+</ul>
+<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>(1)    Speedup.h<br>This is a simple header declaration file that does not contain substantive content and only contains declarations for precompiled headers.</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _DUMP_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _DUMP_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"MetisPartiton.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// _DUMP_H</span></span></span><br></pre></td></tr></table></figure>
-<p>（2）    Speedup.cpp<br>The file is a implementation file of the printing theory acceleration ratio. The specific idea is to measure the steady workload of each node in the SDF graph corresponding to the data flow program, and find the sum of the workloads of all nodes as a single core platform. And then, according to the results of the division, find the maximum workload, find the ratio as the execution acceleration ratio of the single-core and multi-core programs.</p>
-<p>Step 1：Find the total workload of all nodes in the SDF graph<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;sssg-&gt;GetFlatNodes().size();i++)</span><br><span class="line">&#123;</span><br><span class="line">	total +=sssg-&gt;GetSteadyCount(sssg-&gt;GetFlatNodes()[i])*</span><br><span class="line">sssg-&gt;GetSteadyWorkMap().find(sssg-&gt;GetFlatNodes()[i])-&gt;second;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Step 2：Find the maximum workload maxWorkLoad on each parts<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;mp-&gt;getParts();i++)<span class="comment">//遍历每个place</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//find node set in partition i</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;FlatNode *&gt; tmp = mp-&gt;findNodeSetInPartition(i);</span><br><span class="line">	<span class="keyword">double</span> total_inplace=<span class="number">0.0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;tmp.size();j++)&#123;</span><br><span class="line">		<span class="comment">//node’s Execution workload = number of executions * per steady-state workload</span></span><br><span class="line">		<span class="keyword">double</span> tmpd=sssg-&gt;GetSteadyCount(tmp[j])*</span><br><span class="line">sssg-&gt;GetSteadyWorkMap().find(tmp[j])-&gt;second;</span><br><span class="line">		total_inplace += tmpd;</span><br><span class="line">		<span class="keyword">if</span>(tmpd &gt; maxActorWorkload) </span><br><span class="line">		&#123;</span><br><span class="line">			maxActorWorkload=tmpd;</span><br><span class="line">			maxActorWorkloadName=tmp[j]-&gt;name;</span><br><span class="line">	&#125;		</span><br><span class="line"> buff&lt;&lt;i&lt;&lt;<span class="string">"\t\t\t"</span>&lt;&lt;tmp[j]-&gt;name&lt;&lt;<span class="string">"\t\t\t\t\t"</span>&lt;&lt;tmpd&lt;&lt;<span class="string">"\t\t\t"</span>&lt;&lt;</span><br><span class="line">do_fraction(tmpd/total*<span class="number">100</span>)&lt;&lt;<span class="string">"%\n"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">string</span> inp=do_fraction(total_inplace);</span><br><span class="line">	buf&lt;&lt;i&lt;&lt;<span class="string">"\t\t\t"</span>&lt;&lt;total_inplace&lt;&lt;<span class="string">"\t\t"</span>&lt;&lt;do_fraction(total_inplace/total*<span class="number">100</span>)&lt;&lt;<span class="string">"%\n"</span>;</span><br><span class="line">	<span class="keyword">if</span>(total_inplace &gt; maxWorkLoad) </span><br><span class="line">		maxWorkLoad = total_inplace;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>(2)    Speedup.cpp<br>The file is a implementation file of the printing theory acceleration ratio. The specific idea is to measure the steady workload of each node in the SDF graph corresponding to the data flow program, and find the sum of the workloads of all nodes as a single core platform. And then, according to the results of the division, find the maximum workload, find the ratio as the execution acceleration ratio of the single-core and multi-core programs.</p>
+<p>Step 1：Find the total workload of all nodes in the SDF graph<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;sssg-&gt;GetFlatNodes().size();i++)</span><br><span class="line">&#123;</span><br><span class="line">	total +=sssg-&gt;GetSteadyCount(sssg-&gt;GetFlatNodes()[i])*</span><br><span class="line">    sssg-&gt;GetSteadyWorkMap().find(sssg-&gt;GetFlatNodes()[i])-&gt;second;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Step 2：Find the maximum workload maxWorkLoad on each parts<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;mp-&gt;getParts();i++)<span class="comment">//遍历每个place</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//find node set in partition i</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;FlatNode *&gt; tmp = mp-&gt;findNodeSetInPartition(i);</span><br><span class="line">    <span class="keyword">double</span> total_inplace=<span class="number">0.0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;tmp.size();j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//node’s Execution workload = number of executions * per steady-state workload</span></span><br><span class="line">        <span class="keyword">double</span> tmpd=sssg-&gt;GetSteadyCount(tmp[j])*ssg-&gt;GetSteadyWorkMap().find(tmp[j])-&gt;second;</span><br><span class="line">        total_inplace += tmpd;</span><br><span class="line">        <span class="keyword">if</span>(tmpd &gt; maxActorWorkload) </span><br><span class="line">        &#123;</span><br><span class="line">            maxActorWorkload=tmpd;</span><br><span class="line">            maxActorWorkloadName=tmp[j]-&gt;name;</span><br><span class="line">        &#125;		</span><br><span class="line">        buff&lt;&lt;i&lt;&lt;<span class="string">"\t\t\t"</span>&lt;&lt;tmp[j]-&gt;name&lt;&lt;<span class="string">"\t\t\t\t\t"</span>&lt;&lt;tmpd&lt;&lt;<span class="string">"\t\t\t"</span>&lt;&lt;</span><br><span class="line">        do_fraction(tmpd/total*<span class="number">100</span>)&lt;&lt;<span class="string">"%\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">string</span> inp=do_fraction(total_inplace);</span><br><span class="line">    buf&lt;&lt;i&lt;&lt;<span class="string">"\t\t\t"</span>&lt;&lt;total_inplace&lt;&lt;<span class="string">"\t\t"</span>&lt;&lt;do_fraction(total_inplace/total*<span class="number">100</span>)&lt;&lt;<span class="string">"%\n"</span>;</span><br><span class="line">    <span class="keyword">if</span>(total_inplace &gt; maxWorkLoad) </span><br><span class="line">        maxWorkLoad = total_inplace;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Step 3：Calculate the ratio of the two-step as the execution acceleration ratio of the program, print out result<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">buf &lt;&lt;<span class="string">"##################### total info ###############################\n"</span>;</span><br><span class="line">buf&lt;&lt;<span class="string">"total workload \t= "</span>&lt;&lt;t&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">buf&lt;&lt;<span class="string">"max workload \t= "</span>&lt;&lt;maxWorkLoad&lt;&lt;<span class="string">"\n"</span>;</span><br><span class="line">buf&lt;&lt;<span class="string">"max speedup \t= "</span>&lt;&lt;do_fraction(total/maxWorkLoad)&lt;&lt;<span class="string">"\n"</span>;</span><br></pre></td></tr></table></figure></p>
 
   

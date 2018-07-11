@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Initial scheduling and steady-state scheduling — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Initial scheduling and steady-state scheduling — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -462,9 +462,13 @@
   
   
     <p>From the syntax tree to the flatgraph at the front-end，wo get the Static Stream Graph(SSG) and estimate the workload. In the back-end of the complier，we process the the flat graph.</p>
-<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （1）The first is initial scheduling and steady-state scheduling of the SSG， SSG is transformed form the syntax tree at step(10) in the front-end</span></span><br><span class="line">	PhaseName = <span class="string">"schedulerSSG"</span>;</span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; SchedulingFlatSSG)</span><br><span class="line">		SSSG = SchedulingSSG(SSG);</span><br></pre></td></tr></table></figure>
-<p>1）    Variable PhaseName is the Stage name，the value is <code>schedulerSSG (scheduler static stream graph)</code><br>2）    schedulingFlatSSG is the switch of scheduling flatgraph，which type is Global Bool,and it is defined in the main.cpp source file<br>3）    The program entry is the function<code>SchedulingSSG(SSG)</code>，the input is the SSG ,and the output is the SSSG which finish the scheduling.</p>
-<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>1）    staticStreamGraph.h and  staticStreamGraph.cpp  see 2.1.10<br>2）    schedulerSSG.h class schedulerSSG：This class inherits from StaticStreamGraph</p>
+<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （1）The first is initial scheduling and steady-state scheduling of the SSG， SSG is transformed form the syntax tree at step(10) in the front-end</span></span><br><span class="line">PhaseName = <span class="string">"schedulerSSG"</span>;</span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; SchedulingFlatSSG)</span><br><span class="line">    SSSG = SchedulingSSG(SSG);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Variable <code>PhaseName</code> is the Stage name，the value is <code>schedulerSSG (scheduler static stream graph)</code></li>
+<li><code>schedulingFlatSSG</code> is the switch of scheduling flatgraph，which type is Global Bool,and it is defined in the main.cpp source file</li>
+<li>The program entry is the function<code>SchedulingSSG(SSG)</code>，the input is the SSG ,and the output is the SSSG which finish the scheduling.</li>
+</ul>
+<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>(1)    staticStreamGraph.h and  staticStreamGraph.cpp  see 2.1.10<br>(2)    schedulerSSG.h class schedulerSSG：This class inherits from StaticStreamGraph</p>
 <table>
 <thead>
 <tr>
@@ -474,47 +478,56 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>mapInitCount2FlatNode</code></td>
-<td style="text-align:left"><code>map&lt;FlatNode * node, int initcount&gt;</code>store the initial scheduling result of all nodes in SDF graph</td>
+<td style="text-align:left"><code>map&lt;FlatNode * node, int initcount&gt;</code><br><code>mapInitCount2FlatNode</code></td>
+<td style="text-align:left">store the initial scheduling result of all nodes in SDF graph</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>mapSteadyCount2FlatNode</code></td>
-<td style="text-align:left"><code>map&lt;FlatNode* node,int steadycount&gt;</code> store the steady scheduling result of all nodes in SDF graph</td>
+<td style="text-align:left"><code>map&lt;FlatNode* node,int steadycount&gt;</code><br><code>mapSteadyCount2FlatNode</code></td>
+<td style="text-align:left">store the steady scheduling result of all nodes in SDF graph</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>SchedulerSSG(StaticStreamGraph *ssg)</code></td>
 <td style="text-align:left">Constructor</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>InitScheduling()</code></td>
-<td style="text-align:left">return：<code>bool</code><br>initial schedule the SSG</td>
+<td style="text-align:left"><code>bool InitScheduling()</code></td>
+<td style="text-align:left">initial schedule the SSG</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>SteadyScheduling()</code></td>
-<td style="text-align:left">return：<code>bool</code> <br>steady-state schedule the SSG</td>
+<td style="text-align:left"><code>boolSteadyScheduling()</code></td>
+<td style="text-align:left">steady-state schedule the SSG</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>GetInitCount(FlatNode *node)</code></td>
-<td style="text-align:left">return：<code>int</code><br>get Initcount of a node</td>
+<td style="text-align:left"><code>int GetInitCount(FlatNode *node)</code></td>
+<td style="text-align:left">get Initcount of a node</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>GetSteadyCount(FlatNode *node)</code></td>
-<td style="text-align:left">return：<code>bool</code><br>get steadycount of a node</td>
+<td style="text-align:left"><code>bool GetSteadyCount(FlatNode *node)</code></td>
+<td style="text-align:left">get steadycount of a node</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>SteadySchedulingGroup(Vector &lt;FlatNode *&gt;)</code></td>
-<td style="text-align:left">return：<code>map&lt;FlatNode *,int&gt;</code><br>do steady scheduling to a group of nodes</td>
+<td style="text-align:left"><code>map&lt;FlatNode *,int&gt;</code><br><code>SteadySchedulingGroup(Vector &lt;FlatNode *&gt;)</code></td>
+<td style="text-align:left">do steady scheduling to a group of nodes</td>
 </tr>
 </tbody>
 </table>
 <p>The implememtation code is in source file schedulerSSG.cpp</p>
-<p>3）    schedule.cpp<br>This cpp file is an implementation file designed to handle the dispatch entry function. The actor in SDF is executed periodically. The periodic scheduling calculates the number of times each actor needs to be executed repeatedly when SDF completes a complete execution, that is, the number of steady-state executions of the actor. The sequence of steady-state execution times of all actors is the SDF graph steady state. Scheduling. Only the actor nodes in the SDF have reached the steady-state scheduling, and the next processing steps can be smoothly carried out to achieve the final code generation.</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">GLOBAL SchedulerSSG *<span class="title">SchedulingSSG</span><span class="params">(StaticStreamGraph *ssg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	SchedulerSSG *sssg = <span class="keyword">new</span> SchedulerSSG(ssg);</span><br><span class="line">	<span class="comment">//do SteadyScheduling to sssg, if success return true</span></span><br><span class="line">	<span class="keyword">if</span>(sssg-&gt;SteadyScheduling())</span><br><span class="line">	&#123;</span><br><span class="line">		sssg-&gt;InitScheduling();		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">" The program does not have steady state scheduling , cannot generate code.！\n"</span>);</span><br><span class="line">		system(<span class="string">"pause"</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">	&#125;<span class="comment">//else</span></span><br><span class="line">	<span class="keyword">return</span> sssg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The above code is the implementation of the scheduling , it’s very clear。<br>(1)    The input is the SSG.<br>(2)    The output is the SSSG which finish the scheduling.</p>
+<p>(3)    schedule.cpp<br>This cpp file is an implementation file designed to handle the dispatch entry function. The actor in SDF is executed periodically. The periodic scheduling calculates the number of times each actor needs to be executed repeatedly when SDF completes a complete execution, that is, the number of steady-state executions of the actor. The sequence of steady-state execution times of all actors is the SDF graph steady state. Scheduling. Only the actor nodes in the SDF have reached the steady-state scheduling, and the next processing steps can be smoothly carried out to achieve the final code generation.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">GLOBAL SchedulerSSG *<span class="title">SchedulingSSG</span><span class="params">(StaticStreamGraph *ssg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SchedulerSSG *sssg = <span class="keyword">new</span> SchedulerSSG(ssg);</span><br><span class="line">    <span class="comment">//do SteadyScheduling to sssg, if success return true</span></span><br><span class="line">    <span class="keyword">if</span>(sssg-&gt;SteadyScheduling())</span><br><span class="line">    &#123;</span><br><span class="line">        sssg-&gt;InitScheduling();		</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">" The program does not have steady state scheduling , cannot generate code.！\n"</span>);</span><br><span class="line">        system(<span class="string">"pause"</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="comment">//else</span></span><br><span class="line">    <span class="keyword">return</span> sssg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The above code is the implementation of the scheduling , it’s very clear。</p>
+<ul>
+<li>The input is the SSG.</li>
+<li>The output is the SSSG which finish the scheduling.</li>
+</ul>
+<h3 id="Initial-state-scheduling-flow-chart"><a href="#Initial-state-scheduling-flow-chart" class="headerlink" title="Initial-state scheduling flow chart"></a>Initial-state scheduling flow chart</h3><p><img src="/img/initScheduling.png" alt="Initial-state scheduling flow chart"></p>
+<h3 id="Steady-state-scheduling-flow-chart"><a href="#Steady-state-scheduling-flow-chart" class="headerlink" title="Steady-state scheduling flow chart"></a>Steady-state scheduling flow chart</h3><p><img src="/img/steadyScheduling.png" alt="Steady-state scheduling flow chart"></p>
 <h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="Why-is-the-scheduling-order-first-steady-state-and-initial-state"><a href="#Why-is-the-scheduling-order-first-steady-state-and-initial-state" class="headerlink" title="Why is the scheduling order first steady state and initial state?"></a>Why is the scheduling order first steady state and initial state?</h3><ul>
 <li>Steady-state scheduling processes the amount of data from the top-down node to reach equilibrium</li>
 <li>The initial state schedules the amount of data from the bottom-up processing node to reach equilibrium            </li>
-<li>The initial scheduling and the steady scheduling are independent of each other;<br>Function SteadyScheduling()determines whether the SDF can reach steady state；<br>Reduce the memory overhead by avoidable InitScheduling() function calls<h3 id="What-does-the-initial-state-and-steady-state-scheduling-do-for-the-SDF-diagram"><a href="#What-does-the-initial-state-and-steady-state-scheduling-do-for-the-SDF-diagram" class="headerlink" title="What does the initial state and steady state scheduling do for the SDF diagram?"></a>What does the initial state and steady state scheduling do for the SDF diagram?</h3></li>
+<li>The initial scheduling and the steady scheduling are independent of each other</li>
+<li>Usually the steady state must exist.If the steady state does not exist, the program cannot run, and the initial state may not exist.</li>
+<li>Function SteadyScheduling()determines whether the SDF can reach steady state；</li>
+<li>Reduce the memory overhead by avoidable InitScheduling() function calls<h3 id="What-does-the-initial-state-and-steady-state-scheduling-do-for-the-SDF-diagram"><a href="#What-does-the-initial-state-and-steady-state-scheduling-do-for-the-SDF-diagram" class="headerlink" title="What does the initial state and steady state scheduling do for the SDF diagram?"></a>What does the initial state and steady state scheduling do for the SDF diagram?</h3></li>
 <li>Did not change the structural characteristics of the SDF</li>
 <li>Just calculate how the data filling the SDF graph (sssg)</li>
 </ul>

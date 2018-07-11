@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Constant propagation — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Constant propagation — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -463,8 +463,12 @@
   
     <p>Constant propagation: replace expressions that always get the same constant value each time you run it with a constant value</p>
 <h2 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h2><p>Constant propagation is a compiler optimization technique that is used in modern compilers. Advanced constant propagation forms, or sparse conditional constant propagation, can propagate constants more accurately and seamlessly remove useless code.</p>
-<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （8）Constant propagation</span></span><br><span class="line">	PhaseName = <span class="string">"Propagate"</span>;</span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; Propagate)</span><br><span class="line">	&#123;</span><br><span class="line">		Program = PropagateProgram(Program);</span><br><span class="line">		gIsAfterPropagate = TRUE;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<p>（1）    Variable “Propagate”  is the switch of Constant propagation，defined in the head of main.cpp<br>（2）    Function PrapagateProgram(…) implement the constant propagation. The input of the function is the program AST after active variable analysis，and the output is the program ASTafter the constant propagation<br>（3）    Associate file : propagator.h &amp; propagator.cpp which is the declaration header file of the constant propagation and the code implementation file.</p>
+<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （8）Constant propagation</span></span><br><span class="line">PhaseName = <span class="string">"Propagate"</span>;</span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; Propagate)</span><br><span class="line">&#123;</span><br><span class="line">    Program = PropagateProgram(Program);</span><br><span class="line">    gIsAfterPropagate = TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Variable <code>Propagate</code>  is the switch of Constant propagation，defined in the head of main.cpp</li>
+<li>Function<code>PrapagateProgram(…)</code>implement the constant propagation. The input of the function is the program AST after active variable analysis，and the output is the program ASTafter the constant propagation</li>
+<li>Associate file : <code>propagator.h &amp; propagator.cpp</code> which is the declaration header file of the constant propagation and the code implementation file.</li>
+</ul>
 
   
   

@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Parition graph — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Parition graph — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -462,9 +462,15 @@
   
   
     <p>When you read the doucuments of  the COStream compiler project from the front-end to this part, you may have the basic understanding the mechanism of the compiler, the conversion of the syntax tree to flatgraph, and the storage and access of the data when the dateflow program runs.<br>But, in order to better understand the idea and implementation of the compiler backend for the scheduling and partitioning of nodes in the data flow graph SDF, there must be a certain understanding of C++ programming foundation for the structure, pointers, and basic containers in the C++ standard (such as list, vector, map , multimap) and iterator.<br>We know that COStream is a data streaming language, a high-level language that runs in parallel on a multi-core platform. It is designed for multiple platform backends such as X10Backend, X86Backend, and GPUBackend, and there are differences in how to scheduling and partition in different backend. Therefore, the scheduling, partition and the subsequent split fusion until the final code generation step module are implemented separately by the platform.</p>
-<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （3）Parition graph</span></span><br><span class="line">	PhaseName = <span class="string">"Partition"</span>;</span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; PPartition &amp;&amp; (X86Backend || X10Backend || GPUBackend) )</span><br><span class="line">	&#123;</span><br><span class="line">		……</span><br><span class="line">		<span class="keyword">if</span> (X10ParallelBackEnd == TRUE)</span><br><span class="line">	    ……</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (X10DistributedBackEnd == TRUE)</span><br><span class="line">		……</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (X10Backend || X86Backend)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//According to the number of nodes in SSSG, and CPU cores </span></span><br><span class="line"><span class="comment">//set the partition number</span></span><br><span class="line">			mp-&gt;setCpuCoreNum(CpuCoreNum, SSSG);</span><br><span class="line">			mp-&gt;SssgPartition(SSSG,<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (GPUBackend &amp;&amp; MAFLPFlag)</span><br><span class="line">		……</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	PhaseName = <span class="string">"SetMultiNum"</span>;</span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; GPUBackend)</span><br><span class="line">	……</span><br><span class="line">	PhaseName = <span class="string">"PartitionGraph"</span>;</span><br><span class="line">	<span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; PPartition &amp;&amp; PartitionGraph &amp;&amp; (X86Backend||X10Backend ||</span><br><span class="line"> GPUBackend) )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(GPUBackend)</span><br><span class="line">			DumpStreamGraph(SSSG,maflp,<span class="string">"GPUPartitionGraph.dot"</span>,<span class="literal">NULL</span>);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			DumpStreamGraph(SSSG, mp, <span class="string">"PartitionGraph.dot"</span>,<span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
-<p>1）    For example: if we use a serve with a 8 core cpu of Inter X86, according to the condition judgment, it will enter the red mark branch.<br>2）    Variable mp is MetisPartiton *mp = NULL, it is defined in mainfunction. It is a object of MetisPartition.<br>3）    First，according to the number of SDF graph nodes converted from the syntax tree and the physical core number of the current CPU，the program decide the partition number of SDF graph. It is implemented by setCpuCoreNum(CpuCoreNum , SSSG). Variable CpuCoreNum=8 is defined in main function , SSSG is the output of the initial stage and steady state scheduling of the previous stage.<br>4）    After the number of divisions is determined, the partition function mp-&gt;SssgPartition(SSSG,1) will be called, This function is implemented in MetisPartition.cpp, which is an associated file of this partitioning scheduling module.<br>5）    After complete the partition scheduling, print out the divided SDF map and output with function DumpStreamGraph (SSSG, mp, “PartitionGraph.dot”, NULL).</p>
-<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>（1）     partition.h &amp; partition.cpp<br>partition.h is the base class of all kinds of parition<br><img src="/img/partitionclass.jpg" alt="partitionclass"></p>
+<h2 id="Program-Entrance"><a href="#Program-Entrance" class="headerlink" title="Program Entrance"></a>Program Entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// （3）Parition graph</span></span><br><span class="line">PhaseName = <span class="string">"Partition"</span>;</span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; PPartition &amp;&amp; (X86Backend || X10Backend || GPUBackend) )</span><br><span class="line">&#123;</span><br><span class="line">    ……</span><br><span class="line">    <span class="keyword">if</span> (X10ParallelBackEnd == TRUE)</span><br><span class="line">    ……</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (X10DistributedBackEnd == TRUE)</span><br><span class="line">    ……</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (X10Backend || X86Backend)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//According to the number of nodes in SSSG, and CPU cores </span></span><br><span class="line">        <span class="comment">//set the partition number</span></span><br><span class="line">        mp-&gt;setCpuCoreNum(CpuCoreNum, SSSG);</span><br><span class="line">        mp-&gt;SssgPartition(SSSG,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (GPUBackend &amp;&amp; MAFLPFlag)</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PhaseName = <span class="string">"SetMultiNum"</span>;</span><br><span class="line"><span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; GPUBackend)</span><br><span class="line">    ……</span><br><span class="line">    PhaseName = <span class="string">"PartitionGraph"</span>;</span><br><span class="line">    <span class="keyword">if</span> (Errors == <span class="number">0</span> &amp;&amp; PPartition &amp;&amp; PartitionGraph &amp;&amp; (X86Backend||X10Backend ||</span><br><span class="line">                                                        GPUBackend) )</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">if</span>(GPUBackend)</span><br><span class="line">        DumpStreamGraph(SSSG,maflp,<span class="string">"GPUPartitionGraph.dot"</span>,<span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        DumpStreamGraph(SSSG, mp, <span class="string">"PartitionGraph.dot"</span>,<span class="literal">NULL</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>For example: if we use a serve with a 8 core cpu of Inter X86, according to the condition judgment, it will enter the X86Backend branch.</li>
+<li>Variable <code>mp</code> is <code>MetisPartiton *mp = NULL</code>, it is defined in mainfunction. It is a object of MetisPartition.</li>
+<li>First，according to the number of SDF graph nodes converted from the syntax tree and the physical core number of the current CPU，the program decide the partition number of SDF graph. It is implemented by <code>setCpuCoreNum(CpuCoreNum , SSSG)</code>. Variable CpuCoreNum=8 is defined in main function , SSSG is the output of the initial stage and steady state scheduling of the previous stage.</li>
+<li>After the number of divisions is determined, the partition function <code>mp-&gt;SssgPartition(SSSG,1)</code> will be called, This function is implemented in MetisPartition.cpp, which is an associated file of this partitioning scheduling module.</li>
+<li>After complete the partition scheduling, print out the divided SDF map and output with function <code>DumpStreamGraph (SSSG, mp, &quot;PartitionGraph.dot&quot;, NULL)</code>.</li>
+</ul>
+<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p>(1)     partition.h &amp; partition.cpp<br>partition.h is the base class of all kinds of parition<br><img src="/img/partitionclass.jpg" alt="partitionclass"></p>
 <p><em>Base class Partition menber variables</em></p>
 <table>
 <thead>
@@ -526,8 +532,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="Flow-chat-of-partition-function"><a href="#Flow-chat-of-partition-function" class="headerlink" title="Flow chat of partition function"></a>Flow chat of partition function</h2><p>（1）    Set partition numbers<br>This function is used to set partition numbers.<br>The number of physical cores of the server determines the number of shares.<br><img src="/img/partitionflowchat.jpg" alt="partitionflowchat"></p>
-<p>（2）    SDFPartion—SSSGPartition<br>Use Metis toolkit to divided the graph,which combined communication and load balancing.</p>
+<h2 id="Flow-chat-of-partition-function"><a href="#Flow-chat-of-partition-function" class="headerlink" title="Flow chat of partition function"></a>Flow chat of partition function</h2><p>1)    Set partition numbers<br>This function is used to set partition numbers.<br>The number of physical cores of the server determines the number of shares.<br><img src="/img/partitionflowchat.png" alt="partitionflowchat"></p>
+<p>2)    SDFPartion—SSSGPartition<br>Use Metis toolkit to divided the graph,which combined communication and load balancing.</p>
 <p><em>When use one core ,do no partition</em></p>
 <table>
 <thead>
@@ -577,16 +583,17 @@
 <td style="text-align:left">Call the K-road map partitioning algorithm under the metis interface, and divide the current SDF graph according to the actor workload and communication.</td>
 </tr>
 <tr>
-<td style="text-align:left">FlatNode2PartitionNum.insert(make_pair(sssg-&gt;GetFlatNodes()[i],part[i]))</td>
+<td style="text-align:left"><code>FlatNode2PartitionNum.insert</code><br><code>(make_pair(sssg-&gt;GetFlatNodes()[i],part[i]))</code></td>
 <td style="text-align:left">Store the partition result</td>
 </tr>
 <tr>
-<td style="text-align:left">PartitonNum2FlatNode.insert(make_pair(part[i],sssg-&gt;GetFlatNodes()[i]))</td>
+<td style="text-align:left"><code>PartitonNum2FlatNode.insert</code><br><code>(make_pair(part[i],sssg-&gt;GetFlatNodes()[i]))</code></td>
 <td style="text-align:left">Store the partition result</td>
 </tr>
 </tbody>
 </table>
-<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>（1）How the program color the different part of the graph？<br>    The .dot file of Partitioned SDF graph is generated by function <code>DumpStreamGraph(SchedulerSSG*ssg,Partition *, const char *fileName, ClusterPartition *)</code> in dumpGraph.cpp，this function color the Each SDF graph node according to the result of dividing.<br>（2）What does MKP—Multi-layer K way partition do？<br>    It did not change the structural characteristics of the SDF graph (the amount of nodes is unchanged),Dividing the graph into multiple subgraphs with similar weights, and ensuring minimum communication between subgraphs.</p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><h3 id="How-the-program-color-the-different-part-of-the-graph？"><a href="#How-the-program-color-the-different-part-of-the-graph？" class="headerlink" title="How the program color the different part of the graph？"></a>How the program color the different part of the graph？</h3><p>The .dot file of Partitioned SDF graph is generated by function <code>DumpStreamGraph(SchedulerSSG*ssg,Partition *, const char *fileName, ClusterPartition *)</code> in dumpGraph.cpp，this function color the Each SDF graph node according to the result of dividing.</p>
+<h3 id="What-does-MKP—Multi-layer-K-way-partition-do？"><a href="#What-does-MKP—Multi-layer-K-way-partition-do？" class="headerlink" title="What does MKP—Multi-layer K way partition do？"></a>What does MKP—Multi-layer K way partition do？</h3><p>It did not change the structural characteristics of the SDF graph (the amount of nodes is unchanged),Dividing the graph into multiple subgraphs with similar weights, and ensuring minimum communication between subgraphs.</p>
 
   
   

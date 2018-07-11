@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Print symbol table — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Print symbol table — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">API</a></li>
+        <li><a href="/api/" class="nav-link current">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -247,7 +247,7 @@
       
         <h2>
           
-          API
+          Source Explain
 <!--
           
             <select class="version-select">
@@ -370,7 +370,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
+      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
     </li>
   
     
@@ -380,7 +380,7 @@
 	
     
     <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
+      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
     </li>
   
     
@@ -462,12 +462,10 @@
   
   
     <p>The print symbol table is an enumeration of symbols including identifiers, keywords, etc. in the grammar of the compiler, and an array of stored symbols is written to the file and printed. The function module will execute when the print symbol table switch is set to true.</p>
-<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//（3）print symbol table</span></span><br><span class="line">	<span class="keyword">if</span> (PrintSymTables) &#123;</span><br><span class="line">		PrintSymbolTable(<span class="built_in">stdout</span>, Externals);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>PrintSymTables  switch，defined in the head of main.cpp
-</code></pre><h2 id="Code-explain"><a href="#Code-explain" class="headerlink" title="Code explain"></a>Code explain</h2><p>The module code is implemented in symbol.c, which is introduced in the 2.1.1 initialization environment.</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***********************************************************************\</span></span><br><span class="line"><span class="comment">* PrintSymbolTable</span></span><br><span class="line"><span class="comment">\***********************************************************************/</span></span><br><span class="line"><span class="function">GLOBAL <span class="keyword">void</span> <span class="title">PrintSymbolTable</span><span class="params">(FILE *out, SymbolTable *table)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Symbol *chain, *shadow;</span><br><span class="line">    <span class="keyword">int</span> i, entries=<span class="number">0</span>, length, worst = <span class="number">0</span>, depth=<span class="number">0</span>;</span><br><span class="line">    assert(table != <span class="literal">NULL</span>);</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\nSymbolTable: %s\n"</span>, table-&gt;table_name);</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;TABLE_SIZE; i++) &#123;</span><br><span class="line">		length = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (chain = table-&gt;table[i]; chain != <span class="literal">NULL</span>; chain = chain-&gt;next) &#123;</span><br><span class="line">			length++;</span><br><span class="line">			<span class="built_in">fprintf</span>(out, <span class="string">"\t%s:"</span>, chain-&gt;name);</span><br><span class="line">			<span class="keyword">for</span> (shadow = chain; shadow != <span class="literal">NULL</span>; shadow = shadow-&gt;shadow) &#123;</span><br><span class="line">				<span class="built_in">fprintf</span>(out, <span class="string">" (%d,%d)"</span>,</span><br><span class="line">					(<span class="keyword">int</span>) shadow-&gt;scope.level,</span><br><span class="line">					(<span class="keyword">int</span>) shadow-&gt;scope.version);</span><br><span class="line">			&#125;</span><br><span class="line">			fputc(<span class="string">'\n'</span>, out);</span><br><span class="line">		&#125;</span><br><span class="line">		entries += length;</span><br><span class="line">		depth += (length + <span class="number">1</span>)*length/<span class="number">2</span>;  <span class="comment">/* sum of 1 to length */</span></span><br><span class="line">		<span class="keyword">if</span> (length &gt; worst) worst = length;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"End of symbol table %s\n"</span>, table-&gt;table_name);</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\t%d entries\n"</span>, entries);</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\tAverage depth for a successful search: %.2g\n"</span>,</span><br><span class="line">	    depth/(entries+<span class="number">1e-6</span>));</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\tAverage depth for a failed search: %.2g\n"</span>,</span><br><span class="line">	    entries/(<span class="keyword">float</span>)TABLE_SIZE);</span><br><span class="line">    <span class="built_in">fprintf</span>(out, <span class="string">"\tLongest chain: %d\n"</span>, worst);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
-<p>The red mark is the core code of the symbol table information written to the file.It’s easy to understand</p>
-
+<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//（3）print symbol table</span></span><br><span class="line"><span class="keyword">if</span> (PrintSymTables) &#123;</span><br><span class="line">    PrintSymbolTable(<span class="built_in">stdout</span>, Externals);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>PrintSymTables</code> switch，defined in the head of main.cpp</p>
+<h2 id="Code-explain"><a href="#Code-explain" class="headerlink" title="Code explain"></a>Code explain</h2><p>The module code is implemented in symbol.c, which is introduced in the 2.1.1 initialization environment.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***********************************************************************\</span></span><br><span class="line"><span class="comment">* PrintSymbolTable</span></span><br><span class="line"><span class="comment">\***********************************************************************/</span></span><br><span class="line"><span class="function">GLOBAL <span class="keyword">void</span> <span class="title">PrintSymbolTable</span><span class="params">(FILE *out, SymbolTable *table)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     Symbol *chain, *shadow;</span><br><span class="line">     <span class="keyword">int</span> i, entries=<span class="number">0</span>, length, worst = <span class="number">0</span>, depth=<span class="number">0</span>;</span><br><span class="line">     assert(table != <span class="literal">NULL</span>);</span><br><span class="line">     <span class="built_in">fprintf</span>(out, <span class="string">"\nSymbolTable: %s\n"</span>, table-&gt;table_name);</span><br><span class="line">     <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;TABLE_SIZE; i++) &#123;</span><br><span class="line">        length = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (chain = table-&gt;table[i]; chain != <span class="literal">NULL</span>; chain = chain-&gt;next) </span><br><span class="line">        &#123;</span><br><span class="line">            length++;</span><br><span class="line">            <span class="built_in">fprintf</span>(out, <span class="string">"\t%s:"</span>, chain-&gt;name);</span><br><span class="line">            <span class="keyword">for</span> (shadow = chain; shadow != <span class="literal">NULL</span>; shadow = shadow-&gt;shadow) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">fprintf</span>(out, <span class="string">" (%d,%d)"</span>,(<span class="keyword">int</span>) shadow-&gt;scope.level,</span><br><span class="line">                                        (<span class="keyword">int</span>) shadow-&gt;scope.version);</span><br><span class="line">            &#125;</span><br><span class="line">            fputc(<span class="string">'\n'</span>, out);</span><br><span class="line">        &#125;</span><br><span class="line">        entries += length;</span><br><span class="line">        depth += (length + <span class="number">1</span>)*length/<span class="number">2</span>;  <span class="comment">/* sum of 1 to length */</span></span><br><span class="line">        <span class="keyword">if</span> (length &gt; worst) worst = length;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">fprintf</span>(out, <span class="string">"End of symbol table %s\n"</span>, table-&gt;table_name);</span><br><span class="line">     <span class="built_in">fprintf</span>(out, <span class="string">"\t%d entries\n"</span>, entries);</span><br><span class="line">     <span class="built_in">fprintf</span>(out, <span class="string">"\tAverage depth for a successful search: %.2g\n"</span>,</span><br><span class="line">            depth/(entries+<span class="number">1e-6</span>));</span><br><span class="line">     <span class="built_in">fprintf</span>(out, <span class="string">"\tAverage depth for a failed search: %.2g\n"</span>,</span><br><span class="line">            entries/(<span class="keyword">float</span>)TABLE_SIZE);</span><br><span class="line">     <span class="built_in">fprintf</span>(out, <span class="string">"\tLongest chain: %d\n"</span>, worst);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br></pre></td></tr></table></figure>
   
   
   <div class="footer">

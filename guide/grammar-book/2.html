@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Keyword & Type — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Keyword & Type — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link current">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link current">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -328,7 +328,7 @@
     
     
     <li>
-      <a href="/guide/grammar-book/3.html" class="sidebar-link">streaming data process</a>
+      <a href="/guide/grammar-book/3.html" class="sidebar-link">Streaming Data Process</a>
     </li>
   
     
@@ -393,23 +393,20 @@
     <h1>Keyword & Type</h1>
   
   
-    <p>COStream语言的基本语句采用了C语言语法，加入了对数据流处理。因此所有的C语言的关键字都是COStream的关键字。此外COStream还有额外的关键字。</p>
-<p>COStream支持C语言的所有基本数据类型，但不支持指针（pointer）类型。</p>
-<h2 id="COStream语言关键字"><a href="#COStream语言关键字" class="headerlink" title="COStream语言关键字"></a>COStream语言关键字</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"test"</span>;</span><br></pre></td></tr></table></figure>
-<p>COStream语言的基本语句采用了C语言语法，加入了对数据流处理。因此所有的C语言的关键字都是COStream的关键字。此外COStream还有额外的关键字。</p>
+    <h2 id="COStream-Language-Keywords"><a href="#COStream-Language-Keywords" class="headerlink" title="COStream Language Keywords"></a>COStream Language Keywords</h2><p>The COStream languge has the same keywords of <code>the C programming language</code>, as it adopts the C languge syntaxes. In addition, it has extra keywords to build the <code>data flow graph</code>.</p>
 <blockquote>
-<p>COStream额外关键字<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">composite, param, input, output, stream</span><br><span class="line">splitjion, split, duplicate, roundrobin, join, pipeline, add</span><br><span class="line">operator, init, work, window, sliding, tumbling</span><br></pre></td></tr></table></figure></p>
+<p>COStream Extra Keywords<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">composite, param, input, output, stream</span><br><span class="line">splitjion, split, duplicate, roundrobin, join, pipeline, add</span><br><span class="line">operator, init, work, window, sliding, tumbling</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p>C语言关键字<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">auto break case char const continue</span><br><span class="line">default do double else enum extern</span><br><span class="line">float for goto if int long</span><br><span class="line">register return short signed sizeof static</span><br><span class="line">struct switch typedef union unsigned void</span><br><span class="line">volatile while</span><br></pre></td></tr></table></figure></p>
+<p>C Language keywords<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">auto break case char const continue</span><br><span class="line">default do double else enum extern</span><br><span class="line">float for goto if int long</span><br><span class="line">register return short signed sizeof static</span><br><span class="line">struct switch typedef union unsigned void</span><br><span class="line">volatile while</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>COStream支持C语言的所有基本数据类型，但不支持指针（pointer）类型。</p>
-<h2 id="stream流数据类型"><a href="#stream流数据类型" class="headerlink" title="stream流数据类型"></a>stream流数据类型</h2><p>COStream引入了新数据类型stream。数据流（stream）是由一系列数据流成员（token）组成的序列，作为通信载体连接流图中各个计算单元（actor），为计算单元提供可并行操作的数据对象。组成stream的token是一种复合数据类型，运算主要是对它进行的。存储器中对这些数据流的安排对于程序员而言是隐藏的，与底层硬件实现无关。</p>
-<p>COStream数据流语言中代表token的stream声明（下称流变量）类似于C语言的结构体，可以包括任意的基本C数据类型（int，float和double等），字符串类型（string）和基本类型的数组。Stream类型需先定义后使用，遵循C语言语法规范。</p>
-<h3 id="stream类型的定义"><a href="#stream类型的定义" class="headerlink" title="stream类型的定义"></a>stream类型的定义</h3><p>stream类型声明的巴科斯范式（Backus-Naur Form，BNF）表示如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">streamType ::= ‘stream’‘&lt;’streamBody‘&gt;’</span><br><span class="line">streamBody ::= baseTypeDecl+,</span><br><span class="line">             | ( streamType | ID )+,</span><br></pre></td></tr></table></figure></p>
-<p>具体例子：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">stream&lt;<span class="keyword">int</span> i&gt; S1                    <span class="comment">//1</span></span><br><span class="line">stream&lt;<span class="keyword">int</span> i, <span class="keyword">float</span> f, <span class="keyword">double</span> d&gt; S2 <span class="comment">//2</span></span><br><span class="line">stream&lt;<span class="keyword">int</span> a[<span class="number">4</span>]&gt; S3                 <span class="comment">//3</span></span><br><span class="line">stream&lt;<span class="keyword">int</span> i, stream&lt;<span class="keyword">float</span> f&gt;&gt; S4   <span class="comment">//4</span></span><br></pre></td></tr></table></figure></p>
-<p>行1，2，3，4表示的是基本的流变量声明，声明以“stream”关键字开头，“&lt;”、“&gt;”中包含了token的成员，最后加上该流变量的名称。由行1，2，3可以看到，token可以是单个或者多个基本类型、字符串类型以及数组类型的成员。行4表示的是一个迭代形式的流变量声明写法，它的等价表示为<code>stream&lt;int i, float f&gt; S4</code>。</p>
-<h3 id="stream类型的数据访问方式"><a href="#stream类型的数据访问方式" class="headerlink" title="stream类型的数据访问方式"></a>stream类型的数据访问方式</h3><p>流变量是token的集合，本身也是复合类型，它类似于C语言的数组，可以通过下标的方式进行访问。以行2为例，S2[i].f访问的是S2流中第i个token的float成员f。S2[j].d访问的是S2流中第j个token的double成员d。</p>
+<h2 id="Basic-Data-Types"><a href="#Basic-Data-Types" class="headerlink" title="Basic Data Types"></a>Basic Data Types</h2><p>COStream supports all basic data types of the C programming language, except pointer types.</p>
+<h2 id="Stream-Data-Type"><a href="#Stream-Data-Type" class="headerlink" title="Stream Data Type"></a>Stream Data Type</h2><p>COStream introduces a new data type <code>stream</code>.A stream is a sequence of a series of stream <code>tokens</code>, which acts as communication carriers to connect to each actor in the data flow graph and provides parallelizable data objects to these actors. The token mentioned above is a composite data, on which operations are mainly performed. You don’t need to know how storages arrange these streams, as it is hidden and it is independent of the underlying hardware implementation.</p>
+<p>Declare a <code>stream variable</code> and you’ll find that its decleration is similar to the C language structure and can include any basic C data types (int, float, double, etc.), string types (string) and basic type arrays. In fact, a stream variable presents the tokens that make of it. Attention that stream type must be defined before being used, following the C language grammar specification.</p>
+<h3 id="Stream-Type-Definition"><a href="#Stream-Type-Definition" class="headerlink" title="Stream Type Definition"></a>Stream Type Definition</h3><p>The Backus-Naur Form(BNF) of stream type statements is described as follows：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">streamType ::= ‘stream’‘&lt;’streamBody‘&gt;’</span><br><span class="line">streamBody ::= baseTypeDecl+,</span><br><span class="line">             | ( streamType | ID )+,</span><br></pre></td></tr></table></figure></p>
+<p>Specific Examples：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">stream&lt;<span class="keyword">int</span> i&gt; S1                    <span class="comment">//1</span></span><br><span class="line">stream&lt;<span class="keyword">int</span> i, <span class="keyword">float</span> f, <span class="keyword">double</span> d&gt; S2 <span class="comment">//2</span></span><br><span class="line">stream&lt;<span class="keyword">int</span> a[<span class="number">4</span>]&gt; S3                 <span class="comment">//3</span></span><br><span class="line">stream&lt;<span class="keyword">int</span> i, stream&lt;<span class="keyword">float</span> f&gt;&gt; S4   <span class="comment">//4</span></span><br></pre></td></tr></table></figure></p>
+<p>Lines 1, 2, 3, 4 represent the basic stream variable declaration，which begins with the “stream” keyword，includes members of token with “&lt;”、“&gt;”, and finally adds the name of the stream variable。As shown in lines 1, 2, 3，a token includes a single member or multiple members of base types, string types, and array types.Line 4 represents an iterative form of stream variable declaration, and its equivalent representation is <code>stream&lt;int i, float f&gt; S4</code>.</p>
+<h3 id="Stream-Type-Data-Access-Method"><a href="#Stream-Type-Data-Access-Method" class="headerlink" title="Stream Type Data Access Method"></a>Stream Type Data Access Method</h3><p>A stream variable is a collection of tokens and each token can be accessed by subscript, which is similar to accessing a data of an array in C language. Take line 2 as an example, S2[i].f accesses the ith token’s float member f, and S2[j].d accesses the jth token’s double member d.</p>
 
   
   
@@ -420,7 +417,7 @@
       
       
       
-        <span style="float: right;"><a href="/guide/grammar-book/3.html">streaming data process</a> →</span>
+        <span style="float: right;"><a href="/guide/grammar-book/3.html">Streaming Data Process</a> →</span>
       
     </div>
   

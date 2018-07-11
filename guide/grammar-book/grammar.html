@@ -14,12 +14,12 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Grammer Introduction — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Grammer Introduction — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link current">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link current">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -328,7 +328,7 @@
     
     
     <li>
-      <a href="/guide/grammar-book/3.html" class="sidebar-link">streaming data process</a>
+      <a href="/guide/grammar-book/3.html" class="sidebar-link">Streaming Data Process</a>
     </li>
   
     
@@ -393,88 +393,88 @@
     <h1>Grammer Introduction</h1>
   
   
-    <p>COStream编程语言是一种面向并行体系结构的高性能数据流编程语言，由华中科技大学数字媒体处理与检索实验室多核计算与流编译组设计与开发。语言的名称由3个关键字：composite、operator和stream组合而来。COStream程序采用数据流图的方式来描述应用的处理过程，图中节点表示计算，边表示数据的流动。COStream语言具有广泛的应用领域，当前主要用于面向大数据量处理应用，如媒体处理、信号处理、搜索应用、数据文件处理等。</p>
-<h3 id="文档说明"><a href="#文档说明" class="headerlink" title="文档说明"></a>文档说明</h3><p>本文档为COStream语言的编程手册，主要对COStream语言的定义、编程规范和编译器行为（包括静态和动态）的进行详细说明，为编程人员采用COStream进行编程提供技术支持。</p>
-<h2 id="程序例子"><a href="#程序例子" class="headerlink" title="程序例子"></a>程序例子</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">composite <span class="title">Main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> N = <span class="number">10</span>;</span><br><span class="line">  stream&lt;<span class="keyword">int</span> x&gt;S,P;</span><br><span class="line">  S = Source()&#123;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">     init &#123;x = <span class="number">0</span>;&#125;</span><br><span class="line">     work &#123;</span><br><span class="line">       S[<span class="number">0</span>].x = x;</span><br><span class="line">       x++;</span><br><span class="line">     &#125;</span><br><span class="line">     window&#123;</span><br><span class="line">       <span class="function">S <span class="title">tumbling</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  P = MyOp(S)(N);   </span><br><span class="line">  Sink(P)&#123;</span><br><span class="line">    work&#123;</span><br><span class="line">      <span class="keyword">int</span> r;</span><br><span class="line">      r = P[<span class="number">0</span>].x;</span><br><span class="line">      println(r);</span><br><span class="line">    &#125;</span><br><span class="line">    window&#123;</span><br><span class="line">      <span class="function">P <span class="title">tumbling</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">composite <span class="title">MyOp</span><span class="params">(output Out,input In)</span></span>&#123;</span><br><span class="line">  param</span><br><span class="line">    <span class="keyword">int</span> pn;</span><br><span class="line">  Out = Averager(In)&#123;</span><br><span class="line">    work&#123;</span><br><span class="line">      <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> i;</span><br><span class="line">      <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;pn;i++)</span><br><span class="line">        sum += In[i].x;</span><br><span class="line">      Out[<span class="number">0</span>].x = sum/pn;</span><br><span class="line">    &#125;</span><br><span class="line">    window&#123;</span><br><span class="line">      <span class="function">In <span class="title">sliding</span><span class="params">(pn,<span class="number">1</span>)</span></span>;</span><br><span class="line">      <span class="function">Out <span class="title">tumbling</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>下图给出了该COStream流程序实例的对应数据流图。程序的功能为求移动平均值。每一个独立运行的COStream程序都由一个称为Main的composite开始，Main作为整个程序的入口。花括号之间定义了三个计算节点称为operator，分别为Source，Averager和Sink。其功能如下：Source作为数据源产生由“0”开始的自然数序列输出给Averager；Averager将得到的前N个自然数求平均值并消耗掉最早得到的一个数据，把计算得到的平均值输出给Sink；Sink将得到的平均值打印输出到屏幕。<br><img src="/img/PART1-1.2.png" alt=""></p>
-<p>各个operator之间通过流变量S和P相互连接，每个operator内部包含了对数据流的处理过程。Operator对每个数据流变量都定义了相应的window，采用窗口机制（window）对每个数据流进行访问，window内存放了operator每次进行运算所需数据。每次operator都从输入流的window中读入数据，同时将结果填入到输出流window中。图1中operator Averager在输入流S和输出流P上分别定义了2个window：滑动窗口（sliding）和翻转窗口（tumbling），sliding窗口的大小为N个数据（token）长度，每次计算完成后滑动一个1个数据长度；tumbling窗口的长度为1个数据长度，每次计算完成后窗口的数据全部输出到数据流中。窗口中的数据采用类似数组下标的方式来访问。</p>
-<p>每个operator采用数据驱动的方式执行，即输入数据填满窗口即触发operator的执行，只要有无穷的数据，程序将会无穷执行。每个operator内含有在该operator内可见的变量声明列表、init函数库和work函数块3部分：变量声明列表定义了init和work中使用到的变量（见第3章），init部分的语句只在operator的第一次运行时执行，之后不断地执行work部分的代码。</p>
-<h2 id="语言的执行模型"><a href="#语言的执行模型" class="headerlink" title="语言的执行模型"></a>语言的执行模型</h2><p>编程语言是底层程序执行模型的体现。COStream采用同步数据流模型[1]（Synchronous Data Flow, SDF）作为语言的执行模型。</p>
-<p>在同步数据流模型中，程序由一个带权重的有向图称为同步数据流图表示。图中，每个结点代表了一个计算任务，称为actor，每条边代表了生产者actor与消费者actor之间的数据流动，每条边上具有两个权值，分别代表生产者每次执行后生产数据的个数和消费者每次执行后消耗数据的个数。每个actor都是一个独立的计算单元，它有独立的指令流和地址空间，actor之间的数据流动通过FIFO队列来实现。actor的执行采用数据驱动的方式，只要actor的输入边有足够的数据消耗，它将不停地重复执行并产生数据到输出边。在静态同步数据流模型中，actor的每次执行消耗固定数目的数据，称为消耗率，同样地，actor每次执行产生固定数目的数据称为产生率。</p>
-<p>下图表示数据流程序有2个actor，actor A和actor B都是独立的计算单元，actor A每次执行向队列缓存中产生3个数据，即生产速率为3，actor B每次执行从队列缓存中消耗2个数据，消耗速率为2。两个actor都采用数据驱动的方式执行，只要数据足够，自动开始执行。<br><img src="/img/PART1-1.3.png" alt="一个SDF图例子"></p>
+    <p>The COStream programming language is a high-performance streaming programming language for parallel architecture. It is designed by <a href="http://media.hust.edu.cn" target="_blank" rel="noopener">HUST DML Lab</a>. The name of the language is a combination of three keywords: <code>Composite</code>, <code>Operator</code>, and <code>Stream</code>. The COStream uses the data flow graph to describe the processing of the application. The nodes in the graph represent calculations while the edges represent the flow of data. The COStream language has a wide range of applications and is currently used for large data processing applications such as <em>media processing</em>, <em>signal processing</em>, <em>search applications</em>, and <em>data file processing</em>.</p>
+<h3 id="Document-description"><a href="#Document-description" class="headerlink" title="Document description"></a>Document description</h3><p>This document is the <strong>Manual</strong> of COStream. It mainly explains the <strong>definition</strong> of COStream, <strong>programming specification</strong> and <strong>compiler behavior</strong>, and provides technical support for programmers to use COStream.</p>
+<h2 id="Program-example"><a href="#Program-example" class="headerlink" title="Program example"></a>Program example</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">composite <span class="title">Main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> N = <span class="number">10</span>;</span><br><span class="line">  stream&lt;<span class="keyword">int</span> x&gt;S,P;</span><br><span class="line">  S = Source()&#123;</span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">     init &#123;x = <span class="number">0</span>;&#125;</span><br><span class="line">     work &#123;</span><br><span class="line">       S[<span class="number">0</span>].x = x;</span><br><span class="line">       x++;</span><br><span class="line">     &#125;</span><br><span class="line">     window&#123;</span><br><span class="line">       <span class="function">S <span class="title">tumbling</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  P = MyOp(S)(N);   </span><br><span class="line">  Sink(P)&#123;</span><br><span class="line">    work&#123;</span><br><span class="line">      <span class="keyword">int</span> r;</span><br><span class="line">      r = P[<span class="number">0</span>].x;</span><br><span class="line">      println(r);</span><br><span class="line">    &#125;</span><br><span class="line">    window&#123;</span><br><span class="line">      <span class="function">P <span class="title">tumbling</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">composite <span class="title">MyOp</span><span class="params">(output Out,input In)</span></span>&#123;</span><br><span class="line">  param</span><br><span class="line">    <span class="keyword">int</span> pn;</span><br><span class="line">  Out = Averager(In)&#123;</span><br><span class="line">    work&#123;</span><br><span class="line">      <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">int</span> i;</span><br><span class="line">      <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;pn;i++)</span><br><span class="line">        sum += In[i].x;</span><br><span class="line">      Out[<span class="number">0</span>].x = sum/pn;</span><br><span class="line">    &#125;</span><br><span class="line">    window&#123;</span><br><span class="line">      <span class="function">In <span class="title">sliding</span><span class="params">(pn,<span class="number">1</span>)</span></span>;</span><br><span class="line">      <span class="function">Out <span class="title">tumbling</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The figure below shows the corresponding data flow diagram of the COStream stream program instance.The function of the program is to calculate the average value dynamically.<strong>Each COStream program starts with a composite called Main, which serves as the entry for the program</strong>.Three operators are defined between curly braces, namely <code>Source</code>, <code>Averager</code> and <code>Sink</code>.<code>Source</code> generates a sequence of natural numbers starting from “0” and outputs it to <code>Averager</code>; <code>Averager</code> averages the first N natural numbers obtained and consumes the first data obtained, and outputs the calculated average value to <code>Sink</code>; <code>Sink</code> prints the resulting average value to the screen.<br><img src="https://i.loli.net/2018/07/09/5b431f29d0842.png" alt=""></p>
+<p>Operators are connected to each other through flow variables <code>S</code> and <code>P</code>, and each operator internally contains a process for processing the data stream.Operator defines the corresponding window for each data stream variable, and accesses each data stream by <em>window mechanism</em>. The window stores the data required by the operator for each operation.The operator reads in the data from the input stream’s window and fills the result into the output stream window.In the above figure, the operator Averager defines two windows on the input stream <code>S</code> and the output stream <code>P</code>: <code>sliding window</code> and <code>tumbling window</code>. The size of the sliding window is N data (token) length, and each time the calculation is completed, sliding one data length;The length of the tumbling window is 1 data length, and the data of the window is all output to the data stream after each calculation. <strong>The data in the window is accessed in a manner similar to array subscripts</strong>.</p>
+<p>Each operator is executed in a <strong>data-driven</strong> manner, that is, the input data fills the window to trigger the execution of the operator. <strong>As long as there is infinite data, the program will execute infinitely</strong>. Each operator contains a list of variable declarations visible in the operator, an init function library, and a work function block. The variable declaration list defines the variables used in <code>init</code> and <code>work</code> (as follows). <strong>The init part of the statement only Executed during the first run of the operator, and then continuously execute the code of the work part</strong>.</p>
+<h2 id="Language-execution-model"><a href="#Language-execution-model" class="headerlink" title="Language execution model"></a>Language execution model</h2><p>The programming language is the embodiment of the underlying program execution model. COStream uses Synchronous Data Flow (SDF) as the execution model of the language.</p>
+<p>In the synchronous data flow model, the program is represented by a weighted directed graph called an isochronous data flow graph.In the model,Each node represents a computing task, called an <code>actor</code>, where each edge represents the flow of data between the producer actor and the consumer actor, with two weights on each side, representing the number of production data by the producer and the number of data consumed by the consumer after each execution .Each actor is a separate computational unit with separate instruction streams and address spaces. Data flow between actors is achieved through FIFO queues.<strong>The actor’s execution is data-driven, and as long as the input side of the actor has enough data to consume, it will repeatedly execute and generate data to the output side</strong>.In the static synchronous data flow model, each execution of an actor consumes a fixed amount of data, called a <strong>consumption rate</strong>. Similarly, each time an actor executes a fixed number of data, it is called a <strong>production rate</strong>.</p>
+<p>The following figure shows that the data flow program has two actors. Actor A and actor B are independent calculation units. <strong>Each time actor A executes three data into the queue cache, that is, the production rate is 3, and actor B executes the slave queue each time. The cache consumes 2 data at a rate of 2</strong>. Both actors are executed in a data-driven manner, and as soon as the data is sufficient, execution begins automatically.<br><img src="/img/PART1-1.3.png" alt="一个SDF图例子"></p>
 <blockquote>
-<p>COStream语言描述的数据流图是基于<strong>同步数据流图SDF</strong>的，两者的对应关系如下：</p>
+<p>The data flow graph described by the COStream language is based on the synchronous data flow graph SDF, and the correspondence between the two is as follows:</p>
 <ol>
-<li>COStream中的operator对应于SDF中的actor；</li>
-<li>COStream中的stream变量对应于SDF中的FIFO数据边；</li>
-<li>COStream中的数据流上的window大小对应于SDF中actor对数据的生产和消耗速率。</li>
-<li>COStream暂时不支持类似StreamIt中feedback loop的图[2]以及带有delay数据边的SDF图（具体可以参考文章[3]）<br>此外， COStream还增加了对sliding window的支持</li>
+<li>The operator in COStream corresponds to the actor in SDF;</li>
+<li>The stream variable in COStream corresponds to the FIFO data edge in the SDF;</li>
+<li>The window size on the data stream in the COStream corresponds to the rate at which the actor produces and consumes data in the SDF;</li>
+<li>COStream doesn’t support graphs like the feedback loop in StreamIt and SDF graphs with delay data edges;<br>In addition, COStream adds support for the sliding window.</li>
 </ol>
 </blockquote>
-<h2 id="语法符号"><a href="#语法符号" class="headerlink" title="语法符号"></a>语法符号</h2><p>本文将采用BNF（Backus Naur Form）来描述语言的语法特性，以下是常用到的语法符号。</p>
+<h2 id="Grammar-symbol"><a href="#Grammar-symbol" class="headerlink" title="Grammar symbol"></a>Grammar symbol</h2><p>We use BNF (Backus Naur Form) to describe the grammatical features of the language. The following are commonly used grammar symbols.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">语法符号</th>
-<th style="text-align:left">说明</th>
+<th style="text-align:left">Grammar symbol</th>
+<th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left">italics</td>
-<td style="text-align:left">非终结符（Non-terminal）</td>
+<td style="text-align:left">（Non-terminal）</td>
 </tr>
 <tr>
 <td style="text-align:left">italics</td>
-<td style="text-align:left">非终结符（Non-terminal）</td>
+<td style="text-align:left">（Non-terminal）</td>
 </tr>
 <tr>
 <td style="text-align:left">ALL_CAPS_ITALICS</td>
-<td style="text-align:left">标示符（终结符），如ID标示符</td>
+<td style="text-align:left">Identifier（Terminator），Such as ID identifier</td>
 </tr>
 <tr>
 <td style="text-align:left">‘text’</td>
-<td style="text-align:left">常量</td>
+<td style="text-align:left">constant</td>
 </tr>
 <tr>
 <td style="text-align:left">(…)</td>
-<td style="text-align:left">分组，用于分隔语法单位</td>
+<td style="text-align:left">Grouping, used to separate grammatical units</td>
 </tr>
 <tr>
 <td style="text-align:left">…&#124;…</td>
-<td style="text-align:left">并操作，匹配左边或者右边语法单位</td>
+<td style="text-align:left">And operate to match the left or right grammar unit</td>
 </tr>
 <tr>
 <td style="text-align:left">…?</td>
-<td style="text-align:left">可选操作</td>
+<td style="text-align:left">Optional operation</td>
 </tr>
 <tr>
 <td style="text-align:left">…*</td>
-<td style="text-align:left">语法单位重复0次或者多次</td>
+<td style="text-align:left">The grammar unit is repeated 0 or more times.</td>
 </tr>
 <tr>
 <td style="text-align:left">…+</td>
-<td style="text-align:left">语法单位重复1次或者多次</td>
+<td style="text-align:left">The grammar unit is repeated 1 or more times</td>
 </tr>
 <tr>
 <td style="text-align:left">…*,</td>
-<td style="text-align:left">逗号分隔的0项或者多项语法单位</td>
+<td style="text-align:left">Comma-separated 0 or multiple grammar units</td>
 </tr>
 <tr>
 <td style="text-align:left">…+,</td>
-<td style="text-align:left">逗号分隔的1项或者多项语法单位</td>
+<td style="text-align:left">Comma-separated 1 or multiple grammar units</td>
 </tr>
 <tr>
 <td style="text-align:left">…*;</td>
-<td style="text-align:left">分号分隔的0项或者多项语法单位</td>
+<td style="text-align:left">0 or more grammatical units separated by semicolons</td>
 </tr>
 <tr>
 <td style="text-align:left">…+;</td>
-<td style="text-align:left">分号分隔的1项或者多项语法单位</td>
+<td style="text-align:left">1 or more grammatical units separated by semicolons</td>
 </tr>
 <tr>
 <td style="text-align:left">non-Ternimal ::=…</td>
-<td style="text-align:left">规则定义</td>
+<td style="text-align:left">Rule definition</td>
 </tr>
 </tbody>
 </table>

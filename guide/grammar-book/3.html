@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>streaming data process — COStream</title>
+    <title>Streaming Data Process — COStream</title>
     <meta charset="utf-8">
     <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -12,14 +12,14 @@
     <link rel="alternate" hreflang="zh" href="https://cn.costream.site/guide/grammar-book/3.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="streaming data process — COStream">
+    <meta property="og:title" content="Streaming Data Process — COStream">
     <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta property="og:image" content="https://costream.site/images/logo.png">
+    <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="streaming data process — COStream">
+    <meta name="twitter:title" content="Streaming Data Process — COStream">
     <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
-    <meta name="twitter:image" content="https://costream.site/images/logo.png">
+    <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
 <!--
     <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
@@ -66,7 +66,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-46852172-3', 'costream.site');
+      ga('create', 'UA-46852172-3', 'cn.costream.site');
       ga('send', 'pageview');
     </script>
   </head>
@@ -95,7 +95,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link current">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -180,7 +180,7 @@
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link current">Grammar</a></li>
-        <li><a href="/api/" class="nav-link">API</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -328,7 +328,7 @@
     
     
     <li>
-      <a href="/guide/grammar-book/3.html" class="sidebar-link current">streaming data process</a>
+      <a href="/guide/grammar-book/3.html" class="sidebar-link current">Streaming Data Process</a>
     </li>
   
     
@@ -390,35 +390,35 @@
     
   
   
-    <h1>streaming data process</h1>
+    <h1>Streaming Data Process</h1>
   
   
-    <h2 id="operator定义"><a href="#operator定义" class="headerlink" title="operator定义"></a>operator定义</h2><p>COStream流语言中最基本的组成单元和计算单元是operator，即在数据流图中表示一个计算结点。operator定义了actor输入、输出流和具体的计算处理过程。</p>
-<p>如下面代码所示，operator由头部定义和体定义组成，其中operator都定义了处理的输入和输出流，operator体包括变量声明和定义、init、work和window四个部分，其中work是必须的，其部分是可选的。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">stream&lt;<span class="keyword">int</span> i&gt;S;</span><br><span class="line">S = Source()&#123;</span><br><span class="line">    <span class="comment">//变量声明和定义</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y=<span class="number">3</span>;</span><br><span class="line">    <span class="comment">//init部分</span></span><br><span class="line">    init&#123;</span><br><span class="line">        x=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//work部分</span></span><br><span class="line">    work&#123;</span><br><span class="line">        s[<span class="number">0</span>].i=x;</span><br><span class="line">        x++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//window部分</span></span><br><span class="line">    window&#123;</span><br><span class="line">        <span class="function">S <span class="title">tumbling</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>类似于C语言的函数文法，每一个operator均由一个头部和主体部分组成，其BNF可表示为：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">opInvoke ::= opInvokeHeadop InvokeBody</span><br></pre></td></tr></table></figure></p>
-<h3 id="1-operator头部定义"><a href="#1-operator头部定义" class="headerlink" title="1.operator头部定义"></a>1.operator头部定义</h3><p>头部opInvokeHead定义了operator的名称和operator用于计算和通信的输入、输出流，BNF表示为：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">opInvokeHead    ::= opOutputs ‘=’ ID opInputs | ID opInputs</span><br><span class="line">opOutputs	  ::= streamID |‘(’ streamID+, ‘)’</span><br><span class="line">opInputs	  ::= streamID |‘(’ streamID +, ‘)’</span><br><span class="line">streamID	  ::= streamType ID | ID</span><br></pre></td></tr></table></figure></p>
-<p>以前文所述的Averager为例，其输入流为S，输出流为P，完整头部表示为：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = Averager(S)&#123; <span class="comment">// opInvokeHead</span></span><br><span class="line">                  …<span class="comment">// opInvokeBody</span></span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure></p>
+    <h2 id="Operator-definition"><a href="#Operator-definition" class="headerlink" title="Operator definition"></a><code>Operator</code> definition</h2><p>The most basic computing unit in <strong>COStream</strong> is <code>operator</code>, which represents a computing node in the data flow graph. The <code>operator</code> defines the input stream and the output stream of the <code>actor</code>, and specific computational processing.</p>
+<p>As shown in the following code, the <code>operator</code> consists of a <strong>header definition</strong> and a <strong>body definition</strong>. The <code>operator</code> defines the input and output streams for processing. The <code>operator</code> body includes variable declarations and definitions, <code>init</code>, <code>work</code>, and <code>window</code>. The <code>work</code> is necessary while the rest is optional.<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">stream&lt;<span class="keyword">int</span> i&gt;S;</span><br><span class="line">S = Source()&#123;</span><br><span class="line">    <span class="comment">//variable declarations and definitions</span></span><br><span class="line">    <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">int</span> y=<span class="number">3</span>;</span><br><span class="line">    <span class="comment">//init</span></span><br><span class="line">    init&#123;</span><br><span class="line">        x=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//work</span></span><br><span class="line">    work&#123;</span><br><span class="line">        s[<span class="number">0</span>].i=x;</span><br><span class="line">        x++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//window</span></span><br><span class="line">    window&#123;</span><br><span class="line">        <span class="function">S <span class="title">tumbling</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>Similar to the <strong>C</strong> language’s functional syntax, each <code>operator</code> consists of a <em>header</em> and a <em>body</em> part, and its BNF can be expressed as:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">opInvoke ::= opInvokeHeadop InvokeBody</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-operator-head-definition"><a href="#1-operator-head-definition" class="headerlink" title="1.operator head definition"></a>1.operator head definition</h3><p>The head <em>opInvokeHead</em> defines the name of the <code>operator</code> and the input and output stream that the <code>operator</code> uses for calculation and communication. The BNF is expressed as:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">opInvokeHead    ::= opOutputs ‘=’ ID opInputs | ID opInputs</span><br><span class="line">opOutputs	  ::= streamID |‘(’ streamID+, ‘)’</span><br><span class="line">opInputs	  ::= streamID |‘(’ streamID +, ‘)’</span><br><span class="line">streamID	  ::= streamType ID | ID</span><br></pre></td></tr></table></figure></p>
+<p>For example, the <em>Aveverer</em> described above has an input stream of <strong>S</strong> and an output stream of <strong>P</strong>. The complete header is represented as:<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">P = Averager(S)&#123; <span class="comment">// opInvokeHead</span></span><br><span class="line">                  …<span class="comment">// opInvokeBody</span></span><br><span class="line">               &#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p>多输入多输出operator支持<br>与StreamIt不同的是，除了单输入、单输出流外，COStream的operator也支持流的多输入，多输出，具体用法如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(O1,O2,O3,O4,O5) = MyOperator(IN1,IN2,IN3,IN4,IN5)</span><br><span class="line">&#123;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Multiple input and multiple output operator support<br>Different from <strong>StreamIt</strong>, in addition to single-input and single-output streams, <strong>COStream</strong>‘s <code>operator</code> also supports &gt;multiple input and multiple output of stream. The specific usage is as follows:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(O1,O2,O3,O4,O5) = MyOperator(IN1,IN2,IN3,IN4,IN5)</span><br><span class="line">&#123;</span><br><span class="line">…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<p>多个输出流必须分开定义，并用“( )”括起；同理多个输入流也分开定义。</p>
-<h3 id="2-operator主体定义"><a href="#2-operator主体定义" class="headerlink" title="2.operator主体定义"></a>2.operator主体定义</h3><p>operator的主体部分包含在“{”和“}”中，定义了所代表的operator的具体运算过程，它的BNF表示如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">opInvokeBody ::=  &apos;&#123;&apos;</span><br><span class="line">                    ( declaration+ ) *</span><br><span class="line">                    ( ‘init’ opInvokeInitWork+) ?</span><br><span class="line">                    ( ‘work’ opInvokeInitWork+)</span><br><span class="line">                    ( ‘window’ opInvokeWindow+) ?</span><br><span class="line">                  &apos;&#125;&apos;</span><br><span class="line">opInvokeInitWork ::= stmt</span><br><span class="line">opInvokeWindow ::=  &apos;&#123;&apos;</span><br><span class="line">                      opInvokeWindowBody? ;</span><br><span class="line">                    &apos;&#125;&apos;</span><br><span class="line">opInvokeWindowBody ::=  ID ‘sliding’  &apos;(&apos; (expr ‘,‘ expr)? &apos;)&apos;</span><br><span class="line">                      | ID ‘tumbling&apos; &apos;(&apos; expr? &apos;)&apos;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
-<p>operator体包括变量的声明和定义、init、work和window四个部分，其中work是必须的，其部分是可选的。</p>
-<h2 id="变量声明和定义"><a href="#变量声明和定义" class="headerlink" title="变量声明和定义"></a>变量声明和定义</h2><p>变量的声明和定义类似C语言的static文法，这些声明的变量是operator内的静态变量。</p>
+<p>Multiple output streams must be defined separately and enclosed in <code>( )</code>; similarly, multiple input stream are also defined separately.</p>
+<h3 id="2-Operator-body-definition"><a href="#2-Operator-body-definition" class="headerlink" title="2.Operator body definition"></a>2.Operator body definition</h3><p>The main part of the <code>operator</code> is contained in <code>{</code> and <code>}</code>, which defines the specific operation process of the <code>operator</code>. Its BNF representation is as follows:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">opInvokeBody ::=  &apos;&#123;&apos;</span><br><span class="line">                    ( declaration+ ) *</span><br><span class="line">                    ( ‘init’ opInvokeInitWork+) ?</span><br><span class="line">                    ( ‘work’ opInvokeInitWork+)</span><br><span class="line">                    ( ‘window’ opInvokeWindow+) ?</span><br><span class="line">                  &apos;&#125;&apos;</span><br><span class="line">opInvokeInitWork ::= stmt</span><br><span class="line">opInvokeWindow ::=  &apos;&#123;&apos;</span><br><span class="line">                      opInvokeWindowBody? ;</span><br><span class="line">                    &apos;&#125;&apos;</span><br><span class="line">opInvokeWindowBody ::=  ID ‘sliding’  &apos;(&apos; (expr ‘,‘ expr)? &apos;)&apos;</span><br><span class="line">                      | ID ‘tumbling&apos; &apos;(&apos; expr? &apos;)&apos;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>The body of the <code>operator</code> includes the declaration and definition of variables, <code>init</code>, <code>work</code>, and <code>window</code>. <code>work</code> is required, and the rest is optional.</p>
+<h2 id="Variable-declaration-and-definition"><a href="#Variable-declaration-and-definition" class="headerlink" title="Variable declaration and definition"></a>Variable declaration and definition</h2><p>Variable declarations and definitions are similar to the <strong>C</strong> language’s static grammar. These declared variables are static variables within the <code>operator</code>.</p>
 <blockquote>
-<p><strong>state内声明变量的作用域：</strong><br>state中变量可以被init函数和work函数内的语句访问，作用域是整个operator。如图3.1所示，x可以被init和work语句块访问。</p>
+<p><strong>The scope of the declared variable in state:</strong><br>The variables in <em>state</em> can be accessed by statements in the <code>init</code> function and the <code>work</code> function, and the scope is the entire <code>operator</code>. </p>
 </blockquote>
-<h2 id="init函数"><a href="#init函数" class="headerlink" title="init函数"></a>init函数</h2><p>init函数代表operator初始化运算过程，为块语句，可以包含任意程序员自定义的变量声明和语句内容，并仅在operator第一次执行时执行。</p>
-<h2 id="work函数、window与stream"><a href="#work函数、window与stream" class="headerlink" title="work函数、window与stream"></a>work函数、window与stream</h2><h3 id="1-work函数"><a href="#1-work函数" class="headerlink" title="1. work函数"></a>1. work函数</h3><p>work函数代表operator的最细粒度的运算部分，为块语句，可以包含任意程序员自定义的变量声明和语句内容，是operator的核心结构和数据流程序稳态执行过程中每次计算的执行单元。work函数内含有对operator输入流、输出流数据的操作。</p>
-<h3 id="2-window"><a href="#2-window" class="headerlink" title="2. window"></a>2. window</h3><p>window结构规定了work函数每次执行时所需的输入流和输出流窗口类型以及大小。窗口类型有两种：sliding和tumbling。</p>
-<p>sliding代表滑动窗口类型，这种窗口类型带有2个参数，第一个指定滑动窗口长度，第二个指定每次滑动的距离，单位都是数据流中数据项的个数。例子， S sliding(10,1);表示Stream流S上定义了一个sliding窗口，长度为10个数据项长度，work函数每次执行后，向后滑动1个数据项长度。</p>
-<p>tumbling则代表翻转窗口类型，这种窗口只带有1个参数，指定窗口长度。如T tumbling(10);表示stream流T上定义了一个tumbling窗口，窗口长度为10个数据项长度，work函数每次执行后，窗口中的10个数据被清空。对于输入数据流，表示10个数据被消耗，输入流中后续数据将进入窗口；对于输出数据流，表示10产生的数据已经填满窗口，将被全部输出到输出数据流中，后续产生的数据将继续填充窗口。<br>一般而言，sliding常用于输入数据流，而tumbling常用于输出数据流。</p>
+<h2 id="init-work-window-and-stream"><a href="#init-work-window-and-stream" class="headerlink" title="init, work, window and stream"></a>init, work, window and stream</h2><h3 id="1-init"><a href="#1-init" class="headerlink" title="1.init"></a>1.init</h3><p>The <code>init</code> function represents the  <code>operator</code>‘s initialization process, which is a block statement that can contain any programmer-defined variable declarations and statements, and is executed only when the <code>operator</code> is first executed.</p>
+<h3 id="2-work"><a href="#2-work" class="headerlink" title="2. work"></a>2. work</h3><p>The <code>work</code> function represents the most fine-grained operation part of the <code>operator</code>. It is a block statement and can contain any programmer-defined variable declarations and statements. It is the core structure of the <code>operator</code> and the execution unit of each calculation in the steady-state execution of the data flow program. The <code>work</code> function contains operations on the  input stream and output stream of the <code>operator</code>.</p>
+<h3 id="3-window"><a href="#3-window" class="headerlink" title="3. window"></a>3. window</h3><p>The <code>window</code> structure specifies type and size of the input stream and output stream used for each execution of the <code>work</code> function. There are two types of windows: <code>sliding</code> and <code>tumbling</code>.</p>
+<p><code>Sliding</code> represents the type of sliding window. This window type has two parameters. The first specifies the length of the sliding window. The second specifies the distance for each sliding. The unit is the number of data items in the data stream. For example, <code>S sliding(10,1);</code> indicates that a sliding window is defined on the stream <strong>S</strong>, and the length is 10 data items. After each execution of the <code>work</code> function, the length of one data item is swept backward.</p>
+<p><code>Tumbling</code> represents the flip window type. This window takes only one parameter and specifies the window length. For example, <code>T tumbling (10);</code> indicates that a tumbling window is defined on the stream <strong>T</strong>, and the window length is 10 data items. After each execution of the <code>work</code> function, 10 data in the window are cleared. For the input stream, it means that 10 data is consumed, and the subsequent data in the input stream will enter the window; for the output stream, it means that the generated data has filled the window and will be all output to the output stream, and the subsequent generated data will be continuing to fill the window.</p>
+<p>In general, <code>sliding</code> window is often used for input stream, and <code>tumbling</code> window is often used for output stream.</p>
 <blockquote>
-<p><strong>work函数采用窗口触发机制执行：</strong><br>即只有当数据填满window时，work函数才会执行，否者operator将会一直等待，直到有足够的数据。</p>
+<p><strong>Work function is executed by window trigger mechanism:</strong><br>That is, the <code>work</code> function will only execute when the data fills the window, otherwise the <code>operator</code> will wait until there is enough data.</p>
 </blockquote>
-<h3 id="3-stream数据的访问"><a href="#3-stream数据的访问" class="headerlink" title="3. stream数据的访问"></a>3. stream数据的访问</h3><p>operator输入流和输出流数据只能在work函数中访问。访问的方式采用C语言的数组下标访问方式，访问的下标按照输入流与输出流在window队列中的顺序采用FIFO编号。下图显示了window中流数据下标访问的顺序。</p>
-<p><img src="/img/PART1-3.4.png" alt="window中流数据下标访问的顺序"></p>
-<p>对于流数据项的每一个分量，采用类似于C语言中结构体分量的访问方式，采用取分量的“.”操作来实现。如，stream<int x,="" int="" y=""> S; S[0].x表示取S的window中下标为0的数据项中的整型分量x。<br>以图3.1的source节点为例，其state函数内声明了一个整型变量x，并在init函数中初始化为0。work函数中每次执行都会对x执行加1操作，并将结果赋给输出流（S：S[0].i=x）。window定义了source的输出流S的窗口类型为tumbling，并决定了大小为1（S tumbling (1)）。所以，source作为由“0”开始的自然数序列数据源，每次产生一个递增为1的输出数据。</int></p>
+<h3 id="4-Streaming-data-access"><a href="#4-Streaming-data-access" class="headerlink" title="4. Streaming data access"></a>4. Streaming data access</h3><p>The <code>operator</code> input stream and output stream data can only be accessed in the <em>work</em> function. </p>
+<p>For each component of the stream data item, an access method similar to the structure component in the <strong>C</strong> language is used, which is implemented by taking the <code>.</code> operation of the component. For example, we use <code>stream&lt;int x, int y&gt; S;</code> to define a stream,then <code>S[0].x</code> represents the x component in the data item with the subscript 0 in the <code>window</code> of <strong>S</strong>.</p>
 
   
   
