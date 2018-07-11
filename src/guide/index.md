@@ -98,7 +98,7 @@ Usually some data flow programs need to meet real-time constraints, so efficienc
 ## Programs Not Suitable for COStream
 
 #### **Dynamic modification of the stream structure **
-COStream uses *a static data flow graph* and *cannot dynamically* change the flow graph at runtime. Some streaming programs occasionally need to dynamically modify the flow graph even after the actors at various levels have been executed for a long time. 
+COStream uses **a static data flow graph** and **cannot dynamically** change the flow graph at runtime. Some streaming programs occasionally need to dynamically modify the flow graph even after the actors at various levels have been executed for a long time. 
 >For example, if the interface of a wireless network experiences high noise in its input channel, this will require it to generate some actors to eliminate these signals.
 #### **The input and output rate of the actor changes dynamically**  
 The input and output rates of each COStream actor are constant at runtime. Some applications need to analyze the input data stream and discard data that does not meet the requirements, that is, dynamically change the output rate of the actor. 

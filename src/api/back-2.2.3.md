@@ -12,46 +12,46 @@ We know that COStream is a data streaming language, a high-level language that r
 
 ```c++
 // （3）Parition graph
-	PhaseName = "Partition";
-	if (Errors == 0 && PPartition && (X86Backend || X10Backend || GPUBackend) )
-	{
-		……
-		if (X10ParallelBackEnd == TRUE)
-	    ……
-		else if (X10DistributedBackEnd == TRUE)
-		……
-		else if (X10Backend || X86Backend)
-		{
-			//According to the number of nodes in SSSG, and CPU cores 
-//set the partition number
-			mp->setCpuCoreNum(CpuCoreNum, SSSG);
-			mp->SssgPartition(SSSG,1);
-		}
-		else if (GPUBackend && MAFLPFlag)
-		……
-	}
+PhaseName = "Partition";
+if (Errors == 0 && PPartition && (X86Backend || X10Backend || GPUBackend) )
+{
+    ……
+    if (X10ParallelBackEnd == TRUE)
+    ……
+    else if (X10DistributedBackEnd == TRUE)
+    ……
+    else if (X10Backend || X86Backend)
+    {
+        //According to the number of nodes in SSSG, and CPU cores 
+        //set the partition number
+        mp->setCpuCoreNum(CpuCoreNum, SSSG);
+        mp->SssgPartition(SSSG,1);
+    }
+    else if (GPUBackend && MAFLPFlag)
+    ……
+}
 
-	PhaseName = "SetMultiNum";
-	if (Errors == 0 && GPUBackend)
-	……
-	PhaseName = "PartitionGraph";
-	if (Errors == 0 && PPartition && PartitionGraph && (X86Backend||X10Backend ||
- GPUBackend) )
-	{
-		if(GPUBackend)
-			DumpStreamGraph(SSSG,maflp,"GPUPartitionGraph.dot",NULL);
-		else
-			DumpStreamGraph(SSSG, mp, "PartitionGraph.dot",NULL);
-
+PhaseName = "SetMultiNum";
+if (Errors == 0 && GPUBackend)
+    ……
+    PhaseName = "PartitionGraph";
+    if (Errors == 0 && PPartition && PartitionGraph && (X86Backend||X10Backend ||
+                                                        GPUBackend) )
+    {
+    if(GPUBackend)
+        DumpStreamGraph(SSSG,maflp,"GPUPartitionGraph.dot",NULL);
+    else
+        DumpStreamGraph(SSSG, mp, "PartitionGraph.dot",NULL);
+    }
 ```
-1）	For example: if we use a serve with a 8 core cpu of Inter X86, according to the condition judgment, it will enter the red mark branch.
-2）	Variable mp is MetisPartiton *mp = NULL, it is defined in mainfunction. It is a object of MetisPartition.
-3）	First，according to the number of SDF graph nodes converted from the syntax tree and the physical core number of the current CPU，the program decide the partition number of SDF graph. It is implemented by setCpuCoreNum(CpuCoreNum , SSSG). Variable CpuCoreNum=8 is defined in main function , SSSG is the output of the initial stage and steady state scheduling of the previous stage.
-4）	After the number of divisions is determined, the partition function mp->SssgPartition(SSSG,1) will be called, This function is implemented in MetisPartition.cpp, which is an associated file of this partitioning scheduling module.
-5）	After complete the partition scheduling, print out the divided SDF map and output with function DumpStreamGraph (SSSG, mp, "PartitionGraph.dot", NULL).
+-	For example: if we use a serve with a 8 core cpu of Inter X86, according to the condition judgment, it will enter the X86Backend branch.
+-	Variable `mp` is `MetisPartiton *mp = NULL`, it is defined in mainfunction. It is a object of MetisPartition.
+-	First，according to the number of SDF graph nodes converted from the syntax tree and the physical core number of the current CPU，the program decide the partition number of SDF graph. It is implemented by `setCpuCoreNum(CpuCoreNum , SSSG)`. Variable CpuCoreNum=8 is defined in main function , SSSG is the output of the initial stage and steady state scheduling of the previous stage.
+-	After the number of divisions is determined, the partition function `mp->SssgPartition(SSSG,1)` will be called, This function is implemented in MetisPartition.cpp, which is an associated file of this partitioning scheduling module.
+-	After complete the partition scheduling, print out the divided SDF map and output with function `DumpStreamGraph (SSSG, mp, "PartitionGraph.dot", NULL)`.
 
 ## Associated file
-（1）	 partition.h & partition.cpp
+(1)	 partition.h & partition.cpp
 partition.h is the base class of all kinds of parition
 ![partitionclass](/img/partitionclass.jpg)
 
@@ -79,12 +79,12 @@ partition.h is the base class of all kinds of parition
 
 
 ## Flow chat of partition function
-（1）	Set partition numbers
+1)	Set partition numbers
 This function is used to set partition numbers.
 The number of physical cores of the server determines the number of shares.
 ![partitionflowchat](/img/partitionflowchat.jpg)
 
-（2）	SDFPartion—SSSGPartition
+2)	SDFPartion—SSSGPartition
 Use Metis toolkit to divided the graph,which combined communication and load balancing.
 
 *When use one core ,do no partition*
@@ -103,12 +103,12 @@ Use Metis toolkit to divided the graph,which combined communication and load bal
 |`vector<int> adjncy(edgenum*2)`|	adjncy：store the edge information|
 |`vector<int> adjwgt(edgenum*2)`|	adjwgt：store the weight of edge|
 |`METIS_PartGraphKway(&nvtxs,&mncon,mxadj,`<br>`madjncy,mvwgt,mvsize,`<br>`madjwgt,&mnparts,tpwgts,`<br>`ubvec,options,&objval,mpart)`|Call the K-road map partitioning algorithm under the metis interface, and divide the current SDF graph according to the actor workload and communication.|
-|FlatNode2PartitionNum.insert(make_pair(sssg->GetFlatNodes()[i],part[i]))|Store the partition result|
-|PartitonNum2FlatNode.insert(make_pair(part[i],sssg->GetFlatNodes()[i]))|Store the partition result |
+|`FlatNode2PartitionNum.insert`<br>`(make_pair(sssg->GetFlatNodes()[i],part[i]))`|Store the partition result|
+|`PartitonNum2FlatNode.insert`<br>`(make_pair(part[i],sssg->GetFlatNodes()[i]))`|Store the partition result |
 
 ## FAQ
-（1）How the program color the different part of the graph？
-	The .dot file of Partitioned SDF graph is generated by function `DumpStreamGraph(SchedulerSSG*ssg,Partition *, const char *fileName, ClusterPartition *)` in dumpGraph.cpp，this function color the Each SDF graph node according to the result of dividing.
-（2）What does MKP—Multi-layer K way partition do？
-    It did not change the structural characteristics of the SDF graph (the amount of nodes is unchanged),Dividing the graph into multiple subgraphs with similar weights, and ensuring minimum communication between subgraphs.
+### How the program color the different part of the graph？
+The .dot file of Partitioned SDF graph is generated by function `DumpStreamGraph(SchedulerSSG*ssg,Partition *, const char *fileName, ClusterPartition *)` in dumpGraph.cpp，this function color the Each SDF graph node according to the result of dividing.
+### What does MKP—Multi-layer K way partition do？
+It did not change the structural characteristics of the SDF graph (the amount of nodes is unchanged),Dividing the graph into multiple subgraphs with similar weights, and ensuring minimum communication between subgraphs.
 

@@ -6,12 +6,12 @@ order: 30
 ---
 
 
-COStream编程语言是一种面向并行体系结构的高性能数据流编程语言，由华中科技大学数字媒体处理与检索实验室多核计算与流编译组设计与开发。语言的名称由3个关键字：composite、operator和stream组合而来。COStream程序采用数据流图的方式来描述应用的处理过程，图中节点表示计算，边表示数据的流动。COStream语言具有广泛的应用领域，当前主要用于面向大数据量处理应用，如媒体处理、信号处理、搜索应用、数据文件处理等。
+The COStream programming language is a high-performance streaming programming language for parallel architecture. It is designed by [HUST DML Lab](http://media.hust.edu.cn). The name of the language is a combination of three keywords: `Composite`, `Operator`, and `Stream`. The COStream uses the data flow graph to describe the processing of the application. The nodes in the graph represent calculations while the edges represent the flow of data. The COStream language has a wide range of applications and is currently used for large data processing applications such as *media processing*, *signal processing*, *search applications*, and *data file processing*.
 
-### 文档说明
-本文档为COStream语言的编程手册，主要对COStream语言的定义、编程规范和编译器行为（包括静态和动态）的进行详细说明，为编程人员采用COStream进行编程提供技术支持。
+### Document description
+This document is the **Manual** of COStream. It mainly explains the **definition** of COStream, **programming specification** and **compiler behavior**, and provides technical support for programmers to use COStream.
 
-## 程序例子
+## Program example
 
 ```c
 composite Main(){
@@ -58,46 +58,46 @@ composite MyOp(output Out,input In){
   };
 }
 ```
-下图给出了该COStream流程序实例的对应数据流图。程序的功能为求移动平均值。每一个独立运行的COStream程序都由一个称为Main的composite开始，Main作为整个程序的入口。花括号之间定义了三个计算节点称为operator，分别为Source，Averager和Sink。其功能如下：Source作为数据源产生由“0”开始的自然数序列输出给Averager；Averager将得到的前N个自然数求平均值并消耗掉最早得到的一个数据，把计算得到的平均值输出给Sink；Sink将得到的平均值打印输出到屏幕。
-![](/img/PART1-1.2.png)
+The figure below shows the corresponding data flow diagram of the COStream stream program instance.The function of the program is to calculate the average value dynamically.**Each COStream program starts with a composite called Main, which serves as the entry for the program**.Three operators are defined between curly braces, namely `Source`, `Averager` and `Sink`.`Source` generates a sequence of natural numbers starting from "0" and outputs it to `Averager`; `Averager` averages the first N natural numbers obtained and consumes the first data obtained, and outputs the calculated average value to `Sink`; `Sink` prints the resulting average value to the screen.
+![](https://i.loli.net/2018/07/09/5b431f29d0842.png)
 
-各个operator之间通过流变量S和P相互连接，每个operator内部包含了对数据流的处理过程。Operator对每个数据流变量都定义了相应的window，采用窗口机制（window）对每个数据流进行访问，window内存放了operator每次进行运算所需数据。每次operator都从输入流的window中读入数据，同时将结果填入到输出流window中。图1中operator Averager在输入流S和输出流P上分别定义了2个window：滑动窗口（sliding）和翻转窗口（tumbling），sliding窗口的大小为N个数据（token）长度，每次计算完成后滑动一个1个数据长度；tumbling窗口的长度为1个数据长度，每次计算完成后窗口的数据全部输出到数据流中。窗口中的数据采用类似数组下标的方式来访问。
+Operators are connected to each other through flow variables `S` and `P`, and each operator internally contains a process for processing the data stream.Operator defines the corresponding window for each data stream variable, and accesses each data stream by *window mechanism*. The window stores the data required by the operator for each operation.The operator reads in the data from the input stream's window and fills the result into the output stream window.In the above figure, the operator Averager defines two windows on the input stream `S` and the output stream `P`: `sliding window` and `tumbling window`. The size of the sliding window is N data (token) length, and each time the calculation is completed, sliding one data length;The length of the tumbling window is 1 data length, and the data of the window is all output to the data stream after each calculation. **The data in the window is accessed in a manner similar to array subscripts**.
 
-每个operator采用数据驱动的方式执行，即输入数据填满窗口即触发operator的执行，只要有无穷的数据，程序将会无穷执行。每个operator内含有在该operator内可见的变量声明列表、init函数库和work函数块3部分：变量声明列表定义了init和work中使用到的变量（见第3章），init部分的语句只在operator的第一次运行时执行，之后不断地执行work部分的代码。
+Each operator is executed in a **data-driven** manner, that is, the input data fills the window to trigger the execution of the operator. **As long as there is infinite data, the program will execute infinitely**. Each operator contains a list of variable declarations visible in the operator, an init function library, and a work function block. The variable declaration list defines the variables used in `init` and `work` (as follows). **The init part of the statement only Executed during the first run of the operator, and then continuously execute the code of the work part**.
 
-## 语言的执行模型
+## Language execution model
 
-编程语言是底层程序执行模型的体现。COStream采用同步数据流模型[1]（Synchronous Data Flow, SDF）作为语言的执行模型。
+The programming language is the embodiment of the underlying program execution model. COStream uses Synchronous Data Flow (SDF) as the execution model of the language.
 
-在同步数据流模型中，程序由一个带权重的有向图称为同步数据流图表示。图中，每个结点代表了一个计算任务，称为actor，每条边代表了生产者actor与消费者actor之间的数据流动，每条边上具有两个权值，分别代表生产者每次执行后生产数据的个数和消费者每次执行后消耗数据的个数。每个actor都是一个独立的计算单元，它有独立的指令流和地址空间，actor之间的数据流动通过FIFO队列来实现。actor的执行采用数据驱动的方式，只要actor的输入边有足够的数据消耗，它将不停地重复执行并产生数据到输出边。在静态同步数据流模型中，actor的每次执行消耗固定数目的数据，称为消耗率，同样地，actor每次执行产生固定数目的数据称为产生率。
+In the synchronous data flow model, the program is represented by a weighted directed graph called an isochronous data flow graph.In the model,Each node represents a computing task, called an `actor`, where each edge represents the flow of data between the producer actor and the consumer actor, with two weights on each side, representing the number of production data by the producer and the number of data consumed by the consumer after each execution .Each actor is a separate computational unit with separate instruction streams and address spaces. Data flow between actors is achieved through FIFO queues.**The actor's execution is data-driven, and as long as the input side of the actor has enough data to consume, it will repeatedly execute and generate data to the output side**.In the static synchronous data flow model, each execution of an actor consumes a fixed amount of data, called a **consumption rate**. Similarly, each time an actor executes a fixed number of data, it is called a **production rate**.
 
-下图表示数据流程序有2个actor，actor A和actor B都是独立的计算单元，actor A每次执行向队列缓存中产生3个数据，即生产速率为3，actor B每次执行从队列缓存中消耗2个数据，消耗速率为2。两个actor都采用数据驱动的方式执行，只要数据足够，自动开始执行。
+The following figure shows that the data flow program has two actors. Actor A and actor B are independent calculation units. **Each time actor A executes three data into the queue cache, that is, the production rate is 3, and actor B executes the slave queue each time. The cache consumes 2 data at a rate of 2**. Both actors are executed in a data-driven manner, and as soon as the data is sufficient, execution begins automatically.
 ![一个SDF图例子](/img/PART1-1.3.png)
 
->COStream语言描述的数据流图是基于**同步数据流图SDF**的，两者的对应关系如下：
-1. COStream中的operator对应于SDF中的actor；
-1. COStream中的stream变量对应于SDF中的FIFO数据边；
-1. COStream中的数据流上的window大小对应于SDF中actor对数据的生产和消耗速率。
-1. COStream暂时不支持类似StreamIt中feedback loop的图[2]以及带有delay数据边的SDF图（具体可以参考文章[3]）
-此外， COStream还增加了对sliding window的支持
+>The data flow graph described by the COStream language is based on the synchronous data flow graph SDF, and the correspondence between the two is as follows:
+1. The operator in COStream corresponds to the actor in SDF;
+1. The stream variable in COStream corresponds to the FIFO data edge in the SDF;
+1. The window size on the data stream in the COStream corresponds to the rate at which the actor produces and consumes data in the SDF;
+1. COStream doesn't support graphs like the feedback loop in StreamIt and SDF graphs with delay data edges;
+In addition, COStream adds support for the sliding window.
 
-## 语法符号
+## Grammar symbol
 
-本文将采用BNF（Backus Naur Form）来描述语言的语法特性，以下是常用到的语法符号。
+We use BNF (Backus Naur Form) to describe the grammatical features of the language. The following are commonly used grammar symbols.
 
-| 语法符号 | 说明 |
+| Grammar symbol | Description |
 | :----- | :----- |
-| italics |	非终结符（Non-terminal）|
-| italics			|		非终结符（Non-terminal）|
-| ALL_CAPS_ITALICS	| 标示符（终结符），如ID标示符 |
-| ‘text’				|	常量|
-| (…)				|	分组，用于分隔语法单位 |
-| …&#124;…				|	并操作，匹配左边或者右边语法单位 |
-| …?					|	可选操作 |
-| …*					| 语法单位重复0次或者多次 |
-| …+					| 语法单位重复1次或者多次 |
-| …*,			|		逗号分隔的0项或者多项语法单位 |
-| …+,			|		逗号分隔的1项或者多项语法单位 |
-| …*;			|		分号分隔的0项或者多项语法单位 |
-| …+;			|		分号分隔的1项或者多项语法单位 |
-| non-Ternimal ::=…	|	规则定义 |
+| italics |（Non-terminal）|
+| italics			|		（Non-terminal）|
+| ALL_CAPS_ITALICS	| Identifier（Terminator），Such as ID identifier |
+| ‘text’				|	constant|
+| (…)				|	Grouping, used to separate grammatical units |
+| …&#124;…				|	And operate to match the left or right grammar unit |
+| …?					|	Optional operation |
+| …*					| The grammar unit is repeated 0 or more times. |
+| …+					| The grammar unit is repeated 1 or more times |
+| …*,			|		Comma-separated 0 or multiple grammar units |
+| …+,			|		Comma-separated 1 or multiple grammar units |
+| …*;			|		0 or more grammatical units separated by semicolons |
+| …+;			|		1 or more grammatical units separated by semicolons |
+| non-Ternimal ::=…	|	Rule definition |
