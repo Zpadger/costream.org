@@ -10,20 +10,20 @@ In addition, the module verifies the correctness of the previous Lexical and gra
 ## Program entrance
 ```c++
 // （4）Delete file & verifies the Lexical and grammatical analysis results
-	if (tmpname[0] != 0) 
-	{
-		assert(0 == fclose(yyin));
-		assert(0 == remove(tmpname));
-	}	
+if (tmpname[0] != 0) 
+{
+    assert(0 == fclose(yyin));
+    assert(0 == remove(tmpname));
+}	
 #ifndef NDEBUG
-    if (Errors == 0) {
-		PhaseName = "Verification";
-		VerifyParse(Program);
-    }
+if (Errors == 0) {
+    PhaseName = "Verification";
+    VerifyParse(Program);
+}
 #endif
 
 ```
-（1）	Variable “Program” store the source program.
-（2）	VerifyParse(Program) function will check the correctness of the node ,data type ,declare lists expressions, expression lists,   statements, statement lists and extension grammar of COStream language after Lexical and grammatical analysis.
-（3）	Associate file : verify-parse.c
+- Variable “Program” store the source program.
+- VerifyParse(Program) function will check the correctness of the node ,data type ,declare lists expressions, expression lists,   statements, statement lists and extension grammar of COStream language after Lexical and grammatical analysis.
+- Associate file : verify-parse.c
 

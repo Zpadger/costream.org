@@ -10,19 +10,19 @@ In this stage,the AST of COStream program will be printed.
 
 ```c++
 //（9）Print AST
-	if (PrintAST) 
-	{
-		PrintList(stdout, Program, -1);
-		fprintf(stdout, "\n");
-	}
+if (PrintAST) 
+{
+    PrintList(stdout, Program, -1);
+    fprintf(stdout, "\n");
+}
 
 ```
-（1）	PrintAST：this varable is the switch of PrintAST ，defined in the head of main.cpp
-（2）	Function PrintList(…) print the AST of COStream program into a file of on the screen
+-	PrintAST：this varable is the switch of PrintAST ，defined in the head of main.cpp
+-	Function PrintList(…) print the AST of COStream program into a file of on the screen
 
 ## Associated file
 
-	print-ast.c
+`print-ast.c`
 All print function are defined in this file ,include print function of all kinds of node.	
 
 |Nodes print function|Description|

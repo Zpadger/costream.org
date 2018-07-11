@@ -85,7 +85,7 @@ order: 1
     `StageAssignment#actorStageMap(GetFlatNode2Partition())`
     
 1. Code Generation
-    `库函数#direct.h#getcwd()`
+    function `#direct.h#getcwd()`
     `GodeGeneration#CodeGeneration()`
     
 ![编译器后端](/img/PART2-2.png)

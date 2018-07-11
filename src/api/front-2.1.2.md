@@ -9,16 +9,16 @@ After the input preprocessing and initialization types, symbol tables, and opera
 ## Program entrance
 
 ```c++
-   /*（2）Grammar creation and grammar tree generation，yyparse()function is an internal call parser
-	* 于parser.c 3371行 {Program = GrabPragmas((yyvsp[(1)-(1)].L))};
-	* Get the analysis result of the input source program - syntax tree，store in list *program
-	*/
-    PhaseName = "Parsing";
-    parsed_ok = yyparse(); 
-    if (Level != 0) {
-		SyntaxError("unexpected end of file");
-    }
-
+/*（2）Grammar creation and grammar tree generation，yyparse()function is an internal call parser
+* 于parser.c 3371行 {Program = GrabPragmas((yyvsp[(1)-(1)].L))};
+* Get the analysis result of the input source program - syntax tree，store in list *program
+*/
+PhaseName = "Parsing";
+parsed_ok = yyparse(); 
+if (Level != 0) 
+{
+    SyntaxError("unexpected end of file");
+}
 ```
 Lexical analysis and Gramma analysis are in` parse()`.In order to truly understand the steps and connotations, you must have a good grasp of lexical analysis and grammar analysis and carefully read the words and grammar analysis files in the project.
 
