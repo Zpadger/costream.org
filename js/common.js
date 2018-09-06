@@ -275,14 +275,14 @@
     // build sidebar
     var currentPageAnchor = sidebar.querySelector('.sidebar-link.current')
     var contentClasses = document.querySelector('.content').classList
-    var isCookbookOrStyleGuide = (
-      contentClasses.contains('Cookbook') ||
+    var isAPIOrStyleGuide = (
+      contentClasses.contains('api') ||
       contentClasses.contains('style-guide')
     )
-    if (currentPageAnchor || isCookbookOrStyleGuide) {
+    if (currentPageAnchor || isAPIOrStyleGuide) {
       var allHeaders = []
       var sectionContainer
-      if (isCookbookOrStyleGuide) {
+      if (isAPIOrStyleGuide) {
         sectionContainer = document.querySelector('.menu-root')
       } else {
         sectionContainer = document.createElement('ul')
@@ -297,7 +297,7 @@
           allHeaders.push(h)
           allHeaders.push.apply(allHeaders, h3s)
           if (h3s.length) {
-            sectionContainer.appendChild(makeSubLinks(h3s, isCookbookOrStyleGuide))
+            sectionContainer.appendChild(makeSubLinks(h3s, isAPIOrStyleGuide))
           }
         })
       } else {
