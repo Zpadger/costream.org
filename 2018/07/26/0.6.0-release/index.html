@@ -5,21 +5,21 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
   <title>
-    Print AST — COStream</title>
+    COStream 0.6.0 Released — COStream</title>
   <meta charset="utf-8">
   <meta name="description" content="COStream - The High Performance Dataflow Language and Compiler">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <link rel="alternate" hreflang="x-default" href="https://costream.site/api/front-2.1.9.html">
-  <link rel="alternate" hreflang="zh" href="https://cn.costream.site/api/front-2.1.9.html">
+  <link rel="alternate" hreflang="x-default" href="https://costream.site/2018/07/26/0.6.0-release/">
+  <link rel="alternate" hreflang="zh" href="https://cn.costream.site/2018/07/26/0.6.0-release/">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Print AST — COStream">
+  <meta property="og:title" content="COStream 0.6.0 Released — COStream">
   <meta property="og:description" content="COStream - The High Performance Dataflow Language and Compiler">
   <meta property="og:image" content="https://cn.costream.site/images/logo.png">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Print AST — COStream">
+  <meta name="twitter:title" content="COStream 0.6.0 Released — COStream">
   <meta name="twitter:description" content="COStream - The High Performance Dataflow Language and Compiler">
   <meta name="twitter:image" content="https://cn.costream.site/images/logo.png">
 
@@ -63,7 +63,7 @@
   </style>
   <!-- this needs to be loaded before guide's inline scripts -->
   <script src="/js/vue.js"></script>
-  <script>window.PAGE_TYPE = "api"</script>
+  <script>window.PAGE_TYPE = ""</script>
 
   <!-- ga -->
   <script>
@@ -99,12 +99,12 @@
     <a href="/guide/installation.html" class="nav-link team">Install</a>
 </li>
 <li class="nav-dropdown-container learn">
-  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <a class="nav-link">Learn</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">Source</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -158,8 +158,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/front-2.1.9.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/front-2.1.9.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/2018/07/26/0.6.0-release/" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/2018/07/26/0.6.0-release/" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -171,25 +171,24 @@
   
   <div id="main" class="fix-sidebar">
     
-    
-  <div class="sidebar">
+    <div class="sidebar blog">
   <div class="sidebar-inner">
     <ul class="main-menu">
       <li>
   <form id="search-form">
-    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input">
   </form>
 </li>
 <li>
     <a href="/guide/installation.html" class="nav-link team">Install</a>
 </li>
 <li class="nav-dropdown-container learn">
-  <a class="nav-link current">Learn</a><span class="arrow"></span>
+  <a class="nav-link">Learn</a><span class="arrow"></span>
   <ul class="nav-dropdown">
     <li><ul>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/guide/grammar-book/grammar.html" class="nav-link">Grammar</a></li>
-        <li><a href="/api/" class="nav-link current">Source</a></li>
+        <li><a href="/api/" class="nav-link">Source</a></li>
       <li><a href="/examples/" class="nav-link">Examples</a></li>
     </ul></li>
   </ul>
@@ -243,8 +242,8 @@
 <li class="nav-dropdown-container language">
   <a class="nav-link">Language</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="https://costream.site/api/front-2.1.9.html" class="nav-link" target="_blank">English</a></li>
-    <li><a href="https://cn.costream.site/api/front-2.1.9.html" class="nav-link" target="_blank">简体中文</a></li>
+    <li><a href="https://costream.site/2018/07/26/0.6.0-release/" class="nav-link" target="_blank">English</a></li>
+    <li><a href="https://cn.costream.site/2018/07/26/0.6.0-release/" class="nav-link" target="_blank">简体中文</a></li>
   </ul>
 </li>
 
@@ -252,328 +251,26 @@
 
     </ul>
     <div class="list">
+      <h2>
+        Recent Posts
+        <a href="/atom.xml" target="_blank" style="vertical-align: middle; margin-left: 5px;">
+          <img src="/images/feed.png" style="width: 15px; height: 15px;">
+        </a>
+      </h2>
+      <ul style="padding: 0;">
       
+        <li>
+          <a href="/2018/07/26/0.6.0-release/" class="sidebar-link current">COStream 0.6.0 Released</a>
+        </li>
       
-        <h2>
-          
-          Source Explain
-<!--
-          
-            <select class="version-select">
-              <option value="SELF" selected>2.x</option>
-              <option value="v1">1.0</option>
-              <option value="012">0.12</option>
-              <option value="011">0.11</option>
-            </select>
-          
--->
-        </h2>
-        <ul class="menu-root">
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/index.html" class="sidebar-link">Overview</a>
-    </li>
-  
-    
-    
-    
-	
-      <li><h3>Front end - Parser </h3></li>
-      
-	
-    
-    <li>
-      <a href="/api/front-2.1.0.html" class="sidebar-link">Get & preprocess Input file</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.1.html" class="sidebar-link">Preprocessing & Environment initialization</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.2.html" class="sidebar-link">Grammar creation and grammar tree generation</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.3.html" class="sidebar-link">Print symbol table</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.4.html" class="sidebar-link">Delete file & verifies the Lexical and grammatical analysis results</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.5.html" class="sidebar-link">Semantic check</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.7.html" class="sidebar-link">Variable rename</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.8.html" class="sidebar-link">Constant propagation</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.9.html" class="sidebar-link current">Print AST</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.11.html" class="sidebar-link">Estimate workload of  nodes in flatgraph</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/front-2.1.10.html" class="sidebar-link">AST to Flatgraph</a>
-    </li>
-  
-    
-    
-    
-	
-	
-      <li><h3>Back end - CodeGenerator</h3></li>
-      
-    
-    <li>
-      <a href="/api/back-2.2.1.html" class="sidebar-link">Initial scheduling and steady-state scheduling</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/back-2.2.2.html" class="sidebar-link">Describe the SDF diagram in the form of XML</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/back-2.2.3.html" class="sidebar-link">Parition graph</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/back-2.2.4.html" class="sidebar-link">Print theoretical speedup ratio</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/back-2.2.5.html" class="sidebar-link">Stage Assignment</a>
-    </li>
-  
-    
-    
-    
-	
-	
-    
-    <li>
-      <a href="/api/back-2.2.6.html" class="sidebar-link">Code Generation</a>
-    </li>
-  
-</ul>
-
-      
+      </ul>
     </div>
   </div>
 </div>
-
-
-<div class="content api with-sidebar ">
-  
-    
-  
-  
-    <h1>Print AST</h1>
-  
-  
-    <p>In this stage,the AST of COStream program will be printed.</p>
-<h2 id="Program-entrance"><a href="#Program-entrance" class="headerlink" title="Program entrance"></a>Program entrance</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//（9）Print AST</span></span><br><span class="line"><span class="keyword">if</span> (PrintAST) </span><br><span class="line">&#123;</span><br><span class="line">    PrintList(<span class="built_in">stdout</span>, Program, <span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>PrintAST：this varable is the switch of PrintAST ，defined in the head of main.cpp</li>
-<li>Function PrintList(…) print the AST of COStream program into a file of on the screen</li>
-</ul>
-<h2 id="Associated-file"><a href="#Associated-file" class="headerlink" title="Associated file"></a>Associated file</h2><p><code>print-ast.c</code><br>All print function are defined in this file ,include print function of all kinds of node.    </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Nodes print function</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Print expression nodes</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintConst(…)</code></td>
-<td style="text-align:left">Print constant expression node</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintBinop(…)</code></td>
-<td style="text-align:left">Print binary expression</td>
-</tr>
-<tr>
-<td style="text-align:left">……</td>
-<td style="text-align:left">……</td>
-</tr>
-<tr>
-<td style="text-align:left">Print Statement node</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintLabel(…)</code></td>
-<td style="text-align:left">Print lable node</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintSwitch(…)</code></td>
-<td style="text-align:left">Print switch node</td>
-</tr>
-<tr>
-<td style="text-align:left">……</td>
-<td style="text-align:left">……</td>
-</tr>
-<tr>
-<td style="text-align:left">Print type node</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintPrim(…)</code></td>
-<td style="text-align:left">Print basic data type</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintFdec(…)</code></td>
-<td style="text-align:left">Print function declaration</td>
-</tr>
-<tr>
-<td style="text-align:left">……</td>
-<td style="text-align:left">……</td>
-</tr>
-<tr>
-<td style="text-align:left">Print COStream extension  grammar node</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintComposite(…)</code></td>
-<td style="text-align:left">COStream keywords Composite node</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintParam(…)</code></td>
-<td style="text-align:left">COStream Param node</td>
-</tr>
-<tr>
-<td style="text-align:left">……</td>
-<td style="text-align:left">……</td>
-</tr>
-<tr>
-<td style="text-align:left">Print syntax tree nodes and list</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintNode(…)</code></td>
-<td style="text-align:left">This functionjudge nodes type and call Corresponding type node print function</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>PrintList(…)</code></td>
-<td style="text-align:left">The syntax tree of the program is stored in the form of a linked list.This function traverses from the head node in order to print out the nodes according to the node type.</td>
-</tr>
-</tbody>
-</table>
-
-  
-  
-  <div class="footer">
-	Caught a mistake or want to contribute to the documentation? 
-    	
-	  <a href="https://github.com/DML308/costream.org/tree/master/src/api/front-2.1.9.md" target="_blank">
-		  Edit this page on GitHub!
-	  </a>
-  	
-  </div>
+<div class="content with-sidebar blog post">
+  <h1>COStream 0.6.0 Released</h1>
+  <h4>Jul 26, 2018</h4>
+  <h3 id="message"><a href="#message" class="headerlink" title="message"></a>message</h3>
 </div>
 
     
