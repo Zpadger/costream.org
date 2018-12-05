@@ -318,6 +318,9 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
       role: 'Master',
       org: 'HUST DML'
     },
+    reposOfficial: [
+      'COStream - Big Data'
+    ],	  
     reposPersonal: [
       'DASCAN', 'MovieRecommendation'
     ],
