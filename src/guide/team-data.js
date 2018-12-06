@@ -337,7 +337,7 @@ team = team.concat(shuffle([ //shuffle 函数打乱了后续成员的顺序
       org: 'HUST DML'
     },
     reposOfficial: [
-      'COStream -  Frontend',
+      'COStream -  Frontend'
     ],	  
     links: [
       'https://github.com/GalaxyYan'
